@@ -1,0 +1,16 @@
+{
+	"name": "TestList_1.0.2061.apk",
+	"version_main": "1",
+	"version_minor": "0",
+	"version_revise": "2061",
+	"type": "android",
+	"log": [
+		{
+			"logContent": "修复打包时报错问题"
+		}, {
+			"logContent": "修复通知测试bug"
+		}, {
+			"logContent": "加入混淆"
+		}
+	]
+}

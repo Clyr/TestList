@@ -102,6 +102,7 @@ public class MainActivity extends Activity {
     private TextView mTv;
     private TextDialog mDialog;
     private upDateModel mModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -190,7 +191,7 @@ public class MainActivity extends Activity {
 //                body.add("act","loadmyinfo").add("loginname","jn01");
                 Map<String, String> mapData = new HashMap<>();
                 mapData.put("act", "loadmyinfo");
-                mapData.put("pwd1", null);
+                mapData.put("pwd1", "");
                 mapData.put("loginname", "jn01");
                 String murl = "";
                 for (Map.Entry<String, String> en : mapData.entrySet()) {
@@ -627,9 +628,10 @@ public class MainActivity extends Activity {
     private TextView tvcode;
 
     private void update(final boolean b) {
+        //TODO 后需添加打包之后自动配置 update.json
         if (b)
             LoadingDialog.showLoadingBall(MainActivity.this);
-        String url = "http://192.168.32.111:8080/MyApplication/UpDate/update.json";
+        String url = "https://github.com/Clyr/TestList/tree/master/UpDate/update.json";
         Map<String, String> map = new HashMap<>();
         map.put("null", "null");
         OkHolder.get(url, map).build().execute(new StringCallback() {
