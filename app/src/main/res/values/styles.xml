@@ -1,0 +1,296 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:listDivider">@drawable/divider_bg</item>
+        <!--<item name="windowNoTitle">true</item>-->
+        <!--<item name="android:windowIsTranslucent">true</item>-->
+        <!--<item name="android:windowActionBar">false</item>-->
+        <!--<item name="android:windowContentOverlay">@null</item>-->
+        <!--<item name="android:windowBackground">@color/white</item>-->
+        <!--<item name="android:colorBackgroundCacheHint">@null</item>-->
+        <!--<item name="android:windowNoTitle">true</item>-->
+        <!--<item name="android:backgroundDimEnabled">false</item>-->
+        <!--<item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>-->
+
+    </style>
+
+
+    <style name="MyDialog" parent="android:style/Theme.Dialog">
+        <!--背景颜色及和透明程度-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--是否去除标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!--是否去除边框-->
+        <item name="android:windowFrame">@null</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">false</item>
+        <!--是否半透明-->
+        <item name="android:windowIsTranslucent">true</item>
+
+        <item name="android:background">#00000000</item>
+    </style>
+    <style name="ProgressDialog" parent="android:style/Theme.Dialog">
+        <!--背景颜色及和透明程度-->
+        <item name="android:windowBackground">@color/transparent</item>
+        <!--是否去除标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!--是否去除边框-->
+        <item name="android:windowFrame">@null</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否模糊 屏幕变暗-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!--是否半透明-->
+        <item name="android:windowIsTranslucent">true</item>
+
+        <item name="android:background">@color/transparent</item>
+    </style>
+    <!-- dialog底部弹出菜单动画 -->
+    <style name="bottom_menu_animation" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/bottom_menu_enter</item>
+        <item name="@android:windowExitAnimation">@anim/bottom_menu_exit</item>
+    </style>
+    <!-- dialog渐变弹出菜单动画 -->
+    <style name="dialog_animation" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/anim_show</item>
+        <item name="@android:windowExitAnimation">@anim/anim_cancel</item>
+    </style>
+
+    <style name="AVLoadingIndicatorView">
+        <item name="minWidth">48dip</item>
+        <item name="maxWidth">48dip</item>
+        <item name="minHeight">48dip</item>
+        <item name="maxHeight">48dip</item>
+        <item name="indicatorName">BallPulseIndicator</item>
+    </style>
+
+    <style name="AVLoadingIndicatorView.Large">
+        <item name="minWidth">76dip</item>
+        <item name="maxWidth">76dip</item>
+        <item name="minHeight">76dip</item>
+        <item name="maxHeight">76dip</item>
+        <item name="indicatorName">BallPulseIndicator</item>
+    </style>
+
+    <style name="AVLoadingIndicatorView.Small">
+        <item name="minWidth">24dip</item>
+        <item name="maxWidth">24dip</item>
+        <item name="minHeight">24dip</item>
+        <item name="maxHeight">24dip</item>
+        <item name="indicatorName">BallPulseIndicator</item>
+    </style>
+    <!--
+            Base application theme, dependent on API level. This theme is replaced
+            by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <style name="layout">
+        <item name="android:background">@color/clear</item>
+    </style>
+
+    <style name="layout.title">
+        <item name="android:background">@drawable/bg_title</item>
+    </style>
+
+    <style name="iv">
+        <item name="android:background">@color/clear</item>
+    </style>
+
+    <style name="iv.item_arrow">
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginRight">10dp</item>
+    </style>
+
+    <style name="tv">
+        <item name="android:gravity">center</item>
+        <item name="android:background">@color/clear</item>
+    </style>
+
+    <style name="tv.title_grey">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/con_grey</item>
+    </style>
+
+    <style name="tv.con_grey">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/con_grey</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:lineSpacingExtra">3dp</item>
+    </style>
+
+    <style name="tv.con_nor">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:gravity">left|center_vertical</item>
+    </style>
+
+    <style name="tv.item_con">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">center_vertical|left</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="tv.bottom_txt">
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">bottom</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:textColor">@color/btn_content</item>
+    </style>
+
+    <style name="tv.btn">
+        <item name="android:textColor">@color/btn_content</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="tv_button">
+        <item name="android:textSize">18dp</item>
+        <item name="android:textColor">@color/btn_content</item>
+        <item name="android:background">@layout/shape_corner</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+    </style>
+    <style name="tv_info">
+        <item name="android:textSize">18dp</item>
+        <item name="android:textColor">#0000ff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@layout/shape_rectangle</item>
+    </style>
+
+    <style name="tv.smallbtn">
+        <item name="android:textColor">@color/btn_content</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="tv.btn_nor">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="tv.btn_unable">
+        <item name="android:textColor">@color/btn_content_unable</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="tv.btn_enable">
+        <item name="android:textColor">@color/btn_content</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="tv.btn_unable_withbg">
+        <item name="android:background">@drawable/bg_btn_disabled</item>
+        <item name="android:textColor">@color/btn_content_unable</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="tv.btn_enable_withbg">
+        <item name="android:background">@drawable/bg_btn_enabled</item>
+        <item name="android:textColor">@color/btn_normal_withbg</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="tv.title">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@drawable/bg_title</item>
+    </style>
+
+    <style name="tv.subtitle">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:gravity">left|center_vertical</item>
+    </style>
+
+    <style name="style_login_option">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/color_login_subtitle</item>
+        <item name="android:gravity">left|center_vertical</item>
+    </style>
+
+    <style name="tv.edit_hint">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/high_grey</item>
+        <item name="android:background">@color/clear</item>
+        <item name="android:paddingLeft">10dp</item>
+    </style>
+
+    <style name="et">
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="et.withbg">
+        <item name="android:background">@drawable/bg_btn_unselected</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
+    <style name="et.nobg">
+        <item name="android:background">@color/clear</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+    </style>
+
+
+    <style name="AVLoadingIndicatorView.Like">
+        <item name="minWidth">76dip</item>
+        <item name="maxWidth">76dip</item>
+        <item name="minHeight">76dip</item>
+        <item name="maxHeight">76dip</item>
+        <item name="indicatorName">BallSpinFadeLoaderIndicator</item>
+    </style>
+    <style name="AVLoadingIndicatorViewball48">
+        <item name="minWidth">48dip</item>
+        <item name="maxWidth">48dip</item>
+        <item name="minHeight">48dip</item>
+        <item name="maxHeight">48dip</item>
+        <item name="indicatorName">BallSpinFadeLoaderIndicator</item>
+    </style>
+    <style name="AVLoadingIndicatorView.Like2">
+        <item name="minWidth">76dip</item>
+        <item name="maxWidth">76dip</item>
+        <item name="minHeight">76dip</item>
+        <item name="maxHeight">76dip</item>
+        <item name="indicatorName">LineSpinFadeLoaderIndicator</item>
+    </style>
+    <style name="AVLoadingIndicatorView.Like2.s">
+        <item name="minWidth">48dip</item>
+        <item name="maxWidth">48dip</item>
+        <item name="minHeight">48dip</item>
+        <item name="maxHeight">48dip</item>
+        <item name="indicatorName">LineSpinFadeLoaderIndicator</item>
+    </style>
+    <style name="AVLoadingIndicatorView.Like2.l">
+        <item name="minWidth">36dip</item>
+        <item name="maxWidth">36dip</item>
+        <item name="minHeight">36dip</item>
+        <item name="maxHeight">36dip</item>
+        <item name="indicatorName">LineSpinFadeLoaderIndicator</item>
+    </style>
+
+    <style name="line_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/split_line</item>
+    </style>
+
+</resources>

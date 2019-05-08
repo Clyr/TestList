@@ -1,0 +1,77 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        style="@style/layout.title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" >
+
+        <TextView
+            android:id="@+id/btn_socket_tcp_back"
+            style="@style/tv.btn"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:text="@string/back" />
+
+        <TextView
+            android:id="@+id/tv_socket_tcp_title"
+            style="@style/tv.btn_nor"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/socket_tcp" />
+
+        <TextView
+            android:id="@+id/btn_socket_tcp_guide"
+            style="@style/tv.btn"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:text="@string/guide" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_navigate_normal"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/btn_socket_tcp_tcp"
+            
+            style="@style/tv.smallbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+             android:text="@string/tcp_test" />
+
+        <TextView
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/http_nav_seq" />
+
+        <TextView
+            android:id="@+id/btn_socket_tcp_socket"
+            style="@style/tv.smallbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/svn_socket"/>
+    </LinearLayout>
+
+    <androidx.core.view.ViewPager
+        android:id="@+id/socket_tcp"
+        android:layout_width="fill_parent"
+        android:layout_height="400dp" >
+    </androidx.core.view.ViewPager>
+
+</LinearLayout>

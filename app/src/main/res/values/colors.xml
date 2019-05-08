@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3AB9FE</color>
+    <color name="colorPrimaryDark">#3AB9FE</color>
+    <color name="colorAccent">#3AB9FE</color>
+    <color name="red3">#33ff0000</color>
+    <color name="transparent">#00000000</color>
+    <color name="bluef">#0000ff</color>
+    <color name="bluec">#cc0000ff</color>
+    <color name="blue9">#990000ff</color>
+    <color name="blue6">#660000ff</color>
+    <color name="blue3">#330000ff</color>
+    <color name="blackf">#000000</color>
+    <color name="blackc">#cc000000</color>
+    <color name="black9">#99000000</color>
+    <color name="black8">#88000000</color>
+    <color name="black6">#66000000</color>
+    <color name="black5">#55000000</color>
+    <color name="black4">#44000000</color>
+    <color name="black3">#33000000</color>
+    <color name="white">#ffffff</color>
+    <color name="whitea">#aaffffff</color>
+    <color name="xxl_gray">#cccccccc</color>
+    <color name="text_gray_666666">#666666</color>
+    <color name="test">#cccccc</color>
+
+    <color name="black">#000000</color>
+    <color name="grey">#cccccc</color>
+    <color name="high_grey">#5d5d5d</color>
+    <color name="clear">#00ffffff</color>
+    <color name="btn_content">#157efb</color>
+    <color name="btn_normal_withbg">#13a1ff</color>
+    <color name="btn_content_unable">#6e6e6e</color>
+    <color name="list_item_child_bg">#f8f7f7</color>
+    <color name="con_grey">#99666666</color>
+    <color name="http_nav_seq">#039aff</color>
+
+    <color name="color_login_subtitle">#157efb</color>
+    <color name="payColor">#3AB9FE</color>
+
+    <color name="main_ll">#550796F2</color>
+    <color name="main_lll">#220796F2</color>
+    <color name="main_l">#880796F2</color>
+
+    <color name="green">#00ff00</color>
+    <color name="green_blue">#23BFE5</color>
+    <color name="green_mix">#46df62</color>
+    <color name="green_black">#48ac72</color>
+    <color name="green2">#01DFA5</color>
+    <color name="green2_ll">#5501DFA5</color>
+
+    <color name="red">#ff0000</color>
+    <color name="red8">#88ff0000</color>
+    <color name="red5">#55ff0000</color>
+    <!--<color name="red3">#33ff0000</color>-->
+
+    <color name="blue">#0000ff</color>
+    <!--<color name="blue3">#330000ff</color>-->
+    <color name="blue_black">#000048</color>
+    <color name="blue_black_l">#bb000048</color>
+
+    <color name="gray">#AEAEAE</color>
+    <color name="gray2">#aaAEAEAE</color>
+    <color name="gray_l">#66AEAEAE</color>
+    <color name="gray_lw">#36AEAEAE</color>
+    <color name="gray_black">#6E6E6E</color>
+    <color name="gray_ll">#06112233</color>
+
+    <color name="yellow">#ffff00</color>
+    <color name="yellow2">#fdefa0</color>
+    <color name="orange">#ffaa00</color>
+    <color name="orange2">#FE9A2E</color>
+    <color name="orange_ll">#ccffaa00</color>
+    <color name="orange_lll">#99ffaa00</color>
+
+    <color name="main_tab_item_text_select">#0796F2</color>
+    <color name="main_tab_item_text_normal">#bfbfbf</color>
+
+    <color name="colorCirclebg">#100000ff</color>
+    <color name="colorCirclebg2">#C3F3E4</color>
+    <color name="colorStart">#64F6BD</color>
+    <color name="colorEnd">#20BBE9</color>
+    <color name="background">#FFFFFF</color>
+    <color name="split_line">#16112233</color>
+    <color name="text1">#59B29C</color>
+    <color name="text2">#333333</color>
+
+    <color name="color1">#F0F0F0</color>
+    <color name="color2">#FFFFFF</color>
+    <color name="color3">#B0B0B0</color>
+    <color name="color4">#666666</color>
+    <color name="color5">#57C5E8</color>
+</resources>

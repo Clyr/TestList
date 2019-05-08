@@ -1,0 +1,98 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/main_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/view_line"/>
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/rl_bottom"
+        android:background="#DCDBDB"/>
+
+    <LinearLayout
+        android:id="@+id/rl_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#F2F2F2"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
+
+        <TextView
+            android:id="@+id/tv_main"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/main_tab_item_image_and_text"
+            android:drawableTop="@drawable/tab_item_main_img_selector"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="@string/main"
+            android:textColor="@drawable/tabitem_txt_sel"/>
+
+        <TextView
+            android:id="@+id/tv_dynamic"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/main_tab_item_image_and_text"
+            android:drawableTop="@drawable/tab_item_dynamic_img_selector"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="@string/dynamic"
+            android:textColor="@drawable/tabitem_txt_sel"/>
+
+        <!--  <TextView
+              android:id="@+id/tv_other"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:layout_weight="1"
+              android:drawablePadding="@dimen/main_tab_item_image_and_text"
+              android:drawableTop="@drawable/tab_item_other_img_selector"
+              android:focusable="true"
+              android:gravity="center"
+              android:text="@string/message"
+              android:textColor="@drawable/tabitem_txt_sel"/>-->
+
+        <TextView
+            android:id="@+id/tv_message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/main_tab_item_image_and_text"
+            android:drawableTop="@drawable/tab_item_message_img_selector"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="@string/message"
+            android:textColor="@drawable/tabitem_txt_sel"/>
+
+        <TextView
+            android:id="@+id/tv_person"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/main_tab_item_image_and_text"
+            android:drawableTop="@drawable/tab_item_person_img_selector"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="@string/person"
+            android:textColor="@drawable/tabitem_txt_sel"/>
+    </LinearLayout>
+
+</RelativeLayout>

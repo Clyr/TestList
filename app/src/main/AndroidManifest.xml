@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.matrix.myapplication">
+
+    <!-- 标准添加 permission -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 申请安装权限 -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <uses-permission
+        android:name="android.permission.BIND_VPN_SERVICE"
+        tools:ignore="ProtectedPermissions" />
+
+    <!-- 华为AnyOffice permission start -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="com.huawei.anyoffice.permisson.SIGNATURE" />
+
+    <!-- 华为AnyOffice permission end -->
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:exported="true"
+        android:icon="@drawable/test"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/test"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:name">
+        <activity
+            android:name=".activity.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.Main2Activity" />
+        <activity android:name=".activity.MarqueeActivity" />
+        <activity android:name=".cache.MainActivity3" />
+        <activity android:name=".cache.AboutActivity" />
+        <activity android:name=".cache.SaveBitmapActivity" />
+        <activity android:name=".cache.SaveJsonObjectActivity" />
+        <activity android:name=".cache.SaveObjectActivity" />
+        <activity android:name=".cache.SaveStringActivity" />
+        <activity android:name=".cache.SaveMediaActivity" />
+        <activity android:name=".cache.SaveDrawableActivity" />
+        <activity android:name=".cache.SaveJsonArrayActivity" />
+        <activity android:name=".activity.CameraActivity" />
+        <activity android:name=".activity.Main4Activity" />
+        <activity android:name=".activity.Main5Activity" />
+        <activity android:name=".activity.BigImageActivity" />
+        <activity android:name=".activity.ImageActivity" />
+        <activity android:name=".activity.Main6Activity" />
+        <activity android:name=".activity.LoadingActivity" />
+        <activity android:name=".activity.IndicatorActivity" />
+        <activity android:name=".activity.SampleActivity" />
+        <activity android:name=".activity.SqliteActivity" />
+        <activity android:name=".activity.TreeListActivity" />
+        <activity android:name=".activity.SendActivity" />
+        <activity android:name=".activity.ProgressActivity" />
+
+        <receiver android:name=".NewAppWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/new_app_widget_info" />
+        </receiver>
+
+        <activity android:name=".activity.CheckListActivity" />
+        <activity android:name=".activity.TableActivity" />
+        <activity android:name=".activity.FPSGetActivity" />
+        <activity android:name=".activity.MainGetFPSActivity" />
+
+        <service
+            android:name=".service.FPSGetService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".activity.NewTableActivity" />
+        <activity android:name=".activity.LineChartActivity" />
+        <activity android:name=".activity.Main7Activity" />
+        <activity android:name=".activity.BaseActivity" />
+        <activity android:name=".activity.AnyOfficeActivity" />
+
+        <!-- 登录界面（统一认证需要） -->
+        <activity
+            android:name="com.huawei.anyoffice.sdk.ui.LoginAuthActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize" />
+        <!-- 登录配置界面（统一认证需要） -->
+        <activity
+            android:name="com.huawei.anyoffice.sdk.ui.LoginConfigActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize" />
+        <!-- SDK中感知终端网络变更（统一认证需要） -->
+        <receiver android:name="com.huawei.anyoffice.sdk.network.NetworkReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+        <!-- SDK中感知锁屏事件，解锁后探测重连隧道功能 -->
+        <receiver android:name="com.huawei.anyoffice.sdk.network.ScreenOnReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+        <!-- webapp界面（webapp控件需要） -->
+        <activity android:name="com.huawei.anyoffice.sdk.ui.WebAppActivity" />
+        <!-- rar文档界面（打开文档需要） -->
+        <activity android:name="com.huawei.anyoffice.sdk.doc.ui.RarViewer" />
+
+        <!-- 文档浏览界面（打开文档需要） -->
+        <activity
+            android:name="com.huawei.anyoffice.sdk.doc.ui.SDKDocViewer"
+            android:label="@string/app_name" />
+        <activity android:name="com.huawei.AppVpnBaseActivity" />
+        <activity android:name=".activity.AnyOfficeActivity2" />
+        <activity android:name=".activity.RecycleViewActivity" />
+        <activity android:name=".activity.FragmentActivity"></activity>
+
+
+        <provider
+            tools:replace="android:authorities"
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.matrix.myapplication.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+
+</manifest>

@@ -1,0 +1,71 @@
+<!--
+  ~ Copyright 2015 Huawei Technologies Co., Ltd. All rights reserved.
+  ~ eSDK is licensed under the Apache License, Version 2.0 ^(the "License"^);
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~         http://www.apache.org/licenses/LICENSE-2.0
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        style="@style/layout.title">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            style="@style/tv.btn"
+            android:text="@string/back"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/btn_checknettype_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="@string/menu_checknettype_test"
+            android:layout_centerHorizontal="true"
+            style="@style/tv.btn_nor" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="35dp"
+            style="@style/tv.btn_enable_withbg"
+            android:text="@string/CheckNetTypeStart"
+            android:id="@+id/btn_checknettype_start" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/layout_checknettype_result_block"
+        android:visibility="gone"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            style="@style/tv.title_grey"
+            android:id="@+id/tv_checknettype_result" />
+
+    </LinearLayout>
+</LinearLayout>

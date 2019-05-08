@@ -1,0 +1,96 @@
+<!--
+  ~ Copyright 2015 Huawei Technologies Co., Ltd. All rights reserved.
+  ~ eSDK is licensed under the Apache License, Version 2.0 ^(the "License"^);
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~         http://www.apache.org/licenses/LICENSE-2.0
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <com.huawei.esdk.demo.widget.MyEditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/et_http_login_url" />
+
+    <com.huawei.esdk.demo.widget.MyEditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/et_http_login_suburl" />
+
+    <com.huawei.esdk.demo.widget.MyEditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/et_http_login_username" />
+
+    <com.huawei.esdk.demo.widget.MyEditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/et_http_login_password" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            style="@style/tv.btn_unable_withbg"
+            android:text="@string/http_login"
+            android:id="@+id/btn_http_login_login" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layout_http_login_result_block"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                style="@style/tv.subtitle"
+                android:text="@string/http_request" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="25dp"
+                style="@style/tv.con_grey"
+                android:text="@string/app_name"
+                android:id="@+id/tv_http_login_request" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                style="@style/tv.subtitle"
+                android:text="@string/http_response" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="25dp"
+                style="@style/tv.con_grey"
+                android:text="@string/app_name"
+                android:id="@+id/tv_http_login_response" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

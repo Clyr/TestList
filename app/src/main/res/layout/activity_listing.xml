@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:fitsSystemWindows="true">
+
+    <include layout="@layout/title"></include>
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/text_null"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="@drawable/txt_sel_gray2"
+        android:text="@string/nulltext_refreash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <com.matrix.myapplication.view.pulltorefresh.PullToRefreshListView
+        android:id="@+id/listing_list"
+        android:layout_width="match_parent"
+        android:divider="@color/split_line"
+        android:dividerHeight="1dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/list_margin1"
+        android:layout_marginRight="@dimen/list_margin1"
+        android:scrollbars="none">
+
+    </com.matrix.myapplication.view.pulltorefresh.PullToRefreshListView>
+</LinearLayout>

@@ -1,0 +1,195 @@
+<!--
+  ~ Copyright 2015 Huawei Technologies Co., Ltd. All rights reserved.
+  ~ eSDK is licensed under the Apache License, Version 2.0 ^(the "License"^);
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~         http://www.apache.org/licenses/LICENSE-2.0
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        style="@style/layout.title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/btn_endecrypt_back"
+            style="@style/tv.btn"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:text="@string/back" />
+
+        <TextView
+            style="@style/tv.btn_nor"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/file_encrypt_decrypt_title" />
+
+        <TextView
+            android:id="@+id/btn_endecrypt_guide"
+            style="@style/tv.btn"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:text="@string/guide" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <TextView
+            android:id="@+id/tv_encrypt_decrypt_filename"
+            style="@style/tv.con_grey"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/encrypt_decrypt_file" />
+
+        <EditText
+            android:id="@+id/et_encrypt_decrypt_filepath"
+            style="@style/et.withbg"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/btn_encrypt_decrypt_browse"
+            android:layout_toRightOf="@+id/tv_encrypt_decrypt_filename"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp" />
+
+        <TextView
+            android:id="@+id/btn_encrypt_decrypt_browse"
+            style="@style/tv.btn_enable_withbg"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="@string/browse" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/grey" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="50dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/tv.subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:paddingLeft="10dp"
+            android:text="@string/original_path" />
+
+        <EditText
+            android:id="@+id/et_encrypt_decrypt_originalpath"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:background="@drawable/bg_edit"
+            android:paddingRight="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="50dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/tv.subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:paddingLeft="10dp"
+            android:text="@string/encrypt_path" />
+
+        <EditText
+            android:id="@+id/et_encrypt_decrypt_encryptpath"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:background="@drawable/bg_edit"
+            android:paddingRight="10dp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/grey" />
+
+    <TextView
+        android:id="@+id/btn_encrypt_decrypt_encrypt"
+        style="@style/tv.btn_unable_withbg"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="@string/encrypt" />
+
+    <TextView
+        android:id="@+id/btn_encrypt_decrypt_decrypt"
+        style="@style/tv.btn_unable_withbg"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="@string/encrypt"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_encrypt_decrypt_result"
+        style="@style/tv.subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center" />
+	
+    <TextView
+        android:id="@+id/btn_encrypt_decrypt_open"
+        style="@style/tv.btn_unable_withbg"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="@string/view_file" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <TextView
+                android:id="@+id/open_zip_result"
+                style="@style/tv.subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="20dp" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

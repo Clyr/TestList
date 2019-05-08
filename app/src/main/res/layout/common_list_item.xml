@@ -1,0 +1,54 @@
+<!--
+  ~ Copyright 2015 Huawei Technologies Co., Ltd. All rights reserved.
+  ~ eSDK is licensed under the Apache License, Version 2.0 ^(the "License"^);
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~         http://www.apache.org/licenses/LICENSE-2.0
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/layout_common_list_item"
+        android:background="@drawable/bg_list_item_selected">
+
+        <TextView
+            style="@style/tv.item_con"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/tv_common_list_item_con"
+            android:layout_toLeftOf="@+id/iv_common_list_item_arrow" />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            style="@style/iv.item_arrow"
+            android:src="@drawable/icon_arrow_down"
+            android:id="@+id/iv_common_list_item_arrow" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="@color/grey" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/layout_common_list_item_childcontainer"
+        android:layout_below="@+id/layout_common_list_item"
+        android:visibility="gone"></LinearLayout>
+</RelativeLayout>

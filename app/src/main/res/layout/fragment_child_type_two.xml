@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/white"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <TextView
+        android:visibility="visible"
+        android:id="@+id/text_null"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="@drawable/txt_sel_gray"
+        android:text="@string/nulltext_refreash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+    <com.matrix.myapplication.view.pulltorefresh.PullToRefreshListView
+        android:id="@+id/monitoe_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:horizontalSpacing="8dp"
+        android:numColumns="2"
+        android:scrollbars="none"
+        android:verticalSpacing="8dp"></com.matrix.myapplication.view.pulltorefresh.PullToRefreshListView>
+</LinearLayout>

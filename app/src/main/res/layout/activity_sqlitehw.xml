@@ -1,0 +1,221 @@
+<!--
+  ~ Copyright 2015 Huawei Technologies Co., Ltd. All rights reserved.
+  ~ eSDK is licensed under the Apache License, Version 2.0 ^(the "License"^);
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~         http://www.apache.org/licenses/LICENSE-2.0
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        style="@style/layout.title">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            style="@style/tv.btn"
+            android:text="@string/back"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/btn_sqlite_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="@string/use_sqlite"
+            android:layout_centerHorizontal="true"
+            style="@style/tv.btn_nor" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@drawable/bg_navigate_normal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="@string/insert"
+            style="@style/tv.smallbtn"
+            android:id="@+id/btn_nav_insert" />
+
+        <TextView
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/http_nav_seq" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/delete"
+            style="@style/tv.smallbtn"
+            android:id="@+id/btn_nav_delete" />
+
+        <TextView
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/http_nav_seq" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/update"
+            style="@style/tv.smallbtn"
+            android:id="@+id/btn_nav_update" />
+
+        <TextView
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/http_nav_seq" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="@string/query"
+            style="@style/tv.smallbtn"
+            android:id="@+id/btn_nav_query" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:text="@string/sqlite_name"
+            style="@style/tv.subtitle" />
+
+        <EditText
+            android:layout_width="150dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/bg_btn_unselected"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:id="@+id/et_sqlite_name" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:text="@string/sqlite_age"
+            style="@style/tv.subtitle" />
+
+        <EditText
+            android:layout_width="150dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/bg_btn_unselected"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:id="@+id/et_sqlite_age" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/tv_sqlite_id" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            style="@style/tv.btn_enable_withbg"
+            android:text="@string/insert"
+            android:textSize="13sp"
+            android:id="@+id/btn_sqlite_insert" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            style="@style/tv.btn_enable_withbg"
+            android:text="@string/delete"
+            android:textSize="13sp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/btn_sqlite_delete" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            style="@style/tv.btn_enable_withbg"
+            android:text="@string/update"
+            android:textSize="13sp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/btn_sqlite_update" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            style="@style/tv.btn_enable_withbg"
+            android:text="@string/query"
+            android:textSize="13sp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/btn_sqlite_query" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="@string/sqlite_result"
+        style="@style/tv.subtitle"
+        android:layout_marginTop="10dp"
+        android:id="@+id/tv_sqlite_datatitle" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/grey" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="@null"
+        android:scrollbars="vertical"
+        android:divider="@android:drawable/divider_horizontal_bright"
+        android:id="@+id/lv_sqlite_querydata"
+        android:listSelector="@color/con_grey"></ListView>
+</LinearLayout>

@@ -1,0 +1,97 @@
+<!--
+  ~ Copyright 2015 Huawei Technologies Co., Ltd. All rights reserved.
+  ~ eSDK is licensed under the Apache License, Version 2.0 ^(the "License"^);
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~         http://www.apache.org/licenses/LICENSE-2.0
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        style="@style/layout.title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/btn_webview_back"
+            style="@style/tv.btn"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:text="@string/back" />
+
+        <TextView
+            style="@style/tv.btn_nor"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/webview" />
+    </RelativeLayout>
+
+    <com.huawei.esdk.demo.widget.MyEditText
+        android:id="@+id/et_webview_url"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="5dp">
+
+        <TextView
+            android:id="@+id/btn_webview"
+            style="@style/tv.btn_unable_withbg"
+            android:layout_width="85dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:text="@string/webview" />
+
+        <TextView
+            android:id="@+id/btn_sdkwebview"
+            style="@style/tv.btn_unable_withbg"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:text="@string/sdkwebview" />
+
+        <TextView
+            android:id="@+id/btn_webapp"
+            style="@style/tv.btn_unable_withbg"
+            android:layout_width="85dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:text="@string/webapp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/border_background">
+
+        <WebView
+            android:id="@+id/wv_webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp" />
+
+        <com.huawei.anyoffice.sdk.ui.SDKWebview
+            android:id="@+id/wv_sdkwebview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:visibility="gone" />
+    </FrameLayout>
+
+</LinearLayout>

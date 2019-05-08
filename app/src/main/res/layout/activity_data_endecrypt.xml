@@ -1,0 +1,118 @@
+<!--
+  ~ Copyright 2015 Huawei Technologies Co., Ltd. All rights reserved.
+  ~ eSDK is licensed under the Apache License, Version 2.0 ^(the "License"^);
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~         http://www.apache.org/licenses/LICENSE-2.0
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        style="@style/layout.title">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            style="@style/tv.btn"
+            android:text="@string/back"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/btn_dataencrypt_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="@string/data_encrypt_decrypt_title"
+            android:layout_centerHorizontal="true"
+            style="@style/tv.btn_nor" />
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:text="@string/guide"
+            style="@style/tv.btn"
+            android:layout_alignParentRight="true"
+            android:id="@+id/btn_dataencrypt_guide" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:padding="10dp"
+                style="@style/et.withbg"
+                android:id="@+id/et_dataencrypt_data" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                style="@style/tv.btn_unable_withbg"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:text="@string/encrypt"
+                android:id="@+id/btn_dataencrypt_encrypt" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                style="@style/tv.btn_unable_withbg"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:text="@string/decrypt"
+                android:id="@+id/btn_dataencrypt_decrypt" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/result"
+                    style="@style/tv.subtitle" />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    style="@style/iv"
+                    android:src="@drawable/icon_encrypt_disabled"
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/iv_dataencrypt_lock" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="60dp"
+                style="@style/et.withbg"
+                android:padding="10dp"
+                android:id="@+id/tv_dataencrypt_result" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
+    

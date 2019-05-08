@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.matrix.myapplication.activity.Main5Activity">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"/>
+
+    <com.matrix.myapplication.view.GuaGuaKa
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_horizontal"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="56dp"/>
+
+<RelativeLayout
+    android:layout_marginTop="15dp"
+    android:layout_width="80dp"
+    android:layout_gravity="center"
+    android:layout_height="80dp">
+
+
+        <com.matrix.myapplication.view.ProcessImageView
+            android:id="@+id/image"
+            android:layout_alignParentBottom="true"
+            android:scaleType="centerCrop"
+            android:layout_height="80dp"
+            android:layout_width="80dp"
+            android:src="@drawable/image">
+        </com.matrix.myapplication.view.ProcessImageView>
+    <Button
+        android:id="@+id/buttonimage"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/refresh1"/>
+</RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rel"
+        android:layout_marginTop="15dp"
+        android:layout_width="80dp"
+        android:layout_gravity="center"
+        android:layout_height="80dp">
+
+
+        <com.matrix.myapplication.view.MyVideoView
+            android:id="@+id/video"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentBottom="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/image">
+        </com.matrix.myapplication.view.MyVideoView>
+        <com.matrix.myapplication.view.ProcessImageView
+            android:id="@+id/image2"
+            android:layout_alignParentBottom="true"
+            android:scaleType="centerCrop"
+            android:layout_height="80dp"
+            android:layout_width="80dp"
+            android:src="@null">
+        </com.matrix.myapplication.view.ProcessImageView>
+        <Button
+            android:id="@+id/buttonimage2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/refresh1"/>
+    </RelativeLayout>
+</LinearLayout>

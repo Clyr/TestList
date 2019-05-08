@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+    <TextView
+        android:visibility="visible"
+        android:id="@+id/text_null"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="@drawable/txt_sel_gray2"
+        android:text="@string/nulltext_refreash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <com.matrix.myapplication.view.pulltorefresh.PullToRefreshListView
+        android:scrollbars="none"
+        android:layout_marginLeft="@dimen/list_margin1"
+        android:layout_marginRight="@dimen/list_margin1"
+        android:id="@+id/refreshlist"
+        android:divider="@color/split_line"
+        android:dividerHeight="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.matrix.myapplication.view.pulltorefresh.PullToRefreshListView>
+</androidx.constraintlayout.ConstraintLayout>

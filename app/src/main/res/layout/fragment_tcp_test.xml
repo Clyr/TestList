@@ -1,0 +1,66 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
+    <com.huawei.esdk.demo.widget.MyEditText
+        android:id="@+id/et_tcp_url"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <com.huawei.esdk.demo.widget.MyEditText
+        android:id="@+id/et_tcp_port"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <com.huawei.esdk.demo.widget.MyEditText
+        android:id="@+id/et_tcp_timeout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/btn_tcp_detect"
+            style="@style/tv.btn_unable_withbg"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:text="@string/tcp_test" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/layout_tcp_result_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <TextView
+                android:id="@+id/tv_tcp_request"
+                style="@style/tv.con_grey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="25dp"
+                android:text="@string/app_name" />
+
+            <TextView
+                android:id="@+id/tv_tcp_response"
+                style="@style/tv.con_grey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="25dp"
+                android:text="@string/app_name" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

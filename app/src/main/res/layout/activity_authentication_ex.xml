@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        style="@style/tv.title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/app_name" />
+
+    <!--add scroll view for soft input window-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:id="@+id/sv_sdk_configs">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp"
+            android:id="@+id/ll_sdk_configs">
+
+            <!--SDK Mode: L4VPN, App VPN, or Sandbox only-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ll_sdk_mode"
+                android:orientation="vertical"
+                android:background="@layout/shape_corner">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:gravity="center_vertical"
+                    android:text="@string/sdk_mode" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rg_sdk_mode"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:text="@string/l4vpn_mode"
+                        android:id="@+id/rb_l4vpn_mode"
+                        android:checked="true"
+                        style="@style/tv.btn_enable"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp"
+                        android:text="@string/appvpn_mode"
+                        android:id="@+id/rb_appvpn_mode"
+                        android:checked="false"
+                        style="@style/tv.btn_unable"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp"
+                        android:text="@string/sandbox_mode"
+                        android:id="@+id/rb_sandbox_mode"
+                        android:checked="false"
+                        style="@style/tv.btn_unable"/>
+                </RadioGroup>
+            </LinearLayout>
+
+            <!--authentication options-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@layout/shape_corner"
+                android:id="@+id/ll_authentication_options">
+                <CheckBox
+                    android:id="@+id/cb_auth_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:text="@string/auth_option_background"
+                    android:textColor="@color/btn_content"
+                    android:textSize="18dp" />
+
+                <CheckBox
+                    android:id="@+id/cb_auth_manual_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:text="@string/auth_use_input"
+                    android:textColor="@color/btn_content"
+                    android:textSize="18dp" />
+
+                <CheckBox
+                    android:id="@+id/cb_auth_unified_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:text="@string/auth_unified_account"
+                    android:textColor="@color/btn_content"
+                    android:textSize="18dp" />
+
+                <CheckBox
+                    android:id="@+id/cb_login_checkbind"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:paddingLeft="10dp"
+                    android:text="@string/auth_option_checkbind"
+                    android:textColor="@color/btn_content"
+                    android:textSize="18dp" />
+
+                <CheckBox
+                    android:id="@+id/cb_login_tunnel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:paddingLeft="10dp"
+                    android:text="@string/auth_option_tunnel"
+                    android:textColor="@color/btn_content"
+                    android:textSize="18dp"
+                    android:checked="true"/>
+		    
+		    
+                <LinearLayout
+                    android:id="@+id/ll_auth_manual_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:paddingRight="10dp"
+                            android:text="@string/auth_gateway"
+                            android:textColor="@color/black"
+                            android:textSize="18dp"
+                            android:gravity="center_vertical"/>
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/et_auth_gateway_ex"
+                            android:textSize="18dp"
+                            android:text="@string/gateway_address"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:paddingRight="10dp"
+                            android:text="@string/auth_username"
+                            android:textColor="@color/black"
+                            android:textSize="18dp"
+                            android:gravity="center_vertical"/>
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/et_auth_username_ex"
+                            android:textSize="18dp"
+                            android:text="@string/username"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:paddingRight="10dp"
+                            android:text="@string/auth_password"
+                            android:textColor="@color/black"
+                            android:textSize="18dp"
+                            android:gravity="center_vertical"/>
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/et_auth_password_ex"
+                            android:textSize="18dp"
+                            android:text="@string/password"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:background="@layout/shape_corner"
+                android:textSize="30dp"
+                android:textColor="@color/btn_content"
+                android:text="@string/goto_authenticate"
+                android:id="@+id/tv_do_authentication"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- logining progress layout -->
+    <LinearLayout
+        android:id="@+id/ll_auth_connecting"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:visibility="gone"
+        android:layout_weight="0.09">
+        <TextView
+            style="@style/tv.btn"
+            android:layout_width="140dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/bg_auth_authenticating"
+            android:text="@string/auth_connecting" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:src="@drawable/bg_auth_in_progress" />
+    </LinearLayout>
+
+    <!-- logined layout -->
+    <LinearLayout
+        android:id="@+id/ll_auth_online"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:paddingTop="20dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/tv_virtual_ip"
+            style="@style/tv_info"
+            android:text="0.0.0.0"/>
+
+        <TextView
+            android:textSize="18dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/auth_success" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/tv_begin_test"
+            style="@style/tv_button"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:text="@string/auth_btn_enter" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/bg_auth_success" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/tv_check_update"
+            style="@style/tv_button"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="@string/auth_btn_check_update" />
+    </LinearLayout>
+</LinearLayout>
