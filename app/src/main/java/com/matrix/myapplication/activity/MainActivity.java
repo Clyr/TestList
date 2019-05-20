@@ -556,6 +556,8 @@ public class MainActivity extends Activity {
                 startActivity(new Intent(MainActivity.this, MVPActivity.class));
             }
         });
+
+        // Lambda 表达式
         findViewById(R.id.button39).setOnClickListener(v ->
                 startActivity(new Intent(MainActivity.this, RetrofitActivity.class))
         );

@@ -53,6 +53,10 @@ public interface ORService {
     @POST
     Call<ResponseBody> post(@Url String url, @QueryMap Map<String, String> map);
 
+
+    /**
+     * CSDN原文 https://blog.csdn.net/qq_36699930/article/details/80564850
+     */
     /**
      * 1.get无参请求
      * https://api.github.com/users/basil2style
