@@ -95,6 +95,10 @@ android {
             universalApk false
         }
     }
+    //Rxjava 冲突
+    packagingOptions {
+        pickFirst 'META-INF/*'
+    }
 }
 //sourceSets {
 //    main {
@@ -103,27 +107,18 @@ android {
 //}
 
 dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/sun.misc.BASE64Decoder.jar')
+    implementation files('libs/fastjson-1.1.39.jar')
+    testImplementation 'junit:junit:4.12'
+
     implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
-    // implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-//    compile fileTree(include: ['*.arr'], dir: 'libs')
-//    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-//        exclude group: 'com.android.support', module: 'support-annotations'
-//    })
-    //noinspection GradleCompatible
-    //implementation 'com.android.support:appcompat-v7:28.+'
-    testImplementation 'junit:junit:4.12'
     implementation 'com.zhy:okhttputils:2.6.2'
     implementation 'cjt.library.wheel:camera:1.1.9'
     implementation 'com.jakewharton:butterknife:10.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
-    //implementation 'com.android.support:recyclerview-v7:26.1.0'
-    implementation files('libs/sun.misc.BASE64Decoder.jar')
-    implementation files('libs/fastjson-1.1.39.jar')
     implementation 'com.google.code.gson:gson:2.8.5'
-    //implementation files('libs/library_pulltorefresh.jar')
-    //implementation project(path: ':library-PullToRefresh')
     implementation 'me.imid.swipebacklayout.lib:library:1.1.0'
     implementation 'com.google.android:flexbox:1.1.0'
     implementation 'org.apache.httpcomponents:httpmime:4.1'
@@ -137,5 +132,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.1.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
-    implementation'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+
+    implementation 'io.reactivex.rxjava2:rxjava:2.0.1'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
 }

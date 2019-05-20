@@ -42,7 +42,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:name">
-        <activity android:name=".retrofit.RetrofitActivity"></activity>
+        <activity android:name="com.matrix.rxjava.RxjavaActivity"></activity>
+        <activity android:name=".retrofit.RetrofitActivity" />
         <activity android:name=".mvp.MVPActivity" />
         <activity
             android:name=".activity.MainActivity"

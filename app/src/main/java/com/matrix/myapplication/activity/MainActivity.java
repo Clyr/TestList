@@ -45,6 +45,7 @@ import androidx.core.content.ContextCompat;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.matrix.myapplication.R;
+import com.matrix.rxjava.RxjavaActivity;
 import com.matrix.myapplication.cache.MainActivity3;
 import com.matrix.myapplication.interfaceclass.Setting;
 import com.matrix.myapplication.interfaceclass.setSomeThing;
@@ -561,6 +562,8 @@ public class MainActivity extends Activity {
         findViewById(R.id.button39).setOnClickListener(v ->
                 startActivity(new Intent(MainActivity.this, RetrofitActivity.class))
         );
+
+        findViewById(R.id.button40).setOnClickListener(v-> startActivity(new Intent(this, RxjavaActivity.class)));
 
     }
 
