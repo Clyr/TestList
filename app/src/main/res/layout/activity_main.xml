@@ -256,6 +256,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="通知栏进度" />
+            <Button
+                android:id="@+id/button38"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MVPActivity" />
+            <Button
+                android:id="@+id/button39"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Retrofit" />
 
         </com.matrix.myapplication.view.FlowLayout>
 

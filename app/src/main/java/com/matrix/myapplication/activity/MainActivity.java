@@ -49,6 +49,8 @@ import com.matrix.myapplication.cache.MainActivity3;
 import com.matrix.myapplication.interfaceclass.Setting;
 import com.matrix.myapplication.interfaceclass.setSomeThing;
 import com.matrix.myapplication.model.upDateModel;
+import com.matrix.myapplication.mvp.MVPActivity;
+import com.matrix.myapplication.retrofit.RetrofitActivity;
 import com.matrix.myapplication.utils.ACacheUtils;
 import com.matrix.myapplication.utils.APKVersionUtils;
 import com.matrix.myapplication.utils.DownloadAPK;
@@ -542,6 +544,22 @@ public class MainActivity extends Activity {
                 sendProgressNotification();
             }
         });
+        findViewById(R.id.button38).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MVPActivity.class));
+            }
+        });
+        findViewById(R.id.button38).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MVPActivity.class));
+            }
+        });
+        findViewById(R.id.button39).setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, RetrofitActivity.class))
+        );
+
     }
 
     private void alertDialogDiy1() {
@@ -631,7 +649,7 @@ public class MainActivity extends Activity {
         //TODO 后需添加打包之后自动配置 update.json
         if (b)
             LoadingDialog.showLoadingBall(MainActivity.this);
-        String url = "https://github.com/Clyr/TestList/tree/master/UpDate/update.json";
+        String url = "https://TomcatIp/UpDate/update.json";
         Map<String, String> map = new HashMap<>();
         map.put("null", "null");
         OkHolder.get(url, map).build().execute(new StringCallback() {
