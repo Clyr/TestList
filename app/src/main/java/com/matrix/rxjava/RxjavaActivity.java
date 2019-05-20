@@ -60,6 +60,7 @@ public class RxjavaActivity extends AppCompatActivity {
             public void onSubscribe(Disposable d) {
                 mDisposable = d;
                 Log.e(TAG, "onSubscribe");
+                textView.setText(textView.getText().toString().trim()+"\n"+"onSubscribe()");
             }
 
             @Override
@@ -80,6 +81,7 @@ public class RxjavaActivity extends AppCompatActivity {
             @Override
             public void onComplete() {
                 Log.e(TAG, "onComplete()");
+                textView.setText(textView.getText().toString().trim()+"\n"+"onComplete()");
             }
         };
         //订阅

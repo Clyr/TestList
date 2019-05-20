@@ -45,7 +45,6 @@ import androidx.core.content.ContextCompat;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.matrix.myapplication.R;
-import com.matrix.rxjava.RxjavaActivity;
 import com.matrix.myapplication.cache.MainActivity3;
 import com.matrix.myapplication.interfaceclass.Setting;
 import com.matrix.myapplication.interfaceclass.setSomeThing;
@@ -63,6 +62,7 @@ import com.matrix.myapplication.utils.ToastUtils;
 import com.matrix.myapplication.view.LoadingDialog;
 import com.matrix.myapplication.view.TextDialog;
 import com.matrix.myapplication.view.UpdataDialog;
+import com.matrix.rxjava.RxjavaActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -92,6 +92,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import me.leolin.shortcutbadger.ShortcutBadger;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -105,6 +106,7 @@ public class MainActivity extends Activity {
     private TextView mTv;
     private TextDialog mDialog;
     private upDateModel mModel;
+    private boolean vpn = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -560,11 +562,29 @@ public class MainActivity extends Activity {
 
         // Lambda 表达式
         findViewById(R.id.button39).setOnClickListener(v ->
-                startActivity(new Intent(MainActivity.this, RetrofitActivity.class))
+                startActivity(new Intent(MainActivity.this, RetrofitActivity.class)));
+
+        findViewById(R.id.button40).setOnClickListener(v ->
+                startActivity(new Intent(this, RxjavaActivity.class)));
+
+        //快捷方式通知数量提示
+        findViewById(R.id.button41).setOnClickListener(v -> {
+            int badgeCount = 15;
+            boolean b = ShortcutBadger.applyCount(this, badgeCount);//for 1.1.4+
+            //ShortcutBadger.with(getApplicationContext()).count(badgeCount); //for 1.1.3
+            ToastUtils.showShort(b + "");
+        });
+
+        findViewById(R.id.button41).setOnLongClickListener(v ->
+                        ShortcutBadger.removeCount(this) //for 1.1.4+
+                //ShortcutBadger.with(getApplicationContext()).remove();  //for 1.1.3
+                // ShortcutBadger.applyCount(context, 0); //for 1.1.4+
+                //ShortcutBadger.with(getApplicationContext()).count(0); //for 1.1.3
         );
-
-        findViewById(R.id.button40).setOnClickListener(v-> startActivity(new Intent(this, RxjavaActivity.class)));
-
+        findViewById(R.id.button42).setOnClickListener(v -> {
+            vpn = !vpn;
+            ToastUtils.showShort(vpn ? "正在监测VPN" : "关闭监测VPN");
+        });
     }
 
     private void alertDialogDiy1() {
@@ -868,11 +888,12 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (isVpnUsed()) {
-            ToastUtils.showShort("使用VPN中...\n" + getIPAddress(this));
-        } else {
-            ToastUtils.showShort("未使用使用VPN\n" + getIPAddress(this));
-        }
+        if (vpn)
+            if (isVpnUsed()) {
+                ToastUtils.showShort("使用VPN中...\n" + getIPAddress(this));
+            } else {
+                ToastUtils.showShort("未使用使用VPN\n" + getIPAddress(this));
+            }
     }
 
     @Override
