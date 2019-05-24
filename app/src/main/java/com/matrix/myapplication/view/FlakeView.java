@@ -59,8 +59,8 @@ public class FlakeView extends View {
         super(context);
         droid = BitmapFactory.decodeResource(getResources(), R.drawable.snow);
         textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        textPaint.setColor(Color.BLUE);
-        textPaint.setTextSize(24);
+        textPaint.setColor(Color.RED);
+        textPaint.setTextSize(36);
 
         // This listener is where the action is for the flak animations. Every frame of the
         // animation, we calculate the elapsed time and update every flake's position and rotation
@@ -160,8 +160,8 @@ public class FlakeView extends View {
             startTime = nowTime;
             frames = 0;
         }
-        canvas.drawText(numFlakesString, getWidth() - 200, getHeight() - 50, textPaint);
-        canvas.drawText(fpsString, getWidth() - 200, getHeight() - 80, textPaint);
+        canvas.drawText(numFlakesString, getWidth() - 300, getHeight() - 40, textPaint);
+        canvas.drawText(fpsString, getWidth() - 300, getHeight() - 80, textPaint);
     }
 
     public void pause() {

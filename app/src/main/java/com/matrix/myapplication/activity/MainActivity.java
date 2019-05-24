@@ -48,6 +48,7 @@ import com.matrix.myapplication.R;
 import com.matrix.myapplication.cache.MainActivity3;
 import com.matrix.myapplication.interfaceclass.Setting;
 import com.matrix.myapplication.interfaceclass.setSomeThing;
+import com.matrix.myapplication.kotlin.KotlinActivity;
 import com.matrix.myapplication.model.upDateModel;
 import com.matrix.myapplication.mvp.MVPActivity;
 import com.matrix.myapplication.retrofit.RetrofitActivity;
@@ -62,7 +63,7 @@ import com.matrix.myapplication.utils.ToastUtils;
 import com.matrix.myapplication.view.LoadingDialog;
 import com.matrix.myapplication.view.TextDialog;
 import com.matrix.myapplication.view.UpdataDialog;
-import com.matrix.rxjava.RxjavaActivity;
+import com.matrix.myapplication.rxjava.RxjavaActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -585,6 +586,10 @@ public class MainActivity extends Activity {
             vpn = !vpn;
             ToastUtils.showShort(vpn ? "正在监测VPN" : "关闭监测VPN");
         });
+
+        findViewById(R.id.button43).setOnClickListener(v ->
+                startActivity(new Intent(this, KotlinActivity.class))
+        );
     }
 
     private void alertDialogDiy1() {

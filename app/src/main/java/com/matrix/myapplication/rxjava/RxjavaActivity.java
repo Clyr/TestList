@@ -1,4 +1,4 @@
-package com.matrix.rxjava;
+package com.matrix.myapplication.rxjava;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;

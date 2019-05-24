@@ -1,14 +1,18 @@
 package com.matrix.myapplication.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.matrix.myapplication.R;
 import com.matrix.myapplication.service.FPSGetService;
+import com.matrix.myapplication.utils.CheckPermission;
 import com.matrix.myapplication.utils.FPSMeter;
+import com.matrix.myapplication.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,6 +24,10 @@ public class MainGetFPSActivity extends BaseActivity {
     TextView mTextFps;
     @BindView(R.id.button_fps)
     Button mButtonFps;
+    @BindView(R.id.permission)
+    Button permission;
+    @BindView(R.id.op)
+    Button op;
     private FPSMeter mFpsMeter;
 
     @Override
@@ -30,6 +38,15 @@ public class MainGetFPSActivity extends BaseActivity {
         mFpsMeter = new FPSMeter();
         mHandler.post(task2);
 //        init();
+        permission.setOnClickListener(v -> {
+            //启动Activity让用户授权
+            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+            intent.setData(Uri.parse("package:" + getPackageName()));
+            startActivity(intent);
+        });
+        op.setOnClickListener(v->{
+            ToastUtils.showShort(CheckPermission.checkAlertWindowsPermission(this)+"");
+        });
     }
 
     int frames = 0;
@@ -76,7 +93,9 @@ public class MainGetFPSActivity extends BaseActivity {
     @OnClick(R.id.button_fps)
     public void onViewClicked() {
         mHandler.postDelayed(task, 1000);
-        startService(new Intent(MainGetFPSActivity.this,FPSGetService.class));
+        startService(new Intent(MainGetFPSActivity.this, FPSGetService.class));
         finish();
     }
+
+
 }
