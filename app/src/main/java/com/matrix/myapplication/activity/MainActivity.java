@@ -64,6 +64,7 @@ import com.matrix.myapplication.view.LoadingDialog;
 import com.matrix.myapplication.view.TextDialog;
 import com.matrix.myapplication.view.UpdataDialog;
 import com.matrix.myapplication.rxjava.RxjavaActivity;
+import com.mm131.MM131Activity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -588,8 +589,13 @@ public class MainActivity extends Activity {
         });
 
         findViewById(R.id.button43).setOnClickListener(v ->
-                startActivity(new Intent(this, KotlinActivity.class))
+                startAct(KotlinActivity.class)
         );
+        findViewById(R.id.button44).setOnClickListener(v -> startAct(MM131Activity.class));
+    }
+
+    private void startAct(Class<?> tClass) {
+        startActivity(new Intent(this, tClass));
     }
 
     private void alertDialogDiy1() {

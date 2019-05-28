@@ -300,6 +300,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Kotlin" />
+            <Button
+                android:id="@+id/button44"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:background="@color/mm131"
+                android:textColor="@color/white"
+                android:text="MM131" />
 
         </com.matrix.myapplication.view.FlowLayout>
 

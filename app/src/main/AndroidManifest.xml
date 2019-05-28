@@ -33,7 +33,6 @@
     <uses-permission android:name="com.huawei.anyoffice.permisson.SIGNATURE" /> <!-- 'Sup Koush: https://plus.google.com/103583939320326217147/posts/T9xnMJEnzf1 -->
     <uses-permission android:name="android.permission.ACCESS_SUPERUSER" />
 
-
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -44,7 +43,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:name">
-        <activity android:name=".kotlin.KotlinActivity"></activity>
+        <activity android:name="com.mm131.ImgActivity"></activity>
+        <activity android:name="com.mm131.MM131Activity" />
+        <activity android:name=".kotlin.KotlinActivity" />
         <activity android:name=".rxjava.RxjavaActivity" />
         <activity android:name=".retrofit.RetrofitActivity" />
         <activity android:name=".mvp.MVPActivity" />
