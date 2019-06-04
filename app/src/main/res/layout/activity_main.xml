@@ -312,6 +312,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="JPush" />
+            <Button
+                android:id="@+id/button46"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GTPush" />
         </com.matrix.myapplication.view.FlowLayout>
 
         <TextView

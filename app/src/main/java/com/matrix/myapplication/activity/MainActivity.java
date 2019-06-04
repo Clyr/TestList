@@ -46,6 +46,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.matrix.myapplication.R;
 import com.matrix.myapplication.cache.MainActivity3;
+import com.matrix.myapplication.getuidemo.GetuiSdkDemoActivity;
 import com.matrix.myapplication.interfaceclass.Setting;
 import com.matrix.myapplication.interfaceclass.setSomeThing;
 import com.matrix.myapplication.kotlin.KotlinActivity;
@@ -593,6 +594,7 @@ public class MainActivity extends Activity {
         );
         findViewById(R.id.button44).setOnClickListener(v -> startAct(MM131Activity.class));
         findViewById(R.id.button45).setOnClickListener(v -> startAct(com.matrix.myapplication.jpushdemo.MainActivity.class));
+        findViewById(R.id.button46).setOnClickListener(v -> startAct(GetuiSdkDemoActivity.class));
     }
 
     private void startAct(Class<?> tClass) {

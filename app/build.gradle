@@ -43,6 +43,15 @@ android {
                 sourceCompatibility JavaVersion.VERSION_1_8
                 targetCompatibility JavaVersion.VERSION_1_8
             }
+            manifestPlaceholders = [
+                    GETUI_APP_ID : "QKcikwnq0w6kpjsrDs2iS3",
+                    GETUI_APP_KEY : "Daf4RF45yl50q1oYr33962",
+                    GETUI_APP_SECRET : "g8S7kNB5DS7q5CrFRJbkh"
+            ]
+
+//            ndk {
+//                abiFilters "armeabi", "armeabi-v7a", "x86_64"
+//            }
         }
     } else {
         throw new GradleException("Could not read version.properties!")
@@ -92,8 +101,8 @@ android {
         abi {
             enable true //分包会导致报错 Several variant outputs are configured to use the same file name
             reset()
-            //include "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
-            include "x86"
+            include "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
+//            include "x86"
             universalApk false
         }
     }
@@ -138,4 +147,6 @@ dependencies {
     implementation 'me.leolin:ShortcutBadger:1.1.22@aar'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation files('libs/jcore-android-2.0.1.jar')
+    implementation 'com.getui:sdk:2.13.2.0'
+    implementation files('libs/json_simple-1.1.jar')
 }

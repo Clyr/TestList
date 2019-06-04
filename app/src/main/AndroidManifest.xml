@@ -322,7 +322,23 @@
         <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
         <meta-data android:name="JPUSH_APPKEY" android:value="0e55e1dd2704052c1f3119ad" /> <!--  </>值来自开发者平台取得的AppKey-->
 
+        <!-- GeTui -->
+        <activity
+            android:name=".getuidemo.GetuiSdkDemoActivity">
+        </activity>
 
+        <!-- 用户自定义服务继承自GTIntentService,作为SDK与APP桥梁服务,用来接收各种消息和命令回复-->
+        <service android:name=".getuidemo.DemoIntentService"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
+
+        <!-- 配置SDK核心服务 -->
+        <!-- process必须指定为":pushservice"，切勿随意更改 -->
+        <service
+            android:name=".getuidemo.DemoPushService"
+            android:exported="true"
+            android:label="PushService"
+            android:process=":pushservice">
+        </service>
     </application>
 
 </manifest>
