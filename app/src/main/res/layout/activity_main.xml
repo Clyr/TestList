@@ -307,7 +307,11 @@
                 android:background="@color/mm131"
                 android:textColor="@color/white"
                 android:text="MM131" />
-
+            <Button
+                android:id="@+id/button45"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="JPush" />
         </com.matrix.myapplication.view.FlowLayout>
 
         <TextView

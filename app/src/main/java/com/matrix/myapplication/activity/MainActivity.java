@@ -592,6 +592,7 @@ public class MainActivity extends Activity {
                 startAct(KotlinActivity.class)
         );
         findViewById(R.id.button44).setOnClickListener(v -> startAct(MM131Activity.class));
+        findViewById(R.id.button45).setOnClickListener(v -> startAct(com.matrix.myapplication.jpushdemo.MainActivity.class));
     }
 
     private void startAct(Class<?> tClass) {
