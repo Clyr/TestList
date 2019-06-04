@@ -1,6 +1,5 @@
 package com.mm131;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
@@ -9,6 +8,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.matrix.myapplication.R;
@@ -27,21 +28,26 @@ import net.lucode.hackware.magicindicator.titles.ScaleTransitionPagerTitleView;
 import java.util.Arrays;
 import java.util.List;
 
-public class MM131Activity extends Activity {
+public class MM131Activity extends AppCompatActivity {
     private static final String[] CHANNELS = new String[]{"CUPCAKE", "DONUT", "ECLAIR", "GINGERBREAD", "HONEYCOMB", "ICE_CREAM_SANDWICH"};
     private List<String> mDataList = Arrays.asList(CHANNELS);
     private ExamplePagerAdapter mExamplePagerAdapter;
-
+    private MyAdapter myAdapter;
     private ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mm1311);
-        mExamplePagerAdapter = new ExamplePagerAdapter(mDataList,this);
+//        mExamplePagerAdapter = new ExamplePagerAdapter(mDataList);
         setBar(R.color.mm131);
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
-        mViewPager.setAdapter(mExamplePagerAdapter);
+//        mViewPager.setAdapter(mExamplePagerAdapter);
+
+        FragmentManager fm = getSupportFragmentManager();
+        myAdapter = new MyAdapter(fm,new BlankFragment());
+        mViewPager.setAdapter(myAdapter);
+
         initMagicIndicator6();
     }
 

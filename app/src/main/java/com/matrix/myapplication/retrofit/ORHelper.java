@@ -14,11 +14,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ORHelper {
     private static String BASE_URl = "";
 
-    public static Retrofit.Builder retrofit() {
+    public static Retrofit.Builder retrofit(String url) {
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = getClient();
         return new Retrofit.Builder()
-                .baseUrl(BASE_URl)
+                .baseUrl(url)
                 .client(client);
 
     }
@@ -29,8 +29,8 @@ public class ORHelper {
                 .build();
     }
 
-    public static <T> T getService(Class<T> cla){
-        return retrofit().build().create(cla);
+    public static <T> T getService(String url,Class<T> cla){
+        return retrofit(url).build().create(cla);
     }
     /*
      **打印retrofit信息部分
