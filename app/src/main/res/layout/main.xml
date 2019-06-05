@@ -78,7 +78,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dip"
             android:text="get_Registration_Id" />
-
+        <Button
+            android:id="@+id/getPush"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dip"
+            android:text="getPush" />
         <EditText
             android:id="@+id/msg_rec"
             android:layout_width="fill_parent"

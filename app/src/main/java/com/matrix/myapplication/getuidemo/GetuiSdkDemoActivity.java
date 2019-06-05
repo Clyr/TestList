@@ -110,7 +110,7 @@ public class GetuiSdkDemoActivity extends BaseActivity implements OnClickListene
         appSecretView.setText(String.format("%s", getResources().getString(R.string.appsecret) + appsecret));
         masterSecretView.setText(String.format("%s", getResources().getString(R.string.mastersecret) + MASTERSECRET));
         appIdView.setText(String.format("%s", getResources().getString(R.string.appid) + appid));
-
+        getCid();
         Log.d(TAG, "initializing sdk...");
 
         PackageManager pkgManager = getPackageManager();
@@ -193,6 +193,7 @@ public class GetuiSdkDemoActivity extends BaseActivity implements OnClickListene
                 serviceBtn.setText(getResources().getString(R.string.stop));
                 isServiceRunning = false;
             } else {
+                getCid();
                 Log.d(TAG, "reinitializing sdk...");
                 PushManager.getInstance().initialize(this.getApplicationContext(), userPushService);
                 serviceBtn.setText(getResources().getString(R.string.start));
@@ -285,6 +286,7 @@ public class GetuiSdkDemoActivity extends BaseActivity implements OnClickListene
         String cid = PushManager.getInstance().getClientid(this);
         Toast.makeText(this, getResources().getString(R.string.show_cid) + cid, Toast.LENGTH_LONG).show();
         Log.d(TAG, getResources().getString(R.string.show_cid) + cid);
+        tView.setText(cid);
     }
 
     /*@Override
@@ -461,9 +463,9 @@ public class GetuiSdkDemoActivity extends BaseActivity implements OnClickListene
             // LinkMsg消息实体
             Map<String, Object> linkMsg = new HashMap<String, Object>();
             linkMsg.put("linkMsgIcon", "push.png"); // 消息在通知栏的图标
-            linkMsg.put("linkMsgTitle", getResources().getString(R.string.push_notification_msg_title)); // 推送消息的标题
+            linkMsg.put("linkMsgTitle", "TestList for GTPush"); // 推送消息的标题
             linkMsg.put("linkMsgContent", getResources().getString(R.string.push_notification_msg_content)); // 推送消息的内容
-            linkMsg.put("linkMsgUrl", "http://www.igetui.com/"); // 点击通知跳转的目标网页
+            linkMsg.put("linkMsgUrl", "https://github.com/Clyr/TestList"); // 点击通知跳转的目标网页
             param.put("msg", linkMsg);
             GetuiSdkHttpPost.httpPost(param);
 

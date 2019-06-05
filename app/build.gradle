@@ -44,9 +44,9 @@ android {
                 targetCompatibility JavaVersion.VERSION_1_8
             }
             manifestPlaceholders = [
-                    GETUI_APP_ID : "QKcikwnq0w6kpjsrDs2iS3",
-                    GETUI_APP_KEY : "Daf4RF45yl50q1oYr33962",
-                    GETUI_APP_SECRET : "g8S7kNB5DS7q5CrFRJbkh"
+                    GETUI_APP_ID    : "QKcikwnq0w6kpjsrDs2iS3",
+                    GETUI_APP_KEY   : "Daf4RF45yl50q1oYr33962",
+                    GETUI_APP_SECRET: "g8S7kNB5DS7q5CrFRJbkh"
             ]
 
 //            ndk {
@@ -62,8 +62,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    // map for the version code
+    //project.ext.versionCodes = ['armeabi-v7a': 81, 'arm64-v8a': 82, 'x86': 83, 'x86_64': 84]
+
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
+//            def time = releaseTime()
+//            def abiName = output.getFilter(OutputFile.ABI)
+            // version code
+            //output.versionCodeOverride = project.ext.versionCodes.get(abiName, 0) * 1000000 + variant.versionCode
+            // output apk name
+            //outputFileName = "${variant.name}-${abiName}-${output.versionCodeOverride}.apk"
             outputFileName = "TestList_${defaultConfig.versionName}.apk"
 
 //            def date = new Date()
@@ -99,11 +108,11 @@ android {
     }
     splits {// INSTALL_FAILED_NO_MATCHING_ABIS
         abi {
-            enable true //分包会导致报错 Several variant outputs are configured to use the same file name
+            enable false //分包会导致报错 Several variant outputs are configured to use the same file name
             reset()
             include "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
 //            include "x86"
-            universalApk false
+            universalApk true
         }
     }
     //Rxjava 冲突
@@ -149,4 +158,9 @@ dependencies {
     implementation files('libs/jcore-android-2.0.1.jar')
     implementation 'com.getui:sdk:2.13.2.0'
     implementation files('libs/json_simple-1.1.jar')
+    implementation files('libs/jpush-client-3.3.11.jar')
+    implementation files('libs/jiguang-common-1.1.6.jar')
+    implementation files('libs/slf4j-api-1.7.7.jar')
+    implementation files('libs/slf4j-log4j12-1.7.7.jar')
+    implementation files('libs/log4j-1.2.17.jar')
 }
