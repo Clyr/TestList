@@ -9,10 +9,12 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.matrix.myapplication.R;
+import com.matrix.myapplication.utils.ToastUtils;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
@@ -25,6 +27,7 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.Be
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView;
 import net.lucode.hackware.magicindicator.titles.ScaleTransitionPagerTitleView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -45,7 +48,15 @@ public class MM131Activity extends AppCompatActivity {
 //        mViewPager.setAdapter(mExamplePagerAdapter);
 
         FragmentManager fm = getSupportFragmentManager();
-        myAdapter = new MyAdapter(fm,new BlankFragment());
+        List<Fragment> list = new ArrayList<>();
+        list.add(new BlankFragment1());
+        list.add(new BlankFragment1());
+        list.add(new BlankFragment1());
+        list.add(new BlankFragment1());
+        list.add(new BlankFragment1());
+        list.add(new BlankFragment1());
+        myAdapter = new MyAdapter(fm,list);
+//        myAdapter = new MyAdapter(fm,new BlankFragment1());
         mViewPager.setAdapter(myAdapter);
 
         initMagicIndicator6();
@@ -77,6 +88,7 @@ public class MM131Activity extends AppCompatActivity {
                 simplePagerTitleView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        ToastUtils.showShort(index+"");
                         mViewPager.setCurrentItem(index);
                     }
                 });

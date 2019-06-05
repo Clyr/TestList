@@ -462,7 +462,7 @@ public class GetuiSdkDemoActivity extends BaseActivity implements OnClickListene
 
             // LinkMsg消息实体
             Map<String, Object> linkMsg = new HashMap<String, Object>();
-            linkMsg.put("linkMsgIcon", "push.png"); // 消息在通知栏的图标
+            linkMsg.put("linkMsgIcon", "test.png"); // 消息在通知栏的图标
             linkMsg.put("linkMsgTitle", "TestList for GTPush"); // 推送消息的标题
             linkMsg.put("linkMsgContent", getResources().getString(R.string.push_notification_msg_content)); // 推送消息的内容
             linkMsg.put("linkMsgUrl", "https://github.com/Clyr/TestList"); // 点击通知跳转的目标网页

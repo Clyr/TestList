@@ -49,7 +49,7 @@ class MyListAdapter extends BaseAdapter {
         ViewHolder holder = null;
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = inflater.inflate(R.layout.listitemtextview, null);
+            convertView = inflater.inflate(R.layout.itemm131, null);
             holder.textView = convertView.findViewById(R.id.text);
             holder.img = convertView.findViewById(R.id.img);
             holder.lin = convertView.findViewById(R.id.lin);
@@ -62,7 +62,12 @@ class MyListAdapter extends BaseAdapter {
             intent.putExtra("url", mlist.get(position));
             context.startActivity(intent);
         });
-
+        holder.lin.setOnLongClickListener(v->{
+            Intent intent = new Intent(context, WebViewActivity.class);
+            intent.putExtra("url", mlist.get(position));
+            context.startActivity(intent);
+            return true;
+        });
         holder.textView.setText(mlist.get(position));
         return convertView;
     }
