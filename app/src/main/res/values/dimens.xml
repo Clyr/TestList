@@ -27,4 +27,7 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     <!-- MM131 -->
     <dimen name="common_navigator_height">45dp</dimen>
     <dimen name="navigator_margin_top">5dp</dimen>
+
+    <dimen name="custom_profile_image">50dp</dimen>
+    <dimen name="custom_profile_padding">2dp</dimen>
 </resources>

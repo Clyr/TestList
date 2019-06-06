@@ -2,6 +2,7 @@ package com.matrix.myapplication;
 
 import android.app.Application;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.https.HttpsUtils;
 
@@ -52,6 +53,8 @@ public class App extends Application {
                 .build();
 
         OkHttpUtils.initClient(okHttpClient);
+
+        SDKInitializer.initialize(getApplicationContext());
     }
 
     public static App getApplication() {

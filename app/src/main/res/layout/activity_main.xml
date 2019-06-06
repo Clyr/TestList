@@ -1,334 +1,351 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical">
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="标题"
+        android:textColor="@color/white"
+        android:textSize="18dp" />
 
-        <TextView
-            android:id="@+id/textview"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:background="@color/colorPrimary"
-            android:gravity="center"
-            android:text="标题"
-            android:textColor="@color/white"
-            android:textSize="18dp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
-        <com.matrix.myapplication.view.FlowLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:orientation="vertical">
 
 
-            <Button
-
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AlertDialog" />
-
-            <Button
-                android:id="@+id/button4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="自定义提示窗体" />
-
-
-            <Button
-                android:id="@+id/button11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="加载1" />
-
-            <Button
-                android:id="@+id/button12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="加载2" />
-
-            <Button
-                android:id="@+id/button28"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="加载3" />
-
-            <Button
-                android:id="@+id/button29"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="加载Ball" />
-
-            <Button
-                android:id="@+id/button1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="okhttputils" />
-
-            <Button
-                android:id="@+id/button9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="OkhttpClient" />
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Acheck存储" />
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="hwms登陆测试" />
-
-
-            <Button
-                android:id="@+id/button5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="GridView" />
-            <Button
-                android:id="@+id/button8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Video" />
-            <Button
-                android:id="@+id/button6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="刮刮乐+图片进度条" />
-
-            <Button
-                android:id="@+id/button7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ImageToBig" />
-
-
-
-
-            <Button
-                android:id="@+id/button10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Json" />
-
-
-            <Button
-                android:id="@+id/button13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sqlite" />
-
-            <Button
-                android:id="@+id/button14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tree_list" />
-
-            <Button
-                android:id="@+id/button15"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="雷达图" />
-
-            <Button
-                android:id="@+id/button16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="滚动新闻" />
-
-            <Button
-                android:id="@+id/button17"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="表格" />
-
-            <Button
-                android:id="@+id/button18"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="FPS" />
-
-            <Button
-                android:id="@+id/button19"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="FPSGet" />
-
-            <Button
-                android:id="@+id/button20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="NewTable" />
-
-            <Button
-                android:id="@+id/button21"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="折线图" />
-
-            <Button
-                android:id="@+id/button22"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="测试PullToRefresh" />
-
-            <Button
-                android:id="@+id/button23"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="测试调用三方软件" />
-
-            <Button
-                android:id="@+id/button24"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="测试调用Hbuilder-掌上运维" />
-
-            <Button
-                android:id="@+id/button25"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="测试获取网路地址" />
-
-            <Button
-                android:id="@+id/button26"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="测试华为AnyOffice" />
-
-            <Button
-                android:id="@+id/button27"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="测试Af2" />
-
-            <Button
-                android:id="@+id/button31"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="RecycleView" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <com.matrix.myapplication.view.FlowLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
+                android:orientation="vertical">
+
 
                 <Button
-                    android:id="@+id/button30"
+
+                    android:id="@+id/button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="短振动" />
+                    android:text="AlertDialog" />
 
                 <Button
-                    android:id="@+id/button32"
+                    android:id="@+id/button4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="长振动" />
-            </LinearLayout>
+                    android:text="自定义提示窗体" />
 
-            <Button
-                android:id="@+id/button33"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fragment 框架" />
 
-            <Button
-                android:id="@+id/button34"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="UpDate" />
+                <Button
+                    android:id="@+id/button11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="加载1" />
 
-            <Button
-                android:id="@+id/button35"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="接口回调" />
+                <Button
+                    android:id="@+id/button12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="加载2" />
 
-            <Button
-                android:id="@+id/button36"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="通知" />
+                <Button
+                    android:id="@+id/button28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="加载3" />
 
-            <Button
-                android:id="@+id/button37"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="通知栏进度" />
+                <Button
+                    android:id="@+id/button29"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="加载Ball" />
 
-            <Button
-                android:id="@+id/button38"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="MVPActivity" />
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="okhttputils" />
 
-            <Button
-                android:id="@+id/button39"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Retrofit" />
+                <Button
+                    android:id="@+id/button9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OkhttpClient" />
 
-            <Button
-                android:id="@+id/button40"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rxjava" />
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Acheck存储" />
 
-            <Button
-                android:id="@+id/button41"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ShortcutBadger" />
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="hwms登陆测试" />
 
-            <Button
-                android:id="@+id/button42"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="VPN监测开关" />
-            <Button
-                android:id="@+id/button43"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Kotlin" />
-            <Button
-                android:id="@+id/button44"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/mm131"
-                android:text="MM131" />
-            <Button
-                android:id="@+id/button45"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="JPush" />
-            <Button
-                android:id="@+id/button46"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="GTPush" />
-        </com.matrix.myapplication.view.FlowLayout>
 
-        <TextView
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="5dp"
-            android:id="@+id/text"
-            android:text="Acheck: 0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+                <Button
+                    android:id="@+id/button5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GridView" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@color/transparent" />
-    </LinearLayout>
-</ScrollView>
+                <Button
+                    android:id="@+id/button8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Video" />
+
+                <Button
+                    android:id="@+id/button6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="刮刮乐+图片进度条" />
+
+                <Button
+                    android:id="@+id/button7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ImageToBig" />
+
+
+                <Button
+                    android:id="@+id/button10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Json" />
+
+
+                <Button
+                    android:id="@+id/button13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sqlite" />
+
+                <Button
+                    android:id="@+id/button14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tree_list" />
+
+                <Button
+                    android:id="@+id/button15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="雷达图" />
+
+                <Button
+                    android:id="@+id/button16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="滚动新闻" />
+
+                <Button
+                    android:id="@+id/button17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="表格" />
+
+                <Button
+                    android:id="@+id/button18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FPS" />
+
+                <Button
+                    android:id="@+id/button19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FPSGet" />
+
+                <Button
+                    android:id="@+id/button20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NewTable" />
+
+                <Button
+                    android:id="@+id/button21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="折线图" />
+
+                <Button
+                    android:id="@+id/button22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="测试PullToRefresh" />
+
+                <Button
+                    android:id="@+id/button23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="测试调用三方软件" />
+
+                <Button
+                    android:id="@+id/button24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="测试调用Hbuilder-掌上运维" />
+
+                <Button
+                    android:id="@+id/button25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="测试获取网路地址" />
+
+                <Button
+                    android:id="@+id/button26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="测试华为AnyOffice" />
+
+                <Button
+                    android:id="@+id/button27"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="测试Af2" />
+
+                <Button
+                    android:id="@+id/button31"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RecycleView" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/button30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="短振动" />
+
+                    <Button
+                        android:id="@+id/button32"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="长振动" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/button33"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fragment 框架" />
+
+                <Button
+                    android:id="@+id/button34"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="UpDate" />
+
+                <Button
+                    android:id="@+id/button35"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="接口回调" />
+
+                <Button
+                    android:id="@+id/button36"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="通知" />
+
+                <Button
+                    android:id="@+id/button37"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="通知栏进度" />
+
+                <Button
+                    android:id="@+id/button38"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MVPActivity" />
+
+                <Button
+                    android:id="@+id/button39"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Retrofit" />
+
+                <Button
+                    android:id="@+id/button40"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rxjava" />
+
+                <Button
+                    android:id="@+id/button41"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ShortcutBadger" />
+
+                <Button
+                    android:id="@+id/button42"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="VPN监测开关" />
+
+                <Button
+                    android:id="@+id/button43"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kotlin" />
+
+                <Button
+                    android:id="@+id/button44"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MM131"
+                    android:textColor="@color/mm131" />
+
+                <Button
+                    android:id="@+id/button45"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="JPush" />
+
+                <Button
+                    android:id="@+id/button46"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GTPush" />
+
+                <Button
+                    android:id="@+id/button47"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BaiduMap" />
+            </com.matrix.myapplication.view.FlowLayout>
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="50dp"
+                android:text="Acheck: 0" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/transparent" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

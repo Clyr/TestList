@@ -48,7 +48,11 @@ android {
                     GETUI_APP_KEY   : "Daf4RF45yl50q1oYr33962",
                     GETUI_APP_SECRET: "g8S7kNB5DS7q5CrFRJbkh"
             ]
-
+            defaultConfig {
+                ndk {
+                    abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
+                }
+            }
 //            ndk {
 //                abiFilters "armeabi", "armeabi-v7a", "x86_64"
 //            }
@@ -163,4 +167,5 @@ dependencies {
     implementation files('libs/slf4j-api-1.7.7.jar')
     implementation files('libs/slf4j-log4j12-1.7.7.jar')
     implementation files('libs/log4j-1.2.17.jar')
+    implementation files('libs/BaiduLBS_Android.jar')
 }
