@@ -73,7 +73,7 @@ public class TableActivity extends BaseActivity {
             @Override
             public void onResponse(String response, int id) {
                 JsonModle jsonModle = new Gson().fromJson(response, JsonModle.class);
-                if (jsonModle != null)
+                if (jsonModle != null && jsonModle.getDatalist() != null)
                     setData(jsonModle);
             }
         });

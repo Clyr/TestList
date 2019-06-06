@@ -11,6 +11,7 @@ import android.os.RemoteException;
 import android.util.Log;
 
 import com.huawei.anyoffice.vpn.aidl.AnyOfficeVpnServiceProvider;
+import com.matrix.myapplication.utils.ToastUtils;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -183,10 +184,15 @@ public class AppVpnBaseActivity extends Activity {
     };
 
     public void bindVpnService(){
-        Intent intent = new Intent();
-        intent.setAction(IAppVpnStatusObserver.VPN_SERVICE_ACTION);
-        intent.setClassName(IAppVpnStatusObserver.ANYOFFICE_PACKAGE_NAME, IAppVpnStatusObserver.ANYOFFICE_VPN_SERVICE_NAME);
-        bindService(intent, vpnServiceConn, Context.BIND_AUTO_CREATE);
-        Log.i(TAG, "bind vpn service!");
+        try {
+            Intent intent = new Intent();
+            intent.setAction(IAppVpnStatusObserver.VPN_SERVICE_ACTION);
+            intent.setClassName(IAppVpnStatusObserver.ANYOFFICE_PACKAGE_NAME, IAppVpnStatusObserver.ANYOFFICE_VPN_SERVICE_NAME);
+            bindService(intent, vpnServiceConn, Context.BIND_AUTO_CREATE);
+            Log.i(TAG, "bind vpn service!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ToastUtils.showShort("not bind vpn service!");
+        }
     }
 }

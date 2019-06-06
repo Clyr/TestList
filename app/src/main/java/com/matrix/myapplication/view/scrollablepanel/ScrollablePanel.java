@@ -1,5 +1,6 @@
 package com.matrix.myapplication.view.scrollablepanel;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -42,6 +43,7 @@ public class ScrollablePanel extends FrameLayout {
         initView();
     }
 
+    @SuppressLint("WrongConstant")
     private void initView() {
         LayoutInflater.from(getContext()).inflate(R.layout.view_scrollable_panel, this, true);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_content_list);

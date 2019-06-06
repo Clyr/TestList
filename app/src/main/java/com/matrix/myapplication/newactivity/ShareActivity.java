@@ -14,6 +14,7 @@ import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.matrix.myapplication.R;
+import com.matrix.myapplication.activity.BaseActivity;
 import com.matrix.myapplication.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ShareActivity extends AppCompatActivity {
+public class ShareActivity extends BaseActivity {
 
     @BindView(R.id.share_text)
     TextView shareText;

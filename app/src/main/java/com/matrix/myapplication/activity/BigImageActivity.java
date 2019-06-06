@@ -18,6 +18,7 @@ import android.widget.VideoView;
 
 import com.matrix.myapplication.R;
 import com.matrix.myapplication.utils.BitmapUtils;
+import com.matrix.myapplication.utils.ToastUtils;
 
 public class BigImageActivity extends BaseActivity {
 
@@ -160,8 +161,12 @@ public class BigImageActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode){
             case 1:
-                mUri = data.getData();
-                initVideo(mUri);
+                try {
+                    mUri = data.getData();
+                    initVideo(mUri);
+                } catch (Exception e) {
+                    ToastUtils.showShort("未选择视频！");
+                }
                 break;
         }
     }

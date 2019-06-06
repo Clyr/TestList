@@ -53,7 +53,11 @@ public class L4VPNAuthenticator extends SDKAuthenticator implements NetChangeCal
                 // TODO: 测试时关闭网关证书校验。正式环境需要打开，以避免中间人攻击。
                 loginParam.setAuthGateway(false);
 
-                NetStatusManager.getInstance().setNetChangeCallback(L4VPNAuthenticator.this);
+                try {
+                    NetStatusManager.getInstance().setNetChangeCallback(L4VPNAuthenticator.this);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 loginResult = LoginAgent.getInstance().loginSync(context, loginParam);
                 Log.e("L4VPNAuthenticator", "SDK init and login begin. Start time = " + SDKInitializer.getInstance().getBeforeInitAndLoginTime());
                 Log.e("L4VPNAuthenticator", "SDK init and login end. return code = " + loginResult + ", end time = " + System.currentTimeMillis());

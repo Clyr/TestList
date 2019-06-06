@@ -121,276 +121,164 @@ public class MainActivity extends Activity {
 //        fullScreen(this);
 //        statusBar(); //TODO 会导致应用打开之后 点击事件需要第二次点击才能触发
         TextView tx = findViewById(R.id.textview);
-        tx.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ToastUtils.showShort("TextView");
-            }
-        });
 
+        //标题按钮
+        tx.setOnClickListener(v -> ToastUtils.showShort("TextView"));
+        //更新
         update(false);
 
-        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alertDialogDiy1();
-            }
+        findViewById(R.id.button).setOnClickListener(v -> alertDialogDiy1());
+        findViewById(R.id.button1).setOnClickListener(v -> {//124.128.225.19:8081
+            Map<String, String> mapData = new HashMap<>();
+            mapData.put("act", "version");
+            mapData.put("oldVersionCode", "2017111111");
+            OkHttpUtils.get().url("http://124.128.225.19:8081/hims/mobile").params(mapData).build().execute(new StringCallback() {
+                @Override
+                public void onError(Call call, Exception e, int id) {
+                    Log.d("response", e.toString());
+                    Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+                }
+
+                @Override
+                public void onResponse(String response, int id) {
+                    Log.d("response", response);
+                    Toast.makeText(MainActivity.this, response, Toast.LENGTH_LONG).show();
+                }
+            });
+
         });
-        findViewById(R.id.button1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {//124.128.225.19:8081
-                Map<String, String> mapData = new HashMap<>();
-                mapData.put("act", "version");
-                mapData.put("oldVersionCode", "2017111111");
-                OkHttpUtils.get().url("http://124.128.225.19:8081/hims/mobile").params(mapData).build().execute(new StringCallback() {
-                    @Override
-                    public void onError(Call call, Exception e, int id) {
-                        Log.d("response", e.toString());
-                        Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_LONG).show();
-                    }
+        findViewById(R.id.button2).setOnClickListener(v -> startAct(MainActivity3.class));
 
-                    @Override
-                    public void onResponse(String response, int id) {
-                        Log.d("response", response);
-                        Toast.makeText(MainActivity.this, response, Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
+        findViewById(R.id.button3).setOnClickListener(v -> {
+            Map<String, String> mapData = new HashMap<>();
+            mapData.put("act", "login");
+            mapData.put("email", "jn01");
+            mapData.put("pwd", "000000");
+
+            OkHttpUtils.get().url("http://192.168.0.80:8080/hims/mobile").params(mapData).build().execute(new StringCallback() {
+                @Override
+                public void onError(Call call, Exception e, int id) {
+                    Log.d("response", e.toString());
+                    Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+                }
+
+                @Override
+                public void onResponse(String response, int id) {
+                    Log.d("response", response);
+                    Toast.makeText(MainActivity.this, response, Toast.LENGTH_LONG).show();
+                }
+            });
+
         });
-        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MainActivity3.class));
-            }
-        });
-
-        findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Map<String, String> mapData = new HashMap<>();
-                mapData.put("act", "login");
-                mapData.put("email", "jn01");
-                mapData.put("pwd", "000000");
-
-                OkHttpUtils.get().url("http://192.168.0.80:8080/hims/mobile").params(mapData).build().execute(new StringCallback() {
-                    @Override
-                    public void onError(Call call, Exception e, int id) {
-                        Log.d("response", e.toString());
-                        Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_LONG).show();
-                    }
-
-                    @Override
-                    public void onResponse(String response, int id) {
-                        Log.d("response", response);
-                        Toast.makeText(MainActivity.this, response, Toast.LENGTH_LONG).show();
-                    }
-                });
-
-
-            }
-        });
-        findViewById(R.id.button9).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                OkHttpClient client = new OkHttpClient.Builder()
-                        .connectTimeout(3600, TimeUnit.SECONDS)
-                        .readTimeout(3600, TimeUnit.SECONDS)
-                        .writeTimeout(3600, TimeUnit.SECONDS).build();
-                FormBody.Builder body = new FormBody.Builder();
+        findViewById(R.id.button9).setOnClickListener(v -> {
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .connectTimeout(3600, TimeUnit.SECONDS)
+                    .readTimeout(3600, TimeUnit.SECONDS)
+                    .writeTimeout(3600, TimeUnit.SECONDS).build();
+            FormBody.Builder body = new FormBody.Builder();
 //                body.add("act", "login").add("email", "jn01").add("pwd", "000000");
 //                body.add("act","loadmyinfo").add("loginname","jn01");
-                Map<String, String> mapData = new HashMap<>();
-                mapData.put("act", "loadmyinfo");
-                mapData.put("pwd1", "");
-                mapData.put("loginname", "jn01");
-                String murl = "";
-                for (Map.Entry<String, String> en : mapData.entrySet()) {
-                    if (en.getKey() == null || en.getValue() == null) {
-                        continue;
-                    }
-                    body.add(en.getKey(), en.getValue());
-                    murl += en.getKey() + "=" + en.getValue() + "&";
+            Map<String, String> mapData = new HashMap<>();
+            mapData.put("act", "loadmyinfo");
+            mapData.put("pwd1", "");
+            mapData.put("loginname", "jn01");
+            String murl = "";
+            for (Map.Entry<String, String> en : mapData.entrySet()) {
+                if (en.getKey() == null || en.getValue() == null) {
+                    continue;
                 }
-                Log.d("okhttp3url", murl);
-                Request.Builder builder = new Request.Builder().url("http://172.31.0.23:8080/hims/mobile").post(body.build());
-                Call call = client.newCall(builder.build());
-                call.enqueue(new Callback() {
-                    @Override
-                    public void onFailure(Call call, IOException e) {
-                        if (e instanceof SocketTimeoutException) {//判断超时异常
+                body.add(en.getKey(), en.getValue());
+                murl += en.getKey() + "=" + en.getValue() + "&";
+            }
+            Log.d("okhttp3url", murl);
+            Request.Builder builder = new Request.Builder().url("http://172.31.0.23:8080/hims/mobile").post(body.build());
+            Call call = client.newCall(builder.build());
+            call.enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    if (e instanceof SocketTimeoutException) {//判断超时异常
 //                    hideLoadingDialog();
 
+                    }
+                    if (e instanceof ConnectException) {//判断连接异常，我这里是报Failed to connect to 10.7.5.144
+
+                    }
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    String string = response.body().toString();
+                    String string2 = response.body().string();
+                    Log.d("okhttp3", string);
+                    Log.d("okhttp3", string2);
+                    ToastUtils.showShort(string);
+                }
+            });
+
+        });
+
+        findViewById(R.id.button4).setOnClickListener(v -> {
+            mDialog = new TextDialog(MainActivity.this, R.layout.textdialog,
+                    new int[]{R.id.cancel, R.id.query}, new Setback() {
+                @Override
+                public void backgroundAlpha(float bgAlpha) {
+                    setBackground(bgAlpha);
+                }
+            });
+            mDialog.show();
+            mDialog
+                    .setOnCenterItemClickListener((dialog, view) -> {
+                        switch (view.getId()) {
+                            case R.id.cancel:
+
+                                break;
+                            case R.id.query:
+                                dialogShow();
+                                break;
                         }
-                        if (e instanceof ConnectException) {//判断连接异常，我这里是报Failed to connect to 10.7.5.144
-
-                        }
-                    }
-
-                    @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                        String string = response.body().toString();
-                        String string2 = response.body().string();
-                        Log.d("okhttp3", string);
-                        Log.d("okhttp3", string2);
-                    }
-                });
-
-
-            }
-        });
-
-        findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mDialog = new TextDialog(MainActivity.this, R.layout.textdialog,
-                        new int[]{R.id.cancel, R.id.query}, new Setback() {
-                    @Override
-                    public void backgroundAlpha(float bgAlpha) {
-                        setBackground(bgAlpha);
-                    }
-                });
-                mDialog.show();
-                mDialog
-                        .setOnCenterItemClickListener(new TextDialog.OnCenterItemClickListener() {
-                            @Override
-                            public void OnCenterItemClick(TextDialog dialog, View view) {
-                                switch (view.getId()) {
-                                    case R.id.cancel:
-
-                                        break;
-                                    case R.id.query:
-                                        dialogShow();
-                                        break;
-                                }
-                                mDialog.dismiss();
-                            }
-                        });
-
-            }
+                        mDialog.dismiss();
+                    });
 
         });
-        findViewById(R.id.button5).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//               Toast.makeText(MainActivity.this,getUpdateLog(), Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MainActivity.this, Main4Activity.class));
-            }
-        });
-        findViewById(R.id.button6).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Main5Activity.class));
-            }
-        });
-        findViewById(R.id.button7).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, BigImageActivity.class));
-            }
-        });
-        findViewById(R.id.button8).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Main6Activity.class));
-            }
-        });
+        findViewById(R.id.button5).setOnClickListener(v -> startAct(Main4Activity.class));
+        findViewById(R.id.button6).setOnClickListener(v -> startAct(Main5Activity.class));
+        findViewById(R.id.button7).setOnClickListener(v -> startAct(BigImageActivity.class));
+        findViewById(R.id.button8).setOnClickListener(v -> startAct(Main6Activity.class));
         saveString();
 //        ACacheUtils.saveString(MainActivity.this,"JSON",1000000000+"");
         mTv = (TextView) findViewById(R.id.text);
-        findViewById(R.id.button10).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int count = 0;
+        findViewById(R.id.button10).setOnClickListener(v -> {
+            int count = 0;
 //                String string = SPUtils.getString(MainActivity.this, "JSON", "Null");
-                String string = ACacheUtils.getString(MainActivity.this, "JSON");
-                if (string != null) {
-                    count = Integer.parseInt(ACacheUtils.getString(MainActivity.this, "JSON"));
-                }
-                count++;
-                ACacheUtils.saveString(MainActivity.this, "JSON", count + "");
-                mTv.setText("Acheck: " + string);
+            String string = ACacheUtils.getString(MainActivity.this, "JSON");
+            if (string != null) {
+                count = Integer.parseInt(ACacheUtils.getString(MainActivity.this, "JSON"));
             }
+            count++;
+            ACacheUtils.saveString(MainActivity.this, "JSON", count + "");
+            mTv.setText("Acheck: " + string);
+            ToastUtils.showShort(string);
         });
-        findViewById(R.id.button11).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, SampleActivity.class));
-            }
-        });
+        findViewById(R.id.button11).setOnClickListener(v ->
+                startAct(SampleActivity.class)
+        );
 
-        findViewById(R.id.button12).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, LoadingActivity.class));
-            }
-        });
-        findViewById(R.id.button13).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, SqliteActivity.class));
-            }
-        });
-        findViewById(R.id.button14).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, TreeListActivity.class));
-            }
-        });
-        findViewById(R.id.button15).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, SendActivity.class));
-            }
-        });
-        findViewById(R.id.button16).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MarqueeActivity.class));
-            }
-        });
-        findViewById(R.id.button17).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, TableActivity.class));
-            }
-        });
-        findViewById(R.id.button18).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, FPSGetActivity.class));
-            }
-        });
-        findViewById(R.id.button19).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MainGetFPSActivity.class));
-            }
-        });
-        findViewById(R.id.button20).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, NewTableActivity.class));
-            }
-        });
-        findViewById(R.id.button21).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, LineChartActivity.class));
-            }
-        });
-        findViewById(R.id.button22).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Main7Activity.class));
-            }
-        });
-        findViewById(R.id.button23).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.setClassName("com.matrix.hims", "com.matrix.hims.activity.InitActivity");
-                startActivity(intent);
+        findViewById(R.id.button12).setOnClickListener(v -> startAct(LoadingActivity.class));
+        findViewById(R.id.button13).setOnClickListener(v -> startAct(SqliteActivity.class));
+        findViewById(R.id.button14).setOnClickListener(v -> startAct(TreeListActivity.class));
+        findViewById(R.id.button15).setOnClickListener(v -> startAct(SendActivity.class));
+        findViewById(R.id.button16).setOnClickListener(v -> startAct(MarqueeActivity.class));
+        findViewById(R.id.button17).setOnClickListener(v -> startAct(TableActivity.class));
+        findViewById(R.id.button18).setOnClickListener(v -> startAct(FPSGetActivity.class));
+        findViewById(R.id.button19).setOnClickListener(v -> startAct(MainGetFPSActivity.class));
+        findViewById(R.id.button20).setOnClickListener(v -> startAct(NewTableActivity.class));
+        findViewById(R.id.button21).setOnClickListener(v -> startAct(LineChartActivity.class));
+        findViewById(R.id.button22).setOnClickListener(v -> startAct(Main7Activity.class));
+        findViewById(R.id.button23).setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setClassName("com.matrix.hims", "com.matrix.hims.activity.InitActivity");
+            startActivity(intent);
 
                 /*Intent intent = new Intent("android.intent.action.VIEW");
                 ComponentName cn = new ComponentName("com.matrix.hims", "com.matrix.hims.activity.MainActivity");
@@ -398,42 +286,36 @@ public class MainActivity extends Activity {
                 intent.setComponent(cn);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);*/
-
-            }
         });
-        findViewById(R.id.button24).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.setClassName("com.matrix.tramsh5", "io.dcloud.PandoraEntry");
-                intent.putExtra("test", "测试");
-                startActivity(intent);
-                LoadingDialog.showLoading(MainActivity.this);
+        findViewById(R.id.button24).setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setClassName("com.matrix.tramsh5", "io.dcloud.PandoraEntry");
+            intent.putExtra("test", "测试");
+            startActivity(intent);
+            LoadingDialog.showLoading(MainActivity.this);
 //                getIntent().getStringExtra("test");
-            }
         });
         String string = getIntent().getStringExtra("key");
         if (string != null && string != "") {
             ToastUtils.showLong(string);
         }
-        findViewById(R.id.button25).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ToastUtils.showLong(getLocalIpAddress());
-                getNetIp();
+        findViewById(R.id.button25).setOnClickListener(v -> {
+            getNetIp();
+            ToastUtils.showLong(getLocalIpAddress());
+        });
+        findViewById(R.id.button26).setOnClickListener(v -> {
+            if (isVpnUsed()) {
+                startAct(AnyOfficeActivity.class);
+            } else {
+                ToastUtils.showShort("未开启VPN");
             }
         });
-        findViewById(R.id.button26).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, AnyOfficeActivity.class));
-            }
-        });
-        findViewById(R.id.button27).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, AnyOfficeActivity2.class));
+        findViewById(R.id.button27).setOnClickListener(v -> {
+            if (isVpnUsed()) {
+                startAct(AnyOfficeActivity2.class);
+            } else {
+                ToastUtils.showShort("未开启VPN");
             }
         });
 
@@ -441,76 +323,42 @@ public class MainActivity extends Activity {
         intent.setClass(this, AnyOfficeActivity2.class);
         //todo 结束
 
-        findViewById(R.id.button28).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LoadingDialog.showLoading(MainActivity.this);
-                mHandler.postDelayed(task, 3000);
-            }
+        findViewById(R.id.button28).setOnClickListener(v -> {
+            LoadingDialog.showLoading(MainActivity.this);
+            mHandler.postDelayed(task, 3000);
         });
-        findViewById(R.id.button29).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LoadingDialog.showLoadingBall(MainActivity.this);
-                mHandler.postDelayed(task, 5000);
-            }
+        findViewById(R.id.button29).setOnClickListener(v -> {
+            LoadingDialog.showLoadingBall(MainActivity.this);
+            mHandler.postDelayed(task, 5000);
         });
 
         final Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-        findViewById(R.id.button30).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        findViewById(R.id.button30).setOnClickListener(v -> {
 
 //    long[] patter = {1000, 1000, 2000, 50};
 //    vibrator.vibrate(patter,0);
 //    vibrator.cancel();
 //    vibrator.vibrate(10);
 //    long[] patter = {1000, 1000, 2000, 50};
-                long[] patter = {10, 10, 10, 10};
-                vibrator.vibrate(patter, -1);
-            }
+            long[] patter = {10, 10, 10, 10};
+            vibrator.vibrate(patter, -1);
         });
-        findViewById(R.id.button30).setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                vibrator.cancel();
-                return true;
-            }
+        findViewById(R.id.button30).setOnLongClickListener(v -> {
+            vibrator.cancel();
+            return true;
         });
-        findViewById(R.id.button32).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                vibrator.vibrate(3000);
-            }
+        findViewById(R.id.button32).setOnClickListener(v ->
+                vibrator.vibrate(3000));
+        findViewById(R.id.button32).setOnLongClickListener(v -> {
+            vibrator.cancel();
+            return true;
         });
-        findViewById(R.id.button32).setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                vibrator.cancel();
-                return true;
-            }
-        });
-        findViewById(R.id.button31).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, RecycleViewActivity.class));
-            }
-        });
-        findViewById(R.id.button33).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, FragmentActivity.class));
-            }
-        });
-        findViewById(R.id.button34).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                update(true);
-            }
-        });
-        findViewById(R.id.button35).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        findViewById(R.id.button31).setOnClickListener(v -> startAct(RecycleViewActivity.class));
+        findViewById(R.id.button33).setOnClickListener(v -> startAct(FragmentActivity.class));
+        findViewById(R.id.button34).setOnClickListener(v ->
+                update(true)
+        );
+        findViewById(R.id.button35).setOnClickListener(v -> {
 //                setSomeThing someThing = new setSomeThing();
 //                someThing.startSet(new Setting() {
 //                    @Override
@@ -518,52 +366,25 @@ public class MainActivity extends Activity {
 //                        ToastUtils.showShort(content);
 //                    }
 //                },"11111111111");
-                new setSomeThing(new MySet("11111"));
-
-            }
+            new setSomeThing(new MySet("11111"));
         });
 
 
-        findViewById(R.id.button36).setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onClick(View v) {
-                sendNotification();
-            }
-        });
-        findViewById(R.id.button36).setOnLongClickListener(new View.OnLongClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public boolean onLongClick(View v) {
-                clearNotification();
-                //nm.cancel(0);
+        findViewById(R.id.button36).setOnClickListener(v ->
+                sendNotification());
+        findViewById(R.id.button36).setOnLongClickListener(v -> {
+            clearNotification();
+            //nm.cancel(0);
 //                if (isNotificationEnabled(MainActivity.this)) {
 //                    ToastUtils.showShort("开启");
 //                } else {
 //                    ToastUtils.showShort("关闭");
 //                }
-                return true;
-            }
+            return true;
         });
-        findViewById(R.id.button37).setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onClick(View v) {
-                sendProgressNotification();
-            }
-        });
-        findViewById(R.id.button38).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MVPActivity.class));
-            }
-        });
-        findViewById(R.id.button38).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MVPActivity.class));
-            }
-        });
+        findViewById(R.id.button37).setOnClickListener(v -> sendProgressNotification());
+        findViewById(R.id.button38).setOnClickListener(v -> startAct(MVPActivity.class));
+        findViewById(R.id.button38).setOnClickListener(v -> startAct(MVPActivity.class));
 
         // Lambda 表达式
         findViewById(R.id.button39).setOnClickListener(v ->
@@ -591,9 +412,7 @@ public class MainActivity extends Activity {
             ToastUtils.showShort(vpn ? "正在监测VPN" : "关闭监测VPN");
         });
 
-        findViewById(R.id.button43).setOnClickListener(v ->
-                startAct(KotlinActivity.class)
-        );
+        findViewById(R.id.button43).setOnClickListener(v -> startAct(KotlinActivity.class));
         findViewById(R.id.button44).setOnClickListener(v -> startAct(MM131Activity.class));
         findViewById(R.id.button45).setOnClickListener(v -> startAct(com.matrix.myapplication.jpushdemo.MainActivity.class));
         findViewById(R.id.button46).setOnClickListener(v -> startAct(GetuiSdkDemoActivity.class));
