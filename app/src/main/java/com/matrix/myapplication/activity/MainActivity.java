@@ -53,6 +53,7 @@ import com.matrix.myapplication.interfaceclass.setSomeThing;
 import com.matrix.myapplication.kotlin.KotlinActivity;
 import com.matrix.myapplication.model.upDateModel;
 import com.matrix.myapplication.mvp.MVPActivity;
+import com.matrix.myapplication.newactivity.ShareActivity;
 import com.matrix.myapplication.retrofit.RetrofitActivity;
 import com.matrix.myapplication.utils.ACacheUtils;
 import com.matrix.myapplication.utils.APKVersionUtils;
@@ -597,6 +598,7 @@ public class MainActivity extends Activity {
         findViewById(R.id.button45).setOnClickListener(v -> startAct(com.matrix.myapplication.jpushdemo.MainActivity.class));
         findViewById(R.id.button46).setOnClickListener(v -> startAct(GetuiSdkDemoActivity.class));
         findViewById(R.id.button47).setOnClickListener(v -> startAct(BMapApiDemoMain.class));
+        findViewById(R.id.button48).setOnClickListener(v -> startAct(ShareActivity.class));
     }
 
     private void startAct(Class<?> tClass) {

@@ -332,6 +332,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="BaiduMap" />
+                <Button
+                    android:id="@+id/button48"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="分享" />
             </com.matrix.myapplication.view.FlowLayout>
 
             <TextView
