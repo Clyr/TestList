@@ -6,8 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.matrix.myapplication.R
 import com.matrix.myapplication.utils.ToastUtils
 import kotlinx.android.synthetic.main.activity_kotlin.*
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.text as text1
 
 class KotlinActivity : AppCompatActivity() {
 

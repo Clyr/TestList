@@ -13,6 +13,7 @@ import android.view.WindowManager;
 
 import com.matrix.myapplication.activity.MainActivity;
 import com.matrix.myapplication.R;
+import com.matrix.myapplication.interfaceModel.Setback;
 
 
 /**
@@ -31,8 +32,8 @@ public class TextDialog extends Dialog implements View.OnClickListener {
     private int[] listenedItems;
 
     private OnCenterItemClickListener listener;
-    private MainActivity.Setback mSetback;
-    public TextDialog(Context context, int layoutResID, int[] listenedItems, MainActivity.Setback mSetback) {
+    private Setback mSetback;
+    public TextDialog(Context context, int layoutResID, int[] listenedItems, Setback mSetback) {
         super(context, R.style.MyDialog);
         this.context = context;
         this.layoutResID = layoutResID;

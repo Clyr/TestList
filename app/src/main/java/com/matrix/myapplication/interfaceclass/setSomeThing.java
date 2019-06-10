@@ -9,7 +9,7 @@ public class setSomeThing {
 
     public setSomeThing(Setting setting) {
         this.setting = setting;
-        setting.setToast("");
+//        setting.setToast("");
     }
 
     public void startSet(Setting sets, String str){

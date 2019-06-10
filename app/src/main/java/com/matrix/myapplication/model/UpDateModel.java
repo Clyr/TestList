@@ -6,7 +6,7 @@ import java.util.List;
  * Created by M S I of clyr on 2019/3/26.
  */
 
-public class upDateModel {
+public class UpDateModel {
     private String type;//android
     private List<Log> log	;//Array
     private String name	;//WPTMS.apk
