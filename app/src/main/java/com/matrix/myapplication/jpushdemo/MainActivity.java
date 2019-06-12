@@ -13,6 +13,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.matrix.myapplication.R;
+import com.matrix.myapplication.utils.MyLog;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import cn.jiguang.common.ClientConfig;
 import cn.jiguang.common.resp.APIConnectionException;
 import cn.jiguang.common.resp.APIRequestException;
@@ -26,12 +32,6 @@ import cn.jpush.api.push.model.audience.Audience;
 import cn.jpush.api.push.model.notification.AndroidNotification;
 import cn.jpush.api.push.model.notification.IosNotification;
 import cn.jpush.api.push.model.notification.Notification;
-
-import com.matrix.myapplication.R;
-import com.matrix.myapplication.utils.MyLog;
-
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class MainActivity extends InstrumentedActivity implements OnClickListener {

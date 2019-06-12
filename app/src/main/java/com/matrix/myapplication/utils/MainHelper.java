@@ -44,15 +44,24 @@ import androidx.core.content.ContextCompat;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
+import com.huawei.android.hms.agent.HMSAgent;
+import com.huawei.android.hms.agent.common.handler.ConnectHandler;
+import com.matrix.myapplication.Config;
 import com.matrix.myapplication.R;
 import com.matrix.myapplication.activity.MainActivity;
 import com.matrix.myapplication.interfaceModel.HandlerCall;
 import com.matrix.myapplication.model.UpDateModel;
+import com.matrix.myapplication.receiver.HuaweiPushRevicer;
 import com.matrix.myapplication.view.LoadingDialog;
 import com.matrix.myapplication.view.TextDialog;
 import com.matrix.myapplication.view.UpdataDialog;
+import com.xiaomi.xmpush.server.Constants;
+import com.xiaomi.xmpush.server.Message;
+import com.xiaomi.xmpush.server.Sender;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+
+import org.json.simple.parser.ParseException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -88,6 +97,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
+import static com.matrix.myapplication.receiver.HuaweiPushRevicer.ACTION_TOKEN;
 
 /**
  * Created by M S I of clyr on 2019/6/10.
@@ -1111,5 +1121,81 @@ public class MainHelper {
             e.printStackTrace();
         }
         return false;
+    }
+
+
+    public static void huaweiPushInit() {
+        /**
+         * SDK连接HMS
+
+         */
+
+        HMSAgent.connect(activity, new ConnectHandler() {
+            @Override
+            public void onConnect(int rst) {
+                MyLog.d("HMS connect end:" + rst);
+            }
+        });
+        HuaweiPushRevicer.registerPushCallback(new HuaweiPushRevicer.IPushCallback() {
+            @Override
+            public void onReceive(Intent intent) {
+                String  token = intent.getStringExtra(ACTION_TOKEN);
+                MyLog.d(token);
+
+            }
+        });
+    }
+    public static void sendMessage() throws Exception {
+        Constants.useOfficial();
+        Sender sender = new Sender(Config.APP_SECRET_KEY);
+        String messagePayload = "This is a message";
+        String title = "notification title";
+        String description = "notification description";
+        Message message = new Message.Builder()
+                .title(title)
+                .description(description).payload(messagePayload)
+                .restrictedPackageName(Config.MY_PACKAGE_NAME)
+                .notifyType(1)     // 使用默认提示音提示
+                .build();
+        new Thread(() -> {
+            try {
+                sender.broadcastAll(message, 3);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+        }).start();
+        /*String regId = "001";
+        Result result = sender.send(message, regId, 3);
+        Log.v("Server response: ", "MessageId: " + result.getMessageId()
+                + " ErrorCode: " + result.getErrorCode().toString()
+                + " Reason: " + result.getReason());*/
+    }
+
+    private void sendMessageToAlias() throws Exception {
+        Constants.useOfficial();
+        Sender sender = new Sender(Config.APP_SECRET_KEY);
+        String messagePayload = "This is a message";
+        String title = "notification title";
+        String description = "notification description";
+        String alias = "001";    //alias非空白, 不能包含逗号, 长度小于128
+        Message message = new Message.Builder()
+                .title(title)
+                .description(description).payload(messagePayload)
+                .restrictedPackageName(Config.MY_PACKAGE_NAME)
+                .notifyType(1)     // 使用默认提示音提示
+                .build();
+        new Thread(()->{
+            try {
+                sender.sendToAlias(message, alias, 3); //根据alias, 发送消息到指定设备上
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }).start();
+
     }
 }

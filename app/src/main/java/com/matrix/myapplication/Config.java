@@ -65,7 +65,8 @@ public class Config {
             VERSION_CODES.N_MR1,  //7.1
             VERSION_CODES.O//8.0
     };
-
+    public static final String APP_SECRET_KEY = "2Wu7EwW4le1MUC41g7NdOQ==";
+    public static final String MY_PACKAGE_NAME = "com.matrix.myapplication";
 
 
 }

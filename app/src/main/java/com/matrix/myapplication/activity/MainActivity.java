@@ -1,6 +1,7 @@
 package com.matrix.myapplication.activity;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -13,6 +14,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.huawei.android.hms.agent.HMSAgent;
+import com.huawei.android.hms.agent.common.handler.ConnectHandler;
+import com.huawei.android.hms.agent.push.handler.GetTokenHandler;
 import com.matrix.myapplication.R;
 import com.matrix.myapplication.baidumap.demo.BMapApiDemoMain;
 import com.matrix.myapplication.cache.MainActivity3;
@@ -24,17 +28,22 @@ import com.matrix.myapplication.kotlin.KotlinActivity;
 import com.matrix.myapplication.model.UpDateModel;
 import com.matrix.myapplication.mvp.MVPActivity;
 import com.matrix.myapplication.newactivity.ShareActivity;
+import com.matrix.myapplication.receiver.HuaweiPushRevicer;
 import com.matrix.myapplication.retrofit.RetrofitActivity;
+import com.matrix.myapplication.rxjava.RxjavaActivity;
 import com.matrix.myapplication.utils.ACacheUtils;
 import com.matrix.myapplication.utils.DownloadAPK;
 import com.matrix.myapplication.utils.MainHelper;
+import com.matrix.myapplication.utils.MyLog;
 import com.matrix.myapplication.utils.SPUtils;
 import com.matrix.myapplication.utils.ToastUtils;
 import com.matrix.myapplication.view.LoadingDialog;
-import com.matrix.myapplication.rxjava.RxjavaActivity;
 import com.mm131.MM131Activity;
+import com.xiaomi.mipush.sdk.MiPushClient;
 
 import me.leolin.shortcutbadger.ShortcutBadger;
+
+import static com.matrix.myapplication.receiver.HuaweiPushRevicer.ACTION_TOKEN;
 
 
 public class MainActivity extends Activity {
@@ -137,23 +146,8 @@ public class MainActivity extends Activity {
             MainHelper.getNetIp();
             ToastUtils.showLong(MainHelper.getLocalIpAddress());
         });
-        findViewById(R.id.button26).setOnClickListener(v -> {
-            if (MainHelper.isVpnUsed()) {
-                startAct(AnyOfficeActivity.class);
-            } else {
-                ToastUtils.showShort("未开启VPN");
-            }
-        });
-        findViewById(R.id.button27).setOnClickListener(v -> {
-            if (MainHelper.isVpnUsed()) {
-                startAct(AnyOfficeActivity2.class);
-            } else {
-                ToastUtils.showShort("未开启VPN");
-            }
-        });
 
-        Intent intent = new Intent();
-        intent.setClass(this, AnyOfficeActivity2.class);
+
         //todo 结束
 
         findViewById(R.id.button28).setOnClickListener(v -> {
@@ -275,8 +269,80 @@ public class MainActivity extends Activity {
             }
         });
         mHandler.postDelayed(task, 500);
+        huaweiPushInit();
+
+        findViewById(R.id.button50).setOnClickListener(v -> {
+            getToken();
+        });
+        findViewById(R.id.button51).setOnClickListener(v -> {
+            try {
+                Intent qqIntent = new Intent(Intent.ACTION_SEND);
+                qqIntent.setPackage("com.tencent.mobileqq");
+                qqIntent.setType("text/plain");
+                qqIntent.putExtra(Intent.EXTRA_TEXT, token);
+                startActivity(qqIntent);
+            } catch (Exception e) {
+
+                if (e instanceof ActivityNotFoundException)
+                    ToastUtils.showShort("请先安装QQ再进行尝试");
+                else
+                    ToastUtils.showShort("分享失败");
+            }
+        });
+        /* TODO 小米推送 */
+        // 设置别名
+        MiPushClient.setAlias(MainActivity.this, "001", null);
+//        MiPushClient.setUserAccount(MainActivity.this, account, null);
+        // 设置标签
+//        MiPushClient.subscribe(MainActivity.this, topic, null);
+//        MiPushClient.unsubscribe(MainActivity.this, topic, null);
+        // 暂停推送
+//        MiPushClient.pausePush(MainActivity.this, null);
+//        MiPushClient.resumePush(MainActivity.this, null);
+        findViewById(R.id.button52).setOnClickListener(v -> {
+            try {
+                MainHelper.sendMessage();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+    String token = "";
+    private void huaweiPushInit() {
+        /**
+         * SDK连接HMS
+         */
+
+        HMSAgent.connect(this, new ConnectHandler() {
+            @Override
+            public void onConnect(int rst) {
+                MyLog.d("HMS connect end:" + rst);
+            }
+        });
+        HuaweiPushRevicer.registerPushCallback(new HuaweiPushRevicer.IPushCallback() {
+            @Override
+            public void onReceive(Intent intent) {
+                token = intent.getStringExtra(ACTION_TOKEN);
+                MyLog.d(token);
+
+            }
+        });
     }
 
+    /**
+     * 获取token
+     */
+
+    private void getToken() {
+        MyLog.d("get token: begin");
+        HMSAgent.Push.getToken(new GetTokenHandler() {
+            @Override
+            public void onResult(int rst) {
+                MyLog.d("get token: end = " + rst);
+                ToastUtils.showShort("token: " + rst);
+            }
+        });
+    }
 
     private void startAct(Class<?> tClass) {
         startActivity(new Intent(this, tClass));
