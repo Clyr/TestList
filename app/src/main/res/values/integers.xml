@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <integer name="mp.limits.play_list_name" tools:ignore="MissingDefaultResource">32</integer>
+</resources>

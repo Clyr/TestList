@@ -355,6 +355,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="小米推送" />
+                <Button
+                    android:id="@+id/button54"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Music" />
             </com.matrix.myapplication.view.FlowLayout>
 
             <TextView

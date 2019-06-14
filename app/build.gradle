@@ -175,4 +175,10 @@ dependencies {
     implementation files('libs/MiPush_SDK_Client_3_6_18.jar')
     implementation files('libs/MiPush_SDK_Server_2_2_21.jar')
     implementation files('libs/commons-io-2.5.jar')
+    implementation files('libs/lite-orm-1.9.2.jar')
+    implementation 'io.reactivex:rxjava:1.1.9'
+    implementation 'io.reactivex:rxandroid:1.2.1'
+    implementation 'uk.co.chrisjenx:calligraphy:2.2.0'
+    implementation 'com.google.android.material:material:1.1.0-alpha07'
+
 }

@@ -659,6 +659,27 @@
             </intent-filter>
         </receiver>
         <activity android:name=".mipush.PermissionActivity"></activity>
+        <activity
+            android:name="com.music.ui.main.MainActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:label="SD卡"
+            android:name="com.music.ui.local.filesystem.FileSystemActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name="com.music.ui.details.PlayListDetailsActivity"
+            android:screenOrientation="portrait"/>
+
+        <service android:name="com.music.player.PlaybackService">
+            <intent-filter>
+                <action android:name="com.matrix.myapplication.ACTION.PLAY_TOGGLE"/>
+                <action android:name="com.matrix.myapplication.ACTION.PLAY_NEXT"/>
+                <action android:name="com.matrix.myapplication.ACTION.PLAY_LAST"/>
+                <action android:name="com.matrix.myapplication.ACTION.STOP_SERVICE"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

@@ -27,6 +27,7 @@ import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
 import okhttp3.OkHttpClient;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
  * Created by clyr on 2018/4/2 0002.
@@ -51,8 +52,17 @@ public class App extends Application {
         super.onCreate();
         mApp = this;
         HMSAgent.init(this);
-        /*
-            设置具体的证书
+//        CrashHandler.getInstance().init(this);
+        // Custom fonts
+        CalligraphyConfig.initDefault(
+                new CalligraphyConfig.Builder()
+                        .setDefaultFontPath("fonts/Roboto-Monospace-Regular.ttf")
+                        .setFontAttrId(R.attr.fontPath)
+                        .build()
+        );
+
+
+        /* 设置具体的证书
             new InputStream[]{getAssets().open("srca.cer")
             new InputStream[]{new Buffer().writeUtf8(CER_12306).inputStream()
             HttpsUtils.SSLParams sslParams = HttpsUtils.getSslSocketFactory(证书的inputstream, null, null);

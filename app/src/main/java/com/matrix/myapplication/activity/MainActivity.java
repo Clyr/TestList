@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.huawei.android.hms.agent.HMSAgent;
 import com.huawei.android.hms.agent.common.handler.ConnectHandler;
@@ -46,6 +48,7 @@ import java.io.IOException;
 import me.leolin.shortcutbadger.ShortcutBadger;
 
 import static com.matrix.myapplication.receiver.HuaweiPushRevicer.ACTION_TOKEN;
+import static com.matrix.myapplication.utils.MainHelper.mPermission;
 
 
 public class MainActivity extends Activity {
@@ -319,6 +322,16 @@ public class MainActivity extends Activity {
                 e.printStackTrace();
             }
         });
+        findViewById(R.id.button54).setOnClickListener(v -> {
+            //permission.READ_EXTERNAL_STORAGE
+            if (ContextCompat.checkSelfPermission(this, mPermission[2]) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{mPermission[1], mPermission[2]}, 3);
+
+            } else {
+                startAct(com.music.ui.main.MainActivity.class);
+            }
+
+        });
     }
 
     private void skipTo() {
@@ -409,6 +422,9 @@ public class MainActivity extends Activity {
                             Toast.LENGTH_SHORT).show();
                 }
 
+                break;
+            case 3:
+                startAct(com.music.ui.main.MainActivity.class);
                 break;
             default:
                 break;

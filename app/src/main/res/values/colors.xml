@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="colorPrimary">#3AB9FE</color>
     <color name="colorPrimaryDark">#3AB9FE</color>
     <color name="colorAccent">#3AB9FE</color>
+    <color name="colorMusic">#268CC9</color>
     <color name="red3">#33ff0000</color>
     <color name="transparent">#00000000</color>
     <color name="bluef">#0000ff</color>
@@ -91,4 +92,42 @@
     <color name="color3">#B0B0B0</color>
     <color name="color4">#666666</color>
     <color name="color5">#57C5E8</color>
+
+    <!-- Common -->
+
+    <!-- Theme - Dark Blue -->
+    <color name="mp.theme.dark_blue.background" tools:ignore="MissingDefaultResource">#3C5F78</color>
+    <color name="mp.theme.dark_blue.gradientColor" tools:ignore="MissingDefaultResource">#507E9F</color>
+    <color name="mp.theme.dark_blue.colorControlActivated" tools:ignore="MissingDefaultResource">#7AFFFFFF</color>
+    <color name="mp.theme.dark_blue.colorControlHighlight" tools:ignore="MissingDefaultResource">#7AFFFFFF</color>
+
+    <color name="mp.theme.dark_blue.colorPrimary" tools:ignore="MissingDefaultResource">#3C5F78</color>
+    <color name="mp.theme.dark_blue.colorPrimaryDark" tools:ignore="MissingDefaultResource">#3C5F78</color>
+    <color name="mp.theme.dark_blue.colorAccent" tools:ignore="MissingDefaultResource">#DDF9FF</color>
+    <color name="mp.theme.dark_blue.textColorPrimary" tools:ignore="MissingDefaultResource">#DDF9FF</color>
+    <color name="mp.theme.dark_blue.textColorSecondary" tools:ignore="MissingDefaultResource">#3C5F78</color>
+
+    <color name="mp.theme.dark_blue.actionMode.statusBarColor" tools:ignore="MissingDefaultResource">#9CBDCC</color>
+    <color name="mp.theme.dark_blue.actionMode.background" tools:ignore="MissingDefaultResource">#9CBDCC</color>
+
+    <color name="mp.line" tools:ignore="MissingDefaultResource">#3DDDF9FF</color>
+    <color name="mp.list.background" tools:ignore="MissingDefaultResource">#1ADDF9FF</color>
+    <color name="mp.list.background.selected" tools:ignore="MissingDefaultResource">#6CDDF9FF</color>
+    <color name="mp.list.scrollThumb" tools:ignore="MissingDefaultResource">#99DDF9FF</color>
+    <color name="mp.list.text.title" tools:ignore="MissingDefaultResource">#DDF9FF</color>
+    <color name="mp.list.text.title.selected" tools:ignore="MissingDefaultResource">#3C5F78</color>
+    <color name="mp.list.text.hint" tools:ignore="MissingDefaultResource">#9CBDCC</color>
+    <color name="mp.list.text.hint.selected" tools:ignore="MissingDefaultResource">#7C3C5F78</color>
+
+    <color name="mp.popupMenu.background" tools:ignore="MissingDefaultResource">#B4D2E0</color>
+
+    <color name="mp.text.hint" tools:ignore="MissingDefaultResource">#9CBDCC</color>
+
+    <!-- Segmented Control -->
+    <color name="mp.widget.segmented.default" tools:ignore="MissingDefaultResource">?attr/colorAccent</color>
+    <color name="mp.widget.segmented.checked" tools:ignore="MissingDefaultResource">#3C5F78</color>
+
+    <!-- CharacterView -->
+    <color name="mp.characterView.background" tools:ignore="MissingDefaultResource">#9CBDCC</color>
+    <color name="mp.characterView.textColor" tools:ignore="MissingDefaultResource">@color/mp.list.text.title</color>
 </resources>
