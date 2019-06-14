@@ -83,7 +83,8 @@ public class DemoMessageReceiver extends PushMessageReceiver {
     @Override
     public void onNotificationMessageClicked(Context context, MiPushMessage message) {
         Log.v(App.TAG,
-                "onNotificationMessageClicked is called. " + message.toString());
+                "Clicked = " + message.toString());
+
         String log = context.getString(R.string.click_notification_message, message.getContent());
 //        MainActivity.logList.add(0, getSimpleDate() + " " + log);
 
@@ -96,8 +97,10 @@ public class DemoMessageReceiver extends PushMessageReceiver {
         Message msg = Message.obtain();
         if (message.isNotified()) {
             msg.obj = log;
+            msg.what = 1;
         }
         App.getHandler().sendMessage(msg);
+
     }
 
     @Override

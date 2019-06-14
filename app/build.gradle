@@ -174,4 +174,5 @@ dependencies {
     implementation files('libs/mail.jar')
     implementation files('libs/MiPush_SDK_Client_3_6_18.jar')
     implementation files('libs/MiPush_SDK_Server_2_2_21.jar')
+    implementation files('libs/commons-io-2.5.jar')
 }

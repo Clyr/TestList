@@ -41,6 +41,8 @@ import com.matrix.myapplication.view.LoadingDialog;
 import com.mm131.MM131Activity;
 import com.xiaomi.mipush.sdk.MiPushClient;
 
+import java.io.IOException;
+
 import me.leolin.shortcutbadger.ShortcutBadger;
 
 import static com.matrix.myapplication.receiver.HuaweiPushRevicer.ACTION_TOKEN;
@@ -55,6 +57,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        skipTo();
 //        setTranslucentStatus();
 //        fullScreen(this);
 //        statusBar(); //TODO 会导致应用打开之后 点击事件需要第二次点击才能触发
@@ -144,7 +147,7 @@ public class MainActivity extends Activity {
         }
         findViewById(R.id.button25).setOnClickListener(v -> {
             MainHelper.getNetIp();
-            ToastUtils.showLong(MainHelper.getLocalIpAddress());
+//            ToastUtils.showLong(MainHelper.getLocalIpAddress());
         });
 
 
@@ -289,6 +292,16 @@ public class MainActivity extends Activity {
                     ToastUtils.showShort("分享失败");
             }
         });
+        findViewById(R.id.button53).setOnClickListener(v -> {
+            new Thread(() -> {
+                try {
+                    MainHelper.sendHuaweiMsg(token);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+
+        });
         /* TODO 小米推送 */
         // 设置别名
         MiPushClient.setAlias(MainActivity.this, "001", null);
@@ -307,7 +320,19 @@ public class MainActivity extends Activity {
             }
         });
     }
+
+    private void skipTo() {
+        Intent intent = getIntent();
+        if (intent != null) {
+            String tag = intent.getStringExtra("tag");
+            if ("share".equals(tag)) {
+                startAct(ShareActivity.class);
+            }
+        }
+    }
+
     String token = "";
+
     private void huaweiPushInit() {
         /**
          * SDK连接HMS

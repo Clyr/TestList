@@ -203,7 +203,7 @@
                     android:id="@+id/button25"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="测试获取网路地址" />
+                    android:text="测试获取网络地址" />
 
 
                 <Button
@@ -345,6 +345,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="分享华为 Token" />
+                <Button
+                    android:id="@+id/button53"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="华为推送" />
                 <Button
                     android:id="@+id/button52"
                     android:layout_width="wrap_content"

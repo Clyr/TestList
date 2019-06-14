@@ -3,16 +3,17 @@ package com.matrix.myapplication;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Process;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.baidu.mapapi.SDKInitializer;
 import com.huawei.android.hms.agent.HMSAgent;
 import com.matrix.myapplication.activity.MainActivity;
+import com.matrix.myapplication.utils.MyLog;
 import com.xiaomi.channel.commonutils.logger.LoggerInterface;
 import com.xiaomi.mipush.sdk.Logger;
 import com.xiaomi.mipush.sdk.MiPushClient;
@@ -156,7 +157,14 @@ public class App extends Application {
 //                sMainActivity.refreshLogInfo();
             }
             if (!TextUtils.isEmpty(s)) {
-                Toast.makeText(context, s, Toast.LENGTH_LONG).show();
+//                Toast.makeText(context, s, Toast.LENGTH_LONG).show();
+            }
+            if(msg.what == 1){
+                MyLog.d(TAG,s);
+                Intent intent = new Intent(context, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
+                intent.putExtra("tag","share");
+                context.startActivity(intent);
             }
         }
     }

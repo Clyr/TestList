@@ -42,6 +42,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.huawei.android.hms.agent.HMSAgent;
@@ -61,12 +62,14 @@ import com.xiaomi.xmpush.server.Sender;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
+import org.apache.commons.io.IOUtils;
 import org.json.simple.parser.ParseException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.ConnectException;
@@ -79,6 +82,8 @@ import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -104,6 +109,7 @@ import static com.matrix.myapplication.receiver.HuaweiPushRevicer.ACTION_TOKEN;
  */
 public class MainHelper {
     static Activity activity;
+    private static Integer notid = 0;
 
     public static void initialize(Activity act) {
         activity = act;
@@ -758,6 +764,7 @@ public class MainHelper {
             @Override
             public void onError(Call call, Exception e, int id) {
                 MyLog.e(e.toString());
+                ToastUtils.showShort(getLocalIpAddress());
             }
 
             @Override
@@ -773,6 +780,7 @@ public class MainHelper {
                     MyLog.d(ipsohu.cip);
                     ToastUtils.showLong("外网IP：" + ipsohu.cip);
                 }
+                ToastUtils.showShort(getLocalIpAddress());
             }
         });
     }
@@ -1088,6 +1096,7 @@ public class MainHelper {
                 .build();
         manager.notify(1, notification2);
     }
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static boolean isNotificationEnabled(Context context) {
 
@@ -1139,23 +1148,146 @@ public class MainHelper {
         HuaweiPushRevicer.registerPushCallback(new HuaweiPushRevicer.IPushCallback() {
             @Override
             public void onReceive(Intent intent) {
-                String  token = intent.getStringExtra(ACTION_TOKEN);
+                String token = intent.getStringExtra(ACTION_TOKEN);
                 MyLog.d(token);
 
             }
         });
     }
+    private static String appSecret = "5b041e2dc2f1c2436664e5010c0c9de9e65bff3f2c7185a796107562e5329cc9";
+    private static String appId = "100853197";//用户在华为开发者联盟申请的appId和appSecret（会员中心->应用管理，点击应用名称的链接）
+    private static String tokenUrl = "https://login.vmall.com/oauth2/token"; //获取认证Token的URL
+    private static String apiUrl = "https://api.push.hicloud.com/pushsend.do"; //应用级消息下发API
+    private static String accessToken;//下发通知消息的认证Token
+    private static long tokenExpiredTime;  //accessToken的过期时间
+    public static void sendHuaweiMsg(String token) throws IOException {
+        refreshToken();
+        sendPushMessage(token);
+    }
+    //获取下发通知消息的认证Token
+    private static void refreshToken() throws IOException {
+        String msgBody = MessageFormat.format("grant_type=client_credentials&client_secret={0}&client_id={1}",
+                URLEncoder.encode(appSecret, "UTF-8"), appId);
+
+        String response = httpPost(tokenUrl, msgBody, 5000, 5000);
+        JSONObject obj = JSONObject.parseObject(response);
+        accessToken = obj.getString("access_token");
+        tokenExpiredTime = System.currentTimeMillis() + obj.getLong("expires_in") - 5 * 60 * 1000;
+    }
+    //发送Push消息
+    private static void sendPushMessage(String token) throws IOException {
+        if (tokenExpiredTime <= System.currentTimeMillis()) {
+            refreshToken();
+        }
+        /*PushManager.requestToken为客户端申请token的方法，可以调用多次以防止申请token失败*/
+        /*PushToken不支持手动编写，需使用客户端的onToken方法获取*/
+        JSONArray deviceTokens = new JSONArray();//目标设备Token
+        deviceTokens.add("ADduy1O0R2_59NihMJYzw4TYUk5cGoND4RiRKIg_ARDltGGmIRUaVZHkXEDwAGt-ODKeQZZthkac2YCz0jneJqxThPOEd3Ldp8SbyfpZFpFZ7tY47DDYCCyDDf4c9Pz97Q");
+        deviceTokens.add("AFPYS0T2vSuhXV8Bouw5cf7QQtrteCTA-gRJ-9eJeZOgEqrgsbLcs8ifzOfrn5q_mRGZYX3QE4m-DLeYhAzezUdfGLZd92kW6iEW9AsfxV_pbruPMwkyHkm0nQH8IPC6_Q");
+        deviceTokens.add(token);
+
+        JSONObject body = new JSONObject();//仅通知栏消息需要设置标题和内容，透传消息key和value为用户自定义
+        body.put("title", "华为 Push message title");//消息标题
+        body.put("content", "华为 Push message content");//消息内容体
+
+        JSONObject param = new JSONObject();
+        param.put("appPkgName", "com.matrix.myapplication");//定义需要打开的appPkgName
+
+        JSONObject action = new JSONObject();
+        action.put("type", 3);//类型3为打开APP，其他行为请参考接口文档设置
+        action.put("param", param);//消息点击动作参数
+
+        JSONObject msg = new JSONObject();
+        msg.put("type", 3);//3: 通知栏消息，异步透传消息请根据接口文档设置
+        msg.put("action", action);//消息点击动作
+        msg.put("body", body);//通知栏消息body内容
+
+        JSONObject ext = new JSONObject();//扩展信息，含BI消息统计，特定展示风格，消息折叠。
+        ext.put("biTag", "Trump");//设置消息标签，如果带了这个标签，会在回执中推送给CP用于检测某种类型消息的到达率和状态
+        ext.put("icon", "http://pic.qiantucdn.com/58pic/12/38/18/13758PIC4GV.jpg");//自定义推送消息在通知栏的图标,value为一个公网可以访问的URL
+
+        JSONObject hps = new JSONObject();//华为PUSH消息总结构体
+        hps.put("msg", msg);
+        hps.put("ext", ext);
+
+        JSONObject payload = new JSONObject();
+        payload.put("hps", hps);
+
+        String postBody = MessageFormat.format(
+                "access_token={0}&nsp_svc={1}&nsp_ts={2}&device_token_list={3}&payload={4}",
+                URLEncoder.encode(accessToken, "UTF-8"),
+                URLEncoder.encode("openpush.message.api.send", "UTF-8"),
+                URLEncoder.encode(String.valueOf(System.currentTimeMillis() / 1000), "UTF-8"),
+                URLEncoder.encode(deviceTokens.toString(), "UTF-8"),
+                URLEncoder.encode(payload.toString(), "UTF-8"));
+
+        String postUrl = apiUrl + "?nsp_ctx=" + URLEncoder.encode("{\"ver\":\"1\", \"appId\":\"" + appId + "\"}", "UTF-8");
+        httpPost(postUrl, postBody, 5000, 5000);
+    }
+
+    public static String httpPost(String httpUrl, String data, int connectTimeout, int readTimeout) throws IOException {
+        OutputStream outPut = null;
+        HttpURLConnection urlConnection = null;
+        InputStream in = null;
+
+        try {
+            URL url = new URL(httpUrl);
+            urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("POST");
+            urlConnection.setDoOutput(true);
+            urlConnection.setDoInput(true);
+            urlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+            urlConnection.setConnectTimeout(connectTimeout);
+            urlConnection.setReadTimeout(readTimeout);
+            urlConnection.connect();
+
+            // POST data
+            outPut = urlConnection.getOutputStream();
+            outPut.write(data.getBytes("UTF-8"));
+            outPut.flush();
+
+            // read response
+            if (urlConnection.getResponseCode() < 400) {
+                in = urlConnection.getInputStream();
+            } else {
+                in = urlConnection.getErrorStream();
+            }
+
+            List<String> lines = IOUtils.readLines(in, urlConnection.getContentEncoding());
+            StringBuffer strBuf = new StringBuffer();
+            for (String line : lines) {
+                strBuf.append(line);
+            }
+            System.out.println(strBuf.toString());
+            return strBuf.toString();
+        } finally {
+            IOUtils.closeQuietly(outPut);
+            IOUtils.closeQuietly(in);
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
+        }
+    }
+
+
+// 小米推送
     public static void sendMessage() throws Exception {
+        /*1：使用默认提示音提示
+        2：使用默认震动提示
+        4：使用默认led灯光提示
+        -1（系统默认值）：以上三种效果都有
+        0：以上三种效果都无，即静默推送*/
         Constants.useOfficial();
         Sender sender = new Sender(Config.APP_SECRET_KEY);
         String messagePayload = "This is a message";
-        String title = "notification title";
-        String description = "notification description";
+        String title = "TestList 小米推送";
+        String description = "推送内容 略略略 "+notid;
         Message message = new Message.Builder()
                 .title(title)
                 .description(description).payload(messagePayload)
                 .restrictedPackageName(Config.MY_PACKAGE_NAME)
-                .notifyType(1)     // 使用默认提示音提示
+                .notifyType(-1)     // 使用默认提示音提示
+                .notifyId(notid++)
                 .build();
         new Thread(() -> {
             try {
@@ -1187,7 +1319,7 @@ public class MainHelper {
                 .restrictedPackageName(Config.MY_PACKAGE_NAME)
                 .notifyType(1)     // 使用默认提示音提示
                 .build();
-        new Thread(()->{
+        new Thread(() -> {
             try {
                 sender.sendToAlias(message, alias, 3); //根据alias, 发送消息到指定设备上
             } catch (IOException e) {
@@ -1198,4 +1330,7 @@ public class MainHelper {
         }).start();
 
     }
+
+
+
 }
