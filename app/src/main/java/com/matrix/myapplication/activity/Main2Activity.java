@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.matrix.myapplication.MainActivity;
 import com.matrix.myapplication.R;
 
 public class Main2Activity extends BaseActivity {
@@ -20,7 +21,7 @@ public class Main2Activity extends BaseActivity {
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {//WebViewJavaScript
             @Override
             public void onClick(View v) {
-                intent.setClass(Main2Activity.this,MainActivity.class);
+                intent.setClass(Main2Activity.this, MainActivity.class);
                 startActivity(intent);
             }
         });

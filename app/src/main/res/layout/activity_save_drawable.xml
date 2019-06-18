@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center|top"
     android:orientation="vertical"
-    tools:context=".activity.MainActivity" >
+    tools:context=".MainActivity" >
 
     <Button
         android:layout_width="match_parent"

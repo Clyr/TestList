@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.matrix.myapplication.activity.MainActivity;
 import com.matrix.myapplication.R;
 import com.matrix.myapplication.interfaceModel.Setback;
 

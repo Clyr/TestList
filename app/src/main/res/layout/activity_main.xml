@@ -360,6 +360,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Music" />
+                <Button
+                    android:id="@+id/button55"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="守护进程" />
+                <Button
+                    android:id="@+id/button56"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="守护进程Noti" />
+                <Button
+                    android:id="@+id/button57"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DevTool" />
             </com.matrix.myapplication.view.FlowLayout>
 
             <TextView

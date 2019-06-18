@@ -30,4 +30,10 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
 
     <dimen name="custom_profile_image">50dp</dimen>
     <dimen name="custom_profile_padding">2dp</dimen>
+
+
+    <dimen name="mem_monitor_padding">8dp</dimen>
+    <dimen name="mem_monitor_text_padding">8dp</dimen>
+    <dimen name="mem_monitor_height">150dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

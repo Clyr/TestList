@@ -1,16 +1,19 @@
 package com.music.player;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Binder;
+import android.os.Build;
 import android.os.IBinder;
 import android.widget.RemoteViews;
 
 import androidx.annotation.Nullable;
-import androidx.core.app.NotificationCompat;
 
 import com.matrix.myapplication.R;
 import com.music.data.model.PlayList;
@@ -217,18 +220,38 @@ public class PlaybackService extends Service implements IPlayback, IPlayback.Cal
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0);
 
         // Set the info for the views that show in the notification panel.
-        Notification notification = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.test)  // the status icon
-                .setWhen(System.currentTimeMillis())  // the time stamp
-                .setContentIntent(contentIntent)  // The intent to send when the entry is clicked
-                .setCustomContentView(getSmallContentView())
-                .setCustomBigContentView(getBigContentView())
-                .setPriority(NotificationCompat.PRIORITY_MAX)
-                .setOngoing(true)
-                .build();
+        Notification.Builder notification = new Notification.Builder(this);
 
+        notification.setSmallIcon(R.drawable.test)  // the status icon
+                .setWhen(System.currentTimeMillis())  // the time stamp
+                .setContentIntent(contentIntent);// The intent to send when the entry is clicked
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            notification.setCustomContentView(getSmallContentView())
+                    .setCustomBigContentView(getBigContentView());
+        } else {
+            notification.setContent(getSmallContentView());
+        }
+        notification.setPriority(Notification.PRIORITY_MAX)
+                .setOngoing(true);
+//                .build();
+        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("000", "TestList通知", NotificationManager.IMPORTANCE_DEFAULT);
+            channel.enableLights(true); //是否在桌面icon右上角展示小红点
+            channel.setLightColor(Color.GREEN); //小红点颜色
+            channel.setShowBadge(true); //是否在久按桌面图标时显示此渠道的通知
+            channel.setSound(null,null);
+            manager.createNotificationChannel(channel);
+            notification.setChannelId("000");
+        }
+
+        Notification noti = notification.build();
+//        noti.flags = Notification.FLAG_NO_CLEAR;//不能删除通知
+        //3、manager.notify()
+        manager.notify(NOTIFICATION_ID, noti);
         // Send the notification.
-        startForeground(NOTIFICATION_ID, notification);
+        startForeground(NOTIFICATION_ID, noti);
     }
 
     private RemoteViews getSmallContentView() {
@@ -270,7 +293,7 @@ public class PlaybackService extends Service implements IPlayback, IPlayback.Cal
                 ? R.drawable.ic_remote_view_pause : R.drawable.ic_remote_view_play);
         Bitmap album = AlbumUtils.parseAlbum(getPlayingSong());
         if (album == null) {
-            remoteView.setImageViewResource(R.id.image_view_album, R.mipmap.ic_launcher);
+            remoteView.setImageViewResource(R.id.image_view_album, R.drawable.test);
         } else {
             remoteView.setImageViewBitmap(R.id.image_view_album, album);
 

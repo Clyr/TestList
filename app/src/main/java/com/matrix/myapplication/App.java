@@ -12,7 +12,6 @@ import android.util.Log;
 
 import com.baidu.mapapi.SDKInitializer;
 import com.huawei.android.hms.agent.HMSAgent;
-import com.matrix.myapplication.activity.MainActivity;
 import com.matrix.myapplication.utils.MyLog;
 import com.xiaomi.channel.commonutils.logger.LoggerInterface;
 import com.xiaomi.mipush.sdk.Logger;

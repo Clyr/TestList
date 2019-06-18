@@ -481,4 +481,30 @@
     <style name="MP.Theme.TextAppearance.SmallPopupMenu" parent="TextAppearance.AppCompat.Widget.PopupMenu.Small">
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
+
+    <style name="AppTheme.Daemon">
+        <!--设置背景透明-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <!--设置窗口框架为空-->
+        <item name="android:windowFrame">@null</item>
+        <!--设置没有 title-->
+        <item name="android:windowNoTitle">true</item>
+        <!--设置浮动-->
+        <item name="android:windowIsFloating">true</item>
+        <!--窗口动画为空-->
+        <item name="android:windowAnimationStyle">@null</item>
+        <!--不可预览-->
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowNoDisplay">false</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 </resources>

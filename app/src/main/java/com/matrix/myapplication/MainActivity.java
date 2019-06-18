@@ -1,4 +1,4 @@
-package com.matrix.myapplication.activity;
+package com.matrix.myapplication;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -16,10 +16,29 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.guard.NotiUtils;
+import com.guard.VmMainActivity;
 import com.huawei.android.hms.agent.HMSAgent;
 import com.huawei.android.hms.agent.common.handler.ConnectHandler;
 import com.huawei.android.hms.agent.push.handler.GetTokenHandler;
-import com.matrix.myapplication.R;
+import com.matrix.myapplication.activity.BigImageActivity;
+import com.matrix.myapplication.activity.FPSGetActivity;
+import com.matrix.myapplication.activity.FragmentActivity;
+import com.matrix.myapplication.activity.LineChartActivity;
+import com.matrix.myapplication.activity.LoadingActivity;
+import com.matrix.myapplication.activity.Main4Activity;
+import com.matrix.myapplication.activity.Main5Activity;
+import com.matrix.myapplication.activity.Main6Activity;
+import com.matrix.myapplication.activity.Main7Activity;
+import com.matrix.myapplication.activity.MainGetFPSActivity;
+import com.matrix.myapplication.activity.MarqueeActivity;
+import com.matrix.myapplication.activity.NewTableActivity;
+import com.matrix.myapplication.activity.RecycleViewActivity;
+import com.matrix.myapplication.activity.SampleActivity;
+import com.matrix.myapplication.activity.SendActivity;
+import com.matrix.myapplication.activity.SqliteActivity;
+import com.matrix.myapplication.activity.TableActivity;
+import com.matrix.myapplication.activity.TreeListActivity;
 import com.matrix.myapplication.baidumap.demo.BMapApiDemoMain;
 import com.matrix.myapplication.cache.MainActivity3;
 import com.matrix.myapplication.getuidemo.GetuiSdkDemoActivity;
@@ -331,6 +350,15 @@ public class MainActivity extends Activity {
                 startAct(com.music.ui.main.MainActivity.class);
             }
 
+        });
+        findViewById(R.id.button55).setOnClickListener(v->{
+            startAct(VmMainActivity.class);
+        });
+        findViewById(R.id.button56).setOnClickListener(v->{
+            NotiUtils.show(this,"100000","MainActivity");
+        });
+        findViewById(R.id.button57).setOnClickListener(v->{
+            startAct(com.han.devtool.MainActivity.class);
         });
     }
 

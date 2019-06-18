@@ -49,7 +49,7 @@ import com.huawei.android.hms.agent.HMSAgent;
 import com.huawei.android.hms.agent.common.handler.ConnectHandler;
 import com.matrix.myapplication.Config;
 import com.matrix.myapplication.R;
-import com.matrix.myapplication.activity.MainActivity;
+import com.matrix.myapplication.MainActivity;
 import com.matrix.myapplication.interfaceModel.HandlerCall;
 import com.matrix.myapplication.model.UpDateModel;
 import com.matrix.myapplication.receiver.HuaweiPushRevicer;
