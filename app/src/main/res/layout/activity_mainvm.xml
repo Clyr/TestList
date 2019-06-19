@@ -38,5 +38,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="5.x使用 JobService 来实现守护进程" />
+        <Button
+            android:id="@+id/stop_service"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="停止进程" />
     </LinearLayout>
 </RelativeLayout>

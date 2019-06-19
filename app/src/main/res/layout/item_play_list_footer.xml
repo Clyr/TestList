@@ -35,6 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:textColor="@color/black8"
                 android:text="@string/mp.play_list.footer.add" />
         </LinearLayout>
     </FrameLayout>

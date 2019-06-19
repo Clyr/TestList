@@ -40,7 +40,7 @@ public class VMDaemonService extends Service {
         Log.i(TAG, "VMDaemonService->onStartCommand");
         // 利用 Android 漏洞提高进程优先级，
 //        startForeground(DAEMON_SERVICE_ID, new Notification());
-        startForeground(DAEMON_SERVICE_ID, NotiUtils.show(this,"100001","VMDaemonService"));
+        startForeground(DAEMON_SERVICE_ID, NotiUtils.show(this,"100001","VMDaemonService","VMDaemonService"));
         // 当 SDk 版本大于18时，需要通过内部 Service 类启动同样 id 的 Service
         if (Build.VERSION.SDK_INT >= 18) {
             Intent innerIntent = new Intent(this, DaemonInnerService.class);
@@ -94,7 +94,7 @@ public class VMDaemonService extends Service {
         public int onStartCommand(Intent intent, int flags, int startId) {
             Log.i(TAG, "DaemonInnerService -> onStartCommand");
 //            startForeground(DAEMON_SERVICE_ID, new Notification());
-            startForeground(DAEMON_SERVICE_ID, NotiUtils.show(this,"100002","DaemonInnerService"));
+            startForeground(DAEMON_SERVICE_ID, NotiUtils.show(this,"100002","DaemonInnerService","DaemonInnerService"));
             stopSelf();
             return super.onStartCommand(intent, flags, startId);
         }

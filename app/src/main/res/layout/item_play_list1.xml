@@ -12,47 +12,38 @@
         android:layout_marginBottom="@dimen/mp.divider.line"
         android:background="?attr/selectableItemBackground" />
 
-    <TextView
-        android:id="@+id/text_view_index"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image_view_album"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="@dimen/mp.margin.large"
-        android:layout_marginRight="@dimen/mp.margin.large"
-        android:gravity="center"
-        android:minWidth="24dp"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        tools:text="1" />
+        android:layout_marginLeft="@dimen/mp.padding.large"
+        android:layout_marginRight="@dimen/mp.padding.large"
+        android:scaleType="center"
+        tools:src="@drawable/ic_favorite_yes_white" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_marginStart="@dimen/mp.material.marginLeft"
-        android:layout_marginLeft="@dimen/mp.material.marginLeft"
         android:layout_toStartOf="@+id/layout_action"
         android:layout_toLeftOf="@+id/layout_action"
+        android:layout_toEndOf="@+id/image_view_album"
+        android:layout_toRightOf="@+id/image_view_album"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/text_view_name"
             style="@style/MP.Theme.TextAppearance.List.Title"
-            android:singleLine="true"
-            android:textSize="14sp"
-            android:textColor="@color/black"
-            tools:text="Pain(feat.Future)" />
+            android:textColor="@color/white"
+            tools:text="Favorite" />
 
         <TextView
             android:id="@+id/text_view_info"
             style="@style/MP.Theme.TextAppearance.List.Hint"
+            android:textColor="@color/whitea"
             android:layout_marginTop="@dimen/mp.margin.small"
-            android:singleLine="true"
-            android:textSize="12sp"
-            android:textColor="@color/black8"
-            tools:text="04:52 | Pusha T" />
+            tools:text="100 songs" />
     </LinearLayout>
 
     <FrameLayout
@@ -72,7 +63,6 @@
             android:layout_gravity="center"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="center"
-            app:srcCompat="@drawable/ic_list_item_action"
-            tools:ignore="VectorDrawableCompat" />
+            app:srcCompat="@drawable/ic_list_item_action_white" />
     </FrameLayout>
 </RelativeLayout>

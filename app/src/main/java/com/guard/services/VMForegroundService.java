@@ -70,7 +70,7 @@ public class VMForegroundService extends Service {
         startForeground(NOTIFY_ID, notification);*/
 
         String CHANNEL_ONE_ID = "com.matrix.se";
-        String CHANNEL_ONE_NAME = "Channel One";
+        String CHANNEL_ONE_NAME = "守护进程";
         NotificationChannel notificationChannel = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             notificationChannel = new NotificationChannel(CHANNEL_ONE_ID,

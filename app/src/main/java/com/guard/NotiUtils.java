@@ -29,7 +29,46 @@ public class NotiUtils {
         NotificationManager manager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             Uri mUri = Settings.System.DEFAULT_NOTIFICATION_URI;
-            NotificationChannel mChannel = new NotificationChannel(channelOneId, "driver", NotificationManager.IMPORTANCE_LOW);
+            NotificationChannel mChannel = new NotificationChannel(channelOneId, "NotiUtils Channel", NotificationManager.IMPORTANCE_LOW);
+            mChannel.setDescription("description");
+            mChannel.setSound(mUri, Notification.AUDIO_ATTRIBUTES_DEFAULT);
+            manager.createNotificationChannel(mChannel);
+            notification = new Notification.Builder(context, channelOneId)
+                    .setChannelId(channelOneId)
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentTitle(title)
+                    .setContentText(title+" setContentText")
+                    .setAutoCancel(true)
+                    .setContentIntent(pi)
+                    .build();
+
+        } else {
+            notification = new Notification.Builder(context)
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentTitle(title)
+                    .setContentText(title+" setContentText")
+                    .setAutoCancel(true)
+                    .setContentIntent(pi)
+                    .build();
+        }
+        manager.notify(10001, notification);
+        return notification;
+    }
+    public static Notification show(Context context, String channelId,String title,String channelName) {
+        String channelOneId = "com.matrix";
+        if (channelId != "" && channelId != null) {
+            channelOneId = channelId;
+        }
+        if (channelName == "" || channelName != null) {
+            channelName = "NotiUtils Channel";
+        }
+        Intent intent1 = new Intent(context, MainActivity.class);
+        PendingIntent pi = PendingIntent.getActivity(context, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+        Notification notification = null;
+        NotificationManager manager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            Uri mUri = Settings.System.DEFAULT_NOTIFICATION_URI;
+            NotificationChannel mChannel = new NotificationChannel(channelOneId, channelName, NotificationManager.IMPORTANCE_LOW);
             mChannel.setDescription("description");
             mChannel.setSound(mUri, Notification.AUDIO_ATTRIBUTES_DEFAULT);
             manager.createNotificationChannel(mChannel);

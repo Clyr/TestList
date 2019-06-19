@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Binder;
 import android.os.Build;
@@ -31,10 +32,10 @@ import com.music.utils.AlbumUtils;
  */
 public class PlaybackService extends Service implements IPlayback, IPlayback.Callback {
 
-    private static final String ACTION_PLAY_TOGGLE = "io.github.ryanhoo.music.ACTION.PLAY_TOGGLE";
-    private static final String ACTION_PLAY_LAST = "io.github.ryanhoo.music.ACTION.PLAY_LAST";
-    private static final String ACTION_PLAY_NEXT = "io.github.ryanhoo.music.ACTION.PLAY_NEXT";
-    private static final String ACTION_STOP_SERVICE = "io.github.ryanhoo.music.ACTION.STOP_SERVICE";
+    private static final String ACTION_PLAY_TOGGLE = "com.matrix.myapplication.ACTION.PLAY_TOGGLE";
+    private static final String ACTION_PLAY_LAST = "com.matrix.myapplication.ACTION.PLAY_LAST";
+    private static final String ACTION_PLAY_NEXT = "com.matrix.myapplication.ACTION.PLAY_NEXT";
+    private static final String ACTION_STOP_SERVICE = "com.matrix.myapplication.ACTION.STOP_SERVICE";
 
     private static final int NOTIFICATION_ID = 1;
 
@@ -222,7 +223,9 @@ public class PlaybackService extends Service implements IPlayback, IPlayback.Cal
         // Set the info for the views that show in the notification panel.
         Notification.Builder notification = new Notification.Builder(this);
 
-        notification.setSmallIcon(R.drawable.test)  // the status icon
+        notification.setSmallIcon(R.drawable.music4)  // the status icon
+
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.music4))
                 .setWhen(System.currentTimeMillis())  // the time stamp
                 .setContentIntent(contentIntent);// The intent to send when the entry is clicked
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -237,7 +240,7 @@ public class PlaybackService extends Service implements IPlayback, IPlayback.Cal
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel("000", "TestList通知", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationChannel channel = new NotificationChannel("000", "TestList Music", NotificationManager.IMPORTANCE_DEFAULT);
             channel.enableLights(true); //是否在桌面icon右上角展示小红点
             channel.setLightColor(Color.GREEN); //小红点颜色
             channel.setShowBadge(true); //是否在久按桌面图标时显示此渠道的通知

@@ -31,7 +31,7 @@ public class VMCoreService extends Service {
         Log.i(TAG, "VMCoreService -> onStartCommand");
         // 利用 Android 漏洞提高进程优先级，
 //        startForeground(CORE_SERVICE_ID, new Notification());
-        startForeground(CORE_SERVICE_ID, NotiUtils.show(this,"100003","VMCoreService"));
+        startForeground(CORE_SERVICE_ID, NotiUtils.show(this,"100003","VMCoreService","VMCoreService"));
         // 当 SDk 版本大于18时，需要通过内部 Service 类启动同样 id 的 Service
         if (Build.VERSION.SDK_INT >= 18) {
             Intent innerIntent = new Intent(this, CoreInnerService.class);
@@ -68,7 +68,7 @@ public class VMCoreService extends Service {
         public int onStartCommand(Intent intent, int flags, int startId) {
             Log.i(TAG, "CoreInnerService -> onStartCommand");
 //            startForeground(CORE_SERVICE_ID, new Notification());
-            startForeground(CORE_SERVICE_ID, NotiUtils.show(this,"100004","CoreInnerService"));
+            startForeground(CORE_SERVICE_ID, NotiUtils.show(this,"100004","CoreInnerService","CoreInnerService"));
             stopSelf();
             return super.onStartCommand(intent, flags, startId);
         }

@@ -30,6 +30,7 @@ public class VmMainActivity extends AppCompatActivity {
         findViewById(R.id.btn_daemon).setOnClickListener(viewListener);
         findViewById(R.id.btn_background).setOnClickListener(viewListener);
         findViewById(R.id.btn_job_service).setOnClickListener(viewListener);
+        findViewById(R.id.stop_service).setOnClickListener(viewListener);
 
         // 启动核心进程
         startCoreProcess();
@@ -60,9 +61,20 @@ public class VmMainActivity extends AppCompatActivity {
                 case R.id.btn_job_service:
                     startJobScheduler();
                     break;
+                case R.id.stop_service:
+                    stopServices();
+                    break;
             }
         }
     };
+
+    private void stopServices() {
+        stopService(new Intent(getApplicationContext(), VMCoreService.class));
+        stopService(new Intent(getApplicationContext(), VMBackgroundService.class));
+        stopService(new Intent(getApplicationContext(), VMDaemonJobService.class));
+        stopService(new Intent(getApplicationContext(), VMDaemonService.class));
+        stopService(new Intent(getApplicationContext(), VMForegroundService.class));
+    }
 
     /**
      * 5.x以上系统启用 JobScheduler API 进行实现守护进程的唤醒操作

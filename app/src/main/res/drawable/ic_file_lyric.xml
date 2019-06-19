@@ -14,7 +14,7 @@
             android:translateY="181.000000">
             <path
                 android:name="Shape"
-                android:fillColor="#AADDF9FF"
+                android:fillColor="#3AB9FE"
                 android:pathData="M13.5,10.5 L21.75,10.5 L13.5,2.25 L13.5,10.5 L13.5,10.5 Z M3,0 L15,0 L24,9
 L24,27 C24,28.6568542 22.6568542,30 21,30 L3,30 C1.335,30 0,28.65 0,27 L0,3
 C0,1.335 1.335,0 3,0 L3,0 Z M18,26 L18,25 L6,25 L6,26 L18,26 L18,26 Z M21,20

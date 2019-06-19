@@ -835,7 +835,7 @@ public class MainHelper {
                 .setContentTitle("TestListTitle")//设置通知标题
                 .setContentText("Notification ContentText")//设置通知内容
                 .setLargeIcon(BitmapFactory.decodeResource(activity.getResources(), R.drawable.test))
-                .setSmallIcon(R.drawable.test)//不能缺少的一个属性
+                .setSmallIcon(R.drawable.test)//不能缺少的一个属性 通知栏小图标 默认圆头安卓很丑
                 .setSubText("Subtext")
                 .setTicker("滚动消息......")
                 .setContentIntent(contentIntent)//设置通知栏被点击时的操作-由PendingIntent意图来表示
@@ -846,7 +846,7 @@ public class MainHelper {
 
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel("001", "TestList通知", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationChannel channel = new NotificationChannel("001", "TestList通知测试", NotificationManager.IMPORTANCE_DEFAULT);
             channel.enableLights(true); //是否在桌面icon右上角展示小红点
             channel.setLightColor(Color.GREEN); //小红点颜色
             channel.setShowBadge(true); //是否在久按桌面图标时显示此渠道的通知
@@ -879,7 +879,7 @@ public class MainHelper {
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             NotificationChannel channel =
-                    new NotificationChannel("005", "new_download_channel", NotificationManager.IMPORTANCE_LOW);
+                    new NotificationChannel("005", "download_channel", NotificationManager.IMPORTANCE_LOW);
             manager.createNotificationChannel(channel);
             builder.setChannelId("005");
         }

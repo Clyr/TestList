@@ -355,10 +355,10 @@ public class MainActivity extends Activity {
             startAct(VmMainActivity.class);
         });
         findViewById(R.id.button56).setOnClickListener(v->{
-            NotiUtils.show(this,"100000","MainActivity");
+            NotiUtils.show(this,"100000","MainActivity","MainActivityChannel");
         });
         findViewById(R.id.button57).setOnClickListener(v->{
-            startAct(com.han.devtool.MainActivity.class);
+//            startAct(com.han.devtool.MainActivity.class);
         });
     }
 
