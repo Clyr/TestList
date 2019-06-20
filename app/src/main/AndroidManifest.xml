@@ -778,6 +778,22 @@
             android:name="com.han.log.MyListActivity"
             android:launchMode="singleTop">
         </activity>
+
+        <!-- douyu -->
+        <activity
+            android:name="com.douyu.mvp.view.activity.SplashActivity"
+            android:theme="@style/SplashTheme">
+        </activity>
+        <activity
+            android:name="com.douyu.mvp.view.activity.HomeActivity"
+            android:theme="@style/AppThemeNotTranslucent" />
+        <activity android:name="com.douyu.mvp.view.activity.SearchActivity" />
+        <activity android:name="com.douyu.mvp.view.activity.ChannelInfoListActivity" />
+        <activity android:name="com.douyu.mvp.view.activity.AboutActivity" />
+        <activity
+            android:name="com.douyu.mvp.view.activity.PalyActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="sensorLandscape" />
     </application>
 
 </manifest>

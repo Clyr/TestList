@@ -58,7 +58,7 @@
     <!-- translateable strings-->
     
     
-    <string name="about">About</string>
+    <!--<string name="about">About</string>-->
     <string name="about_catlog">About devtool</string>
     
     <string name="add_filter">Add Filter</string>

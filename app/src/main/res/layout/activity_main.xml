@@ -374,7 +374,7 @@
                     android:id="@+id/button57"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="DevTool" />
+                    android:text="douyu" />
             </com.matrix.myapplication.view.FlowLayout>
 
             <TextView

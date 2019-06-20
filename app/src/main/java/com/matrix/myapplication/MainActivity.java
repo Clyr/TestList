@@ -358,7 +358,7 @@ public class MainActivity extends Activity {
             NotiUtils.show(this,"100000","MainActivity","MainActivityChannel");
         });
         findViewById(R.id.button57).setOnClickListener(v->{
-//            startAct(com.han.devtool.MainActivity.class);
+            startAct(com.douyu.mvp.view.activity.HomeActivity.class);
         });
     }
 
