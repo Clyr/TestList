@@ -9,6 +9,9 @@ import com.matrix.myapplication.R;
 import com.matrix.myapplication.activity.BaseActivity;
 import com.matrix.myapplication.utils.MyLog;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -31,7 +34,8 @@ public class RetrofitActivity extends BaseActivity {
     @BindView(R.id.postHave)
     Button postHave;
 
-    public String mUrl = "https://api.github.com/users/";
+    //    public String mUrl = "https://api.github.com/users/";
+    public String mUrl = "http://218.58.194.194:9000/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +80,51 @@ public class RetrofitActivity extends BaseActivity {
             case R.id.getHave:
                 break;
             case R.id.postNot:
+                Call<ResponseBody> calln = orService.post("cuGetDevTreeEx");
+                calln.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response != null && response.isSuccessful()) {
+                            try {
+                                MyLog.d(response.body().toString());
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        MyLog.e(t.getMessage());
+                    }
+                });
                 break;
             case R.id.postHave:
+                /*"userName":"admin",
+                    "clientType":"android",
+                    "ipAddress":""*/
+                Map<String, String> map = new HashMap<>();
+                map.put("userName", "admin");
+                map.put("clientType", "android");
+                map.put("ipAddress", "");
+                Call<ResponseBody> callph = orService.post("videoService/accounts/authorize", map);
+                callph.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response != null && response.isSuccessful()) {
+                            try {
+                                MyLog.d(response.body().toString());
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        MyLog.e(t.getMessage());
+                    }
+                });
                 break;
         }
     }

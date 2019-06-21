@@ -15,6 +15,7 @@ import com.matrix.myapplication.R;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,9 +43,23 @@ public class RxjavaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rxjava8);
         ButterKnife.bind(this);
-        initRxjava();
+//        initRxjava();
+        init();
     }
 
+    private void init() {
+        Observable<Integer> observable = Observable.create(emitter -> {
+            emitter.onNext(1);
+            emitter.onNext(2);
+            emitter.onNext(3);
+        });
+        observable.subscribe(System.out::println);
+        Observable.range(0, 10).map(String::valueOf).forEach(System.out::println);
+        //下面的操作可以每个3秒的时间发送一个整数，整数从0开始：
+        Observable.interval(3, TimeUnit.SECONDS).subscribe(System.out::println);
+    }
+
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
     private void initRxjava() {
         //被观察者
         Observable obs = Observable.create((emitter) -> {
@@ -60,7 +75,7 @@ public class RxjavaActivity extends AppCompatActivity {
             public void onSubscribe(Disposable d) {
                 mDisposable = d;
                 Log.e(TAG, "onSubscribe");
-                textView.setText(textView.getText().toString().trim()+"\n"+"onSubscribe()");
+                textView.setText(textView.getText().toString().trim() + "\n" + "onSubscribe()");
             }
 
             @Override
@@ -70,7 +85,7 @@ public class RxjavaActivity extends AppCompatActivity {
                     return;
                 }
                 Log.e(TAG, "onNext:" + value);
-                textView.setText(textView.getText().toString().trim()+"\n"+value);
+                textView.setText(textView.getText().toString().trim() + "\n" + value);
             }
 
             @Override
@@ -81,7 +96,7 @@ public class RxjavaActivity extends AppCompatActivity {
             @Override
             public void onComplete() {
                 Log.e(TAG, "onComplete()");
-                textView.setText(textView.getText().toString().trim()+"\n"+"onComplete()");
+                textView.setText(textView.getText().toString().trim() + "\n" + "onComplete()");
             }
         };
         //订阅

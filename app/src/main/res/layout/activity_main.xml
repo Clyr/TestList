@@ -212,24 +212,18 @@
                     android:layout_height="wrap_content"
                     android:text="RecycleView" />
 
-                <LinearLayout
+
+                <Button
+                    android:id="@+id/button30"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:text="短振动" />
 
-                    <Button
-                        android:id="@+id/button30"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="短振动" />
-
-                    <Button
-                        android:id="@+id/button32"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="长振动" />
-                </LinearLayout>
+                <Button
+                    android:id="@+id/button32"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="长振动" />
 
                 <Button
                     android:id="@+id/button33"
@@ -321,55 +315,65 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="BaiduMap" />
+
                 <Button
                     android:id="@+id/button48"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="分享" />
+
                 <Button
                     android:id="@+id/button49"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:padding="5dp"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/finger" />
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/finger"
+                    android:padding="5dp" />
+
                 <Button
                     android:id="@+id/button50"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="华为Push getToken" />
+
                 <Button
                     android:id="@+id/button51"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="分享华为 Token" />
+
                 <Button
                     android:id="@+id/button53"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="华为推送" />
+
                 <Button
                     android:id="@+id/button52"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="小米推送" />
+
                 <Button
                     android:id="@+id/button54"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Music" />
+
                 <Button
                     android:id="@+id/button55"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="守护进程" />
+
                 <Button
                     android:id="@+id/button56"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="守护进程Noti" />
+
                 <Button
                     android:id="@+id/button57"
                     android:layout_width="wrap_content"
@@ -389,6 +393,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:background="@color/transparent" />
+            <view
+                android:id="@+id/lambda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></view>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

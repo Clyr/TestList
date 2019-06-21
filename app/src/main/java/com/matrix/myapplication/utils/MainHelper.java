@@ -1154,16 +1154,19 @@ public class MainHelper {
             }
         });
     }
+
     private static String appSecret = "5b041e2dc2f1c2436664e5010c0c9de9e65bff3f2c7185a796107562e5329cc9";
     private static String appId = "100853197";//用户在华为开发者联盟申请的appId和appSecret（会员中心->应用管理，点击应用名称的链接）
     private static String tokenUrl = "https://login.vmall.com/oauth2/token"; //获取认证Token的URL
     private static String apiUrl = "https://api.push.hicloud.com/pushsend.do"; //应用级消息下发API
     private static String accessToken;//下发通知消息的认证Token
     private static long tokenExpiredTime;  //accessToken的过期时间
+
     public static void sendHuaweiMsg(String token) throws IOException {
         refreshToken();
         sendPushMessage(token);
     }
+
     //获取下发通知消息的认证Token
     private static void refreshToken() throws IOException {
         String msgBody = MessageFormat.format("grant_type=client_credentials&client_secret={0}&client_id={1}",
@@ -1174,6 +1177,7 @@ public class MainHelper {
         accessToken = obj.getString("access_token");
         tokenExpiredTime = System.currentTimeMillis() + obj.getLong("expires_in") - 5 * 60 * 1000;
     }
+
     //发送Push消息
     private static void sendPushMessage(String token) throws IOException {
         if (tokenExpiredTime <= System.currentTimeMillis()) {
@@ -1270,7 +1274,7 @@ public class MainHelper {
     }
 
 
-// 小米推送
+    // 小米推送
     public static void sendMessage() throws Exception {
         /*1：使用默认提示音提示
         2：使用默认震动提示
@@ -1281,7 +1285,7 @@ public class MainHelper {
         Sender sender = new Sender(Config.APP_SECRET_KEY);
         String messagePayload = "This is a message";
         String title = "TestList 小米推送";
-        String description = "推送内容 略略略 "+notid;
+        String description = "推送内容 略略略 " + notid;
         Message message = new Message.Builder()
                 .title(title)
                 .description(description).payload(messagePayload)
@@ -1331,6 +1335,11 @@ public class MainHelper {
 
     }
 
+    public static void getView(View view) {
+    }
 
+    public void getMsg(View view) {
+
+    }
 
 }
