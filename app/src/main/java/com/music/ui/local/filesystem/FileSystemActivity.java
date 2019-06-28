@@ -12,7 +12,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.matrix.myapplication.R;
-import com.music.RxBus;
+import com.matrix.myapplication.utils.RxBus;
 import com.music.event.AddFolderEvent;
 import com.music.ui.base.BaseActivity;
 import com.music.ui.base.adapter.OnItemClickListener;

@@ -3,11 +3,11 @@ package com.matrix.myapplication.mvp;
 /**
  * Created by M S I of clyr on 2019/5/15.
  */
-public class UserModle implements IUser{
+public class UserModel implements IUser{
     private String username;
     private String pwd;
 
-    public UserModle(String username, String pwd) {
+    public UserModel(String username, String pwd) {
         this.username = username;
         this.pwd = pwd;
     }

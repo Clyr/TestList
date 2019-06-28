@@ -2,6 +2,8 @@ package com.matrix.myapplication.retrofit;
 
 import android.util.Log;
 
+import com.google.gson.GsonBuilder;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -15,7 +17,6 @@ public class ORHelper {
     private static String BASE_URl = "";
 
     public static Retrofit.Builder retrofit(String url) {
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = getClient();
         return new Retrofit.Builder()
                 .baseUrl(url)
@@ -24,6 +25,7 @@ public class ORHelper {
     }
 
     public static OkHttpClient getClient() {
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return new OkHttpClient.Builder()//okhttp设置部分，此处还可再设置网络参数
                 .addInterceptor(loggingInterceptor)
                 .build();
@@ -49,5 +51,16 @@ public class ORHelper {
                 .build();
 
         return retrofit.create(service);
+    }
+    public static Retrofit getHttpApi() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URl)
+                .client(ORHelper.getClient())
+//                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().setDateFormat("yyyy-MM-dd").create()))
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
+
+        return retrofit;
     }
 }

@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 
-import com.music.RxBus;
+import com.matrix.myapplication.utils.RxBus;
 import com.music.data.model.Song;
 import com.music.data.source.AppRepository;
 import com.music.data.source.PreferenceManager;

@@ -49,6 +49,7 @@ import com.matrix.myapplication.interfaceclass.setSomeThing;
 import com.matrix.myapplication.kotlin.KotlinActivity;
 import com.matrix.myapplication.model.UpDateModel;
 import com.matrix.myapplication.mvp.MVPActivity;
+import com.matrix.myapplication.newactivity.RxBusActivity;
 import com.matrix.myapplication.newactivity.ShareActivity;
 import com.matrix.myapplication.receiver.HuaweiPushRevicer;
 import com.matrix.myapplication.retrofit.RetrofitActivity;
@@ -409,6 +410,10 @@ public class MainActivity extends Activity {
         //备注：v-> ()-> (a,b)-> 方法需要对应 v () (a,b) 非静态使用new Object 静态使用 Object
         findViewById(R.id.lambda).setOnClickListener(new MainHelper()::getMsg);
         findViewById(R.id.lambda).setOnClickListener(MainHelper::getView);
+
+        findViewById(R.id.button58).setOnClickListener(v->{
+            startAct(RxBusActivity.class);
+        });
     }
 
     private void skipTo() {
@@ -564,5 +569,21 @@ public class MainActivity extends Activity {
         }
     }
 
+// RXBus Events
+
+   /* @Override
+    protected Subscription subscribeEvents() {
+        return RxBus.getInstance().toObservable()
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext(new Action1<Object>() {
+                    @Override
+                    public void call(Object o) {
+                        if (o instanceof PlaySongEvent) {
+                            RxBus.getInstance().post(new PlayListCreatedEvent(playList));
+                        }
+                    }
+                })
+                .subscribe(RxBus.defaultSubscriber());
+    }*/
 
 }

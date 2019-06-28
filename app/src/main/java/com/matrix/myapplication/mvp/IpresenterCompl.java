@@ -15,7 +15,7 @@ public class IpresenterCompl implements IPresenter {
 
     //初始化数据
     private void initUser() {
-        iUser = new UserModle("username", "pwd");
+        iUser = new UserModel("username", "pwd");
 
     }
 

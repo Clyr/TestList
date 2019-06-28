@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.matrix.myapplication.R;
-import com.music.RxBus;
+import com.matrix.myapplication.utils.RxBus;
 import com.music.data.model.Song;
 import com.music.data.source.AppRepository;
 import com.music.event.PlayListUpdatedEvent;

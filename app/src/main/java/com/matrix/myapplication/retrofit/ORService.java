@@ -5,10 +5,13 @@ import android.app.Activity;
 import com.matrix.myapplication.model.BaseEntity;
 import com.matrix.myapplication.model.GameInfo;
 import com.matrix.myapplication.model.NewsInfo;
+import com.matrix.myapplication.model.TestData;
+import com.matrix.myapplication.model.User;
 
 import java.util.List;
 import java.util.Map;
 
+import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -30,12 +33,14 @@ import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Streaming;
 import retrofit2.http.Url;
-import rx.Observable;
 
 /**
  * Created by M S I of clyr on 2019/5/17.
  */
 public interface ORService {
+    @GET("json/login.action")
+    Observable<TestData<User>> reLogin(@Query("tel") String tel, @Query("password") String password);
+
     @GET
     Call<ResponseBody> get();
     @GET

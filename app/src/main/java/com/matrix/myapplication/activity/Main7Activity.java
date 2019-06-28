@@ -12,9 +12,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.matrix.myapplication.R;
+import com.matrix.myapplication.utils.MessageEvent;
 import com.matrix.myapplication.utils.ToastUtils;
 import com.matrix.myapplication.view.pulltorefresh.PullToRefreshBase;
 import com.matrix.myapplication.view.pulltorefresh.PullToRefreshListView;
+import com.matrix.myapplication.utils.RxBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +58,8 @@ public class Main7Activity extends BaseActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ToastUtils.showLong(position + "");
+//                ToastUtils.showLong(position + "");
+                RxBus.getInstance().post(new MessageEvent(position + " - RxBus"));
             }
         });
         List<String> list = new ArrayList<>();

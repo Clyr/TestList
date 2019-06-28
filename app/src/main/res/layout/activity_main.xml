@@ -379,6 +379,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="douyu" />
+                <Button
+                    android:id="@+id/button58"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RxBus" />
             </com.matrix.myapplication.view.FlowLayout>
 
             <TextView
@@ -393,10 +398,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:background="@color/transparent" />
-            <view
+            <View
                 android:id="@+id/lambda"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></view>
+                android:layout_height="wrap_content"></View>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
