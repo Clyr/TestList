@@ -22,6 +22,7 @@ import com.guard.VmMainActivity;
 import com.huawei.android.hms.agent.HMSAgent;
 import com.huawei.android.hms.agent.common.handler.ConnectHandler;
 import com.huawei.android.hms.agent.push.handler.GetTokenHandler;
+import com.igexin.sdk.PushManager;
 import com.matrix.myapplication.activity.BigImageActivity;
 import com.matrix.myapplication.activity.FPSGetActivity;
 import com.matrix.myapplication.activity.FragmentActivity;
@@ -42,6 +43,8 @@ import com.matrix.myapplication.activity.TableActivity;
 import com.matrix.myapplication.activity.TreeListActivity;
 import com.matrix.myapplication.baidumap.demo.BMapApiDemoMain;
 import com.matrix.myapplication.cache.MainActivity3;
+import com.matrix.myapplication.getuidemo.DemoIntentService;
+import com.matrix.myapplication.getuidemo.DemoPushService;
 import com.matrix.myapplication.getuidemo.GetuiSdkDemoActivity;
 import com.matrix.myapplication.interfaceModel.HandlerCall;
 import com.matrix.myapplication.interfaceclass.Setting;
@@ -143,7 +146,7 @@ public class MainActivity extends Activity {
         //Json
         findViewById(R.id.button10).setOnClickListener(v -> {
             int count = 0;
-        //String string = SPUtils.getString(MainActivity.this, "JSON", "Null");
+            //String string = SPUtils.getString(MainActivity.this, "JSON", "Null");
             String string = ACacheUtils.getString(MainActivity.this, "JSON");
             if (string != null) {
                 count = Integer.parseInt(ACacheUtils.getString(MainActivity.this, "JSON"));
@@ -365,7 +368,7 @@ public class MainActivity extends Activity {
 
         });
         /* TODO 小米推送 */
-        // 设置别名
+        // 设置别名 //com.xiaomi.mipush.sdk.MiPushClient
         MiPushClient.setAlias(MainActivity.this, "001", null);
 //        MiPushClient.setUserAccount(MainActivity.this, account, null);
         // 设置标签
@@ -394,16 +397,16 @@ public class MainActivity extends Activity {
 
         });
         //守护进程
-        findViewById(R.id.button55).setOnClickListener(v->{
+        findViewById(R.id.button55).setOnClickListener(v -> {
             startAct(VmMainActivity.class);
         });
         //守护进程Noti
-        findViewById(R.id.button56).setOnClickListener(v->{
-            NotiUtils.show(this,"100000","MainActivity","MainActivityChannel");
+        findViewById(R.id.button56).setOnClickListener(v -> {
+            NotiUtils.show(this, "100000", "MainActivity", "MainActivityChannel");
 
         });
         //douyu直播 似乎api过时不管用了
-        findViewById(R.id.button57).setOnClickListener(v->{
+        findViewById(R.id.button57).setOnClickListener(v -> {
             startAct(HomeActivity.class);
         });
         //Lambda 表达式 进一步简化 ::
@@ -411,9 +414,15 @@ public class MainActivity extends Activity {
         findViewById(R.id.lambda).setOnClickListener(new MainHelper()::getMsg);
         findViewById(R.id.lambda).setOnClickListener(MainHelper::getView);
 
-        findViewById(R.id.button58).setOnClickListener(v->{
+        findViewById(R.id.button58).setOnClickListener(v -> {
             startAct(RxBusActivity.class);
         });
+        PushManager.getInstance().initialize(this, DemoPushService.class);
+        PushManager.getInstance().registerPushIntentService(this, DemoIntentService.class);
+        findViewById(R.id.button59).setOnClickListener(v -> {
+            PushManager.getInstance().bindAlias(this, "b3b65f5a85226c11100");
+        });
+
     }
 
     private void skipTo() {

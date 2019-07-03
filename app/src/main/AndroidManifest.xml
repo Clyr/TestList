@@ -362,7 +362,8 @@
             android:name=".getuidemo.DemoPushService"
             android:exported="true"
             android:label="PushService"
-            android:process=":pushservice" /> <!-- BaiduMap -->
+            android:process=":pushservice" />
+        <!-- BaiduMap -->
         <activity
             android:name=".baidumap.demo.BMapApiDemoMain"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -598,6 +599,7 @@
         <service
             android:name="com.huawei.updatesdk.service.deamon.download.DownloadService"
             android:exported="false" />
+
         <service
             android:name="com.xiaomi.push.service.XMJobService"
             android:enabled="true"
@@ -666,7 +668,8 @@
                 <action android:name="com.matrix.myapplication.ACTION.PLAY_LAST" />
                 <action android:name="com.matrix.myapplication.ACTION.STOP_SERVICE" />
             </intent-filter>
-        </service> <!-- 守护进程 start -->
+        </service>
+        <!-- 守护进程 start -->
         <activity android:name="com.guard.VmMainActivity" /> <!-- 一像素守护 Activity -->
         <activity
             android:name="com.guard.VMDaemonActivity"
@@ -686,7 +689,8 @@
                 <action android:name="android.intent.action.SCREEN_OFF" />
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
-        </receiver> <!-- 普通前台进程 -->
+        </receiver>
+        <!-- 普通前台进程 -->
         <service
             android:name="com.guard.services.VMForegroundService"
             android:enabled="true"

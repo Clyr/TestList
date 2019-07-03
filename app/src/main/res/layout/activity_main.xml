@@ -384,6 +384,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="RxBus" />
+                <Button
+                    android:id="@+id/button59"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GTPushSet" />
             </com.matrix.myapplication.view.FlowLayout>
 
             <TextView
