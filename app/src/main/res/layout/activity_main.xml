@@ -389,6 +389,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="GTPushSet" />
+                <Button
+                    android:id="@+id/button60"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="获取电量" />
+                <Button
+                    android:id="@+id/button61"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="WebViewBaiduMap" />
             </com.matrix.myapplication.view.FlowLayout>
 
             <TextView

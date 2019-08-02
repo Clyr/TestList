@@ -130,6 +130,8 @@ public class App extends MultiDexApplication {
         if (sHandler == null) {
             sHandler = new DemoHandler(getApplicationContext());
         }
+
+
         mContext = this;
         mACache = ACache.get(this, CACHE_NAME);
         init();

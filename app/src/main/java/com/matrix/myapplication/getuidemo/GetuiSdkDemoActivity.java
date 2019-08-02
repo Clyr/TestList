@@ -80,7 +80,10 @@ public class GetuiSdkDemoActivity extends BaseActivity implements OnClickListene
     应用签名：	13:0C:59:C0:5C:2A:99:CE:83:2E:78:4B:77:E3:D8:59:70:DC:A9:80:78:B9:10:EB:97:CF:3D:5E:7E:43:DA:39
     masterSecret：
             【个推】	OxNNxtgxzs9C5IRrf7VlN3*/
-
+    private static final String MASTERSECRET = "OxNNxtgxzs9C5IRrf7VlN3";
+    private String appkey = "Daf4RF45yl50q1oYr33962";
+    private String appsecret = "g8S7kNB5DS7q5CrFRJbkh";
+    private String appid = "QKcikwnq0w6kpjsrDs2iS3";
 
     private static final int REQUEST_PERMISSION = 0;
 

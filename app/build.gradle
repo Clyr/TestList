@@ -44,12 +44,15 @@ android {
                 sourceCompatibility JavaVersion.VERSION_1_8
                 targetCompatibility JavaVersion.VERSION_1_8
             }
-
-            defaultConfig {
-                ndk {
-                    abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
-                }
+            manifestPlaceholders = [
+                    GETUI_APP_ID    : "QKcikwnq0w6kpjsrDs2iS3",
+                    GETUI_APP_KEY   : "Daf4RF45yl50q1oYr33962",
+                    GETUI_APP_SECRET: "g8S7kNB5DS7q5CrFRJbkh"
+            ]
+            ndk {
+                abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
             }
+
 //            ndk {
 //                abiFilters "armeabi", "armeabi-v7a", "x86_64"
 //            }
@@ -150,8 +153,10 @@ dependencies {
     implementation 'com.github.ctiao:DanmakuFlameMaster:0.6.2'
     implementation 'com.github.Aspsine:SwipeToLoadLayout:1.0.4'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:v1.6.8'
+
     implementation 'com.huawei.android.hms:push:2.6.3.306'
     implementation 'com.huawei.android.hms:hwid:2.6.3.306'
+
     implementation 'com.jakewharton:butterknife:10.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
     implementation 'com.lzy.net:okgo:2.0.0'

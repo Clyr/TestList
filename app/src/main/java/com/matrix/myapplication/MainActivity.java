@@ -2,8 +2,11 @@ package com.matrix.myapplication;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -54,6 +57,7 @@ import com.matrix.myapplication.model.UpDateModel;
 import com.matrix.myapplication.mvp.MVPActivity;
 import com.matrix.myapplication.newactivity.RxBusActivity;
 import com.matrix.myapplication.newactivity.ShareActivity;
+import com.matrix.myapplication.newactivity.WebViewForBaiduMap;
 import com.matrix.myapplication.receiver.HuaweiPushRevicer;
 import com.matrix.myapplication.retrofit.RetrofitActivity;
 import com.matrix.myapplication.rxjava.RxjavaActivity;
@@ -422,8 +426,33 @@ public class MainActivity extends Activity {
         findViewById(R.id.button59).setOnClickListener(v -> {
             PushManager.getInstance().bindAlias(this, "b3b65f5a85226c11100");
         });
+        //获取电量
+        findViewById(R.id.button60).setOnClickListener(v -> {
+            BatteryManager batteryManager = (BatteryManager) getSystemService(BATTERY_SERVICE);
+            int battery = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
+            ToastUtils.showShort("当前电量， "+battery+" %");
 
+//            registerReceiver(mbatteryReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+//            unregisterReceiver(mbatteryReceiver);
+        });
+        findViewById(R.id.button61).setOnClickListener(v->{
+            startAct(WebViewForBaiduMap.class);
+        });
     }
+
+    private BroadcastReceiver mbatteryReceiver = new BroadcastReceiver() {
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (Intent.ACTION_BATTERY_CHANGED.equals(action)) {
+                int status = intent.getIntExtra("status", BatteryManager.BATTERY_STATUS_UNKNOWN);
+                if (status == BatteryManager.BATTERY_STATUS_CHARGING) {
+                    ToastUtils.showShort("充电中!");
+                }
+            } else {
+                ToastUtils.showShort("未充电!");
+            }
+        }
+    };
 
     private void skipTo() {
         Intent intent = getIntent();
@@ -488,6 +517,7 @@ public class MainActivity extends Activity {
         public void setToast(String content) {
             ToastUtils.showShort(content);
         }
+
     }
 
     public UpDateModel mModel;

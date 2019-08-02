@@ -9,7 +9,8 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 电量广播 -->
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <uses-permission
         android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
@@ -107,7 +108,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:name">
-        <activity android:name=".newactivity.RxBusActivity"></activity>
+        <activity android:name=".newactivity.WebViewForBaiduMap"></activity>
+        <activity android:name=".newactivity.RxBusActivity" />
         <activity android:name=".mvp2.MVPTestActivity" />
         <activity android:name=".newactivity.ShareActivity" />
 
@@ -362,8 +364,7 @@
             android:name=".getuidemo.DemoPushService"
             android:exported="true"
             android:label="PushService"
-            android:process=":pushservice" />
-        <!-- BaiduMap -->
+            android:process=":pushservice" /> <!-- BaiduMap -->
         <activity
             android:name=".baidumap.demo.BMapApiDemoMain"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -599,7 +600,6 @@
         <service
             android:name="com.huawei.updatesdk.service.deamon.download.DownloadService"
             android:exported="false" />
-
         <service
             android:name="com.xiaomi.push.service.XMJobService"
             android:enabled="true"
@@ -668,8 +668,7 @@
                 <action android:name="com.matrix.myapplication.ACTION.PLAY_LAST" />
                 <action android:name="com.matrix.myapplication.ACTION.STOP_SERVICE" />
             </intent-filter>
-        </service>
-        <!-- 守护进程 start -->
+        </service> <!-- 守护进程 start -->
         <activity android:name="com.guard.VmMainActivity" /> <!-- 一像素守护 Activity -->
         <activity
             android:name="com.guard.VMDaemonActivity"
@@ -689,8 +688,7 @@
                 <action android:name="android.intent.action.SCREEN_OFF" />
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
-        </receiver>
-        <!-- 普通前台进程 -->
+        </receiver> <!-- 普通前台进程 -->
         <service
             android:name="com.guard.services.VMForegroundService"
             android:enabled="true"
