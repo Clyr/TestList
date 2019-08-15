@@ -84,6 +84,7 @@ import static com.matrix.myapplication.utils.MainHelper.mPermission;
 // 1.注意分支代码提交时需要考虑是否需要全部Push
 // 2.右下角 Git:XXX 当前分支
 // 3.注意分支切换
+//测试分支push All
 
 //11111111111111111
 public class MainActivity extends Activity {
@@ -454,6 +455,11 @@ public class MainActivity extends Activity {
         findViewById(R.id.button62).setVisibility(View.GONE);
 
 
+
+        //This Branch Test
+        findViewById(R.id.button62).setOnClickListener(v->{
+            ToastUtils.showShort("Branch 分支测试");
+        });
     }
 
     private void getBatteryState() {
