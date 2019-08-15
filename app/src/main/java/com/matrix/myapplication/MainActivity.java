@@ -80,7 +80,7 @@ import me.leolin.shortcutbadger.ShortcutBadger;
 import static com.matrix.myapplication.receiver.HuaweiPushRevicer.ACTION_TOKEN;
 import static com.matrix.myapplication.utils.MainHelper.mPermission;
 
-
+//测试分支push All
 public class MainActivity extends Activity {
 
     private TextView mTv;
