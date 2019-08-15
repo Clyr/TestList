@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.matrix.myapplication">
+
     <!-- 标准添加 permission -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -108,7 +109,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:name">
-        <activity android:name=".newactivity.WebViewForBaiduMap"></activity>
+        <service
+            android:name=".service.BatteryService"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <activity android:name=".newactivity.WebViewForBaiduMap" />
         <activity android:name=".newactivity.RxBusActivity" />
         <activity android:name=".mvp2.MVPTestActivity" />
         <activity android:name=".newactivity.ShareActivity" />
@@ -757,6 +763,69 @@
             android:name="com.douyu.mvp.view.activity.PalyActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="sensorLandscape" />
+
+        <receiver android:name=".receiver.PowerConnectionReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+                <action android:name="android.intent.action.BATTERY_LOW" />
+                <action android:name="android.intent.action.BATTERY_OKAY" />
+                <action android:name="android.intent.action.BATTERY_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+
+        <activity
+            android:name=".view.topactivity.TopMainActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask">
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/app_shortcuts"/>
+        </activity>
+
+        <activity
+            android:name=".view.topactivity.AppShortcutsActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:theme="@style/TransparentTheme"/>
+
+        <service
+            android:name=".view.topactivity.WatchingService"
+            android:enabled="@bool/use_watching_service"/>
+        <service
+            android:name=".view.topactivity.WatchingAccessibilityService"
+            android:description="@string/app_name"
+            android:enabled="@bool/use_accessibility_service"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility"/>
+        </service>
+        <service
+            android:name=".view.topactivity.QuickSettingTileService"
+            android:enabled="@bool/qs_tile_service_availability"
+            android:icon="@drawable/ic_notification"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.service.quicksettings.ACTIVE_TILE"
+                android:value="true"/>
+        </service>
+
+        <receiver android:name=".view.topactivity.NotificationActionReceiver">
+            <intent-filter>
+                <action android:name="com.matrix.myapplication.ACTION_NOTIFICATION_RECEIVER"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

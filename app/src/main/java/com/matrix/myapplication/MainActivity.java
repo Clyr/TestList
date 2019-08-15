@@ -5,6 +5,7 @@ import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.BatteryManager;
 import android.os.Build;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -428,16 +430,56 @@ public class MainActivity extends Activity {
         });
         //获取电量
         findViewById(R.id.button60).setOnClickListener(v -> {
-            BatteryManager batteryManager = (BatteryManager) getSystemService(BATTERY_SERVICE);
-            int battery = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
-            ToastUtils.showShort("当前电量， "+battery+" %");
-
+//            BatteryManager batteryManager = (BatteryManager) getSystemService(BATTERY_SERVICE);
+//            int battery = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
+//            ToastUtils.showShort("当前电量， "+battery+" %");
+//
 //            registerReceiver(mbatteryReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
 //            unregisterReceiver(mbatteryReceiver);
+            getBatteryState();
         });
-        findViewById(R.id.button61).setOnClickListener(v->{
+        findViewById(R.id.button61).setOnClickListener(v -> {
             startAct(WebViewForBaiduMap.class);
         });
+
+        //startService(new Intent(this, BatteryService.class));
+        /*findViewById(R.id.button62).setOnClickListener(v -> {
+            startAct(TopMainActivity.class);
+        });*/
+        findViewById(R.id.button62).setVisibility(View.GONE);
+    }
+
+    private void getBatteryState() {
+        IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        Intent batteryStatusIntent = registerReceiver(null, ifilter);
+        //如果设备正在充电，可以提取当前的充电状态和充电方式（无论是通过 USB 还是交流充电器），如下所示：
+        // Are we charging / charged?
+        int status = batteryStatusIntent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+        boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
+                status == BatteryManager.BATTERY_STATUS_FULL;
+        // How are we charging?
+        int chargePlug = batteryStatusIntent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
+        boolean usbCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_USB;
+        boolean acCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_AC;
+
+        int level = batteryStatusIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+        int scale = batteryStatusIntent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
+
+        int batteryPct = level * 100 / scale;
+        if (batteryPct>=100){
+            MainHelper.sendNotification(this);
+        }
+        String nowbattery = "当前电量 " + batteryPct + "%";
+
+        if (isCharging) {
+            if (usbCharge) {
+                Toast.makeText(MainActivity.this, "USB连接！ " + nowbattery, Toast.LENGTH_SHORT).show();
+            } else if (acCharge) {
+                Toast.makeText(MainActivity.this, "通过电源充电中！ " + nowbattery, Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(MainActivity.this, "未连接USB线！ " + nowbattery, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private BroadcastReceiver mbatteryReceiver = new BroadcastReceiver() {

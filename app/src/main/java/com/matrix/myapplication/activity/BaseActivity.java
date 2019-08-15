@@ -59,6 +59,7 @@ public class BaseActivity extends SwipeBackActivity {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void Event(MessageEvent messageEvent) {
+
 //        EventBus.getDefault().post(new MessageEvent(""));
 //        EventBus.getDefault().post(new MessageEvent(Config.mRefreash));
     }

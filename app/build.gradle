@@ -65,25 +65,23 @@ android {
             minifyEnabled false //开启混淆?
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        applicationVariants.all { variant ->
+            variant.outputs.all { output ->
+                def suffix = 'debug'
+                if (variant.buildType.name.equals('release')) {
+                    suffix = defaultConfig.versionName
+                } else if (variant.buildType.name.equals('debug')) {
+                    suffix = 'debug'
+                }
+                outputFileName = "TestList_${suffix}.apk"
+            }
+        }
+
     }
     // map for the version code
     //project.ext.versionCodes = ['armeabi-v7a': 81, 'arm64-v8a': 82, 'x86': 83, 'x86_64': 84]
 
-    applicationVariants.all { variant ->
-        variant.outputs.all { output ->
-//            def time = releaseTime()
-//            def abiName = output.getFilter(OutputFile.ABI)
-            // version code
-            //output.versionCodeOverride = project.ext.versionCodes.get(abiName, 0) * 1000000 + variant.versionCode
-            // output apk name
-            //outputFileName = "${variant.name}-${abiName}-${output.versionCodeOverride}.apk"
-            outputFileName = "TestList_${defaultConfig.versionName}.apk"
 
-//            def date = new Date()
-//            def formattedDate = date.format('yyyyMMdd')
-
-        }
-    }
 
     useLibrary 'org.apache.http.legacy'
     sourceSets {
