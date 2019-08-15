@@ -85,7 +85,7 @@ import static com.matrix.myapplication.utils.MainHelper.mPermission;
 // 2.右下角 Git:XXX 当前分支
 // 3.注意分支切换
 
-
+//11111111111111111
 public class MainActivity extends Activity {
 
     private TextView mTv;
