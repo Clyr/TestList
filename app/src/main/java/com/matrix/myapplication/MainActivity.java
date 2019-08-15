@@ -447,6 +447,11 @@ public class MainActivity extends Activity {
             startAct(TopMainActivity.class);
         });*/
         findViewById(R.id.button62).setVisibility(View.GONE);
+
+        //This Branch Test
+        findViewById(R.id.button62).setOnClickListener(v->{
+            ToastUtils.showShort("Branch 分支测试");
+        });
     }
 
     private void getBatteryState() {
