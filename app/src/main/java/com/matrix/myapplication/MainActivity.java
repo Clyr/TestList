@@ -447,6 +447,11 @@ public class MainActivity extends Activity {
             startAct(TopMainActivity.class);
         });*/
         findViewById(R.id.button62).setVisibility(View.GONE);
+
+        //TODO 当前设置分支测试需要注意以下几点
+        // 1.注意分支代码提交时需要考虑是否需要全部Push
+        // 2.右下角 Git:XXX 当前分支
+        // 3.注意分支切换
     }
 
     private void getBatteryState() {
