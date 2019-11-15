@@ -58,24 +58,7 @@ public class RetrofitActivity extends BaseActivity {
         ORService orService = retrofit.create(ORService.class);
         switch (view.getId()) {
             case R.id.getNot:
-                Call<ResponseBody> call = orService.get("basil2style");
-                call.enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (response != null && response.isSuccessful()) {
-                            try {
-                                MyLog.d(response.body().toString());
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
 
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        MyLog.e(t.getMessage());
-                    }
-                });
                 break;
             case R.id.getHave:
                 break;

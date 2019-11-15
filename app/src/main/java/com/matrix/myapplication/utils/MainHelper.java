@@ -1384,4 +1384,27 @@ public class MainHelper {
         //3、manager.notify()
         manager.notify(NOTIFICATION_ID, noti);
     }
+
+    public void shortCuts(){
+        int i = 10;//10.var
+        String s = "10";//"10".var
+        if (s == null) {//s.null
+
+        }
+        if (s != null) {//s.nn //s.notnull
+
+        }
+        ArrayList<Object> objects = new ArrayList<>();//new ArrayList<>().var
+        for (Object object : objects) {//objects.for
+
+        }
+        for (int i1 = 0; i1 < objects.size(); i1++) {//objects.fori
+
+        }
+        for (int i1 = objects.size() - 1; i1 >= 0; i1--) {//objects.forr
+
+        }
+        boolean b = true;
+
+    }
 }

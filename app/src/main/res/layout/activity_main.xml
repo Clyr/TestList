@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
@@ -69,7 +70,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="加载Ball" />
-
+                <Button
+                    android:id="@+id/button292"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="加载Ball透明" />
                 <Button
                     android:id="@+id/button1"
                     android:layout_width="wrap_content"
@@ -404,6 +409,37 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TopMainActivity" />
+                <Button
+                    android:id="@+id/button63"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hello to ClidBoard" />
+                <Button
+                    android:id="@+id/button64"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Get ClidBoard Content" />
+                <Button
+                    android:id="@+id/button65"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="时间轴" />
+                <Button
+                    android:id="@+id/button66"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="滑动验证码" />
+
+
+
+
+                <com.matrix.myapplication.view.SlideUnlockView
+                    android:id="@+id/slideUnlockView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    app:slideUnlockBackgroundResource="@drawable/jiesuo_bg"
+                    app:slideUnlockBlockResource="@drawable/jiesuo_button" />
             </com.matrix.myapplication.view.FlowLayout>
 
             <TextView

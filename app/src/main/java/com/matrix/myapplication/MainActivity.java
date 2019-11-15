@@ -1,19 +1,24 @@
 package com.matrix.myapplication;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +26,9 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.douyu.mvp.view.activity.HomeActivity;
 import com.guard.NotiUtils;
 import com.guard.VmMainActivity;
@@ -64,12 +72,16 @@ import com.matrix.myapplication.receiver.HuaweiPushRevicer;
 import com.matrix.myapplication.retrofit.RetrofitActivity;
 import com.matrix.myapplication.rxjava.RxjavaActivity;
 import com.matrix.myapplication.utils.ACacheUtils;
+import com.matrix.myapplication.utils.ClidBoardUtils;
 import com.matrix.myapplication.utils.DownloadAPK;
 import com.matrix.myapplication.utils.MainHelper;
 import com.matrix.myapplication.utils.MyLog;
 import com.matrix.myapplication.utils.SPUtils;
 import com.matrix.myapplication.utils.ToastUtils;
 import com.matrix.myapplication.view.LoadingDialog;
+import com.matrix.myapplication.view.SlideUnlockView;
+import com.matrix.myapplication.view.captcha.SwipeCaptchaView;
+import com.matrix.myapplication.view.timershaft.TimerShaftActivity;
 import com.mm131.MM131Activity;
 import com.xiaomi.mipush.sdk.MiPushClient;
 
@@ -87,6 +99,7 @@ import static com.matrix.myapplication.utils.MainHelper.mPermission;
 
 public class MainActivity extends Activity {
 
+    private static final String TAG = Activity.class.getSimpleName();
     private TextView mTv;
     private boolean vpn = false;
 
@@ -111,6 +124,7 @@ public class MainActivity extends Activity {
         findViewById(R.id.button4).setOnClickListener(v -> {
             MainHelper.button4();
         });
+
         //加载1
         findViewById(R.id.button11).setOnClickListener(v ->
                 startAct(SampleActivity.class)
@@ -127,6 +141,12 @@ public class MainActivity extends Activity {
             LoadingDialog.showLoadingBall(MainActivity.this);
             mHandler.postDelayed(task, 5000);
         });
+        //加载Ball
+        findViewById(R.id.button292).setOnClickListener(v -> {
+            LoadingDialog.showLoadingBall(MainActivity.this,R.style.ProgressDialogTransparent);
+            mHandler.postDelayed(task, 3000);
+        });
+
         //okhttputils
         findViewById(R.id.button1).setOnClickListener(v -> {//124.128.225.19:8081
             MainHelper.button1();
@@ -423,7 +443,7 @@ public class MainActivity extends Activity {
         //备注：v-> ()-> (a,b)-> 方法需要对应 v () (a,b) 非静态使用new Object 静态使用 Object
         findViewById(R.id.lambda).setOnClickListener(new MainHelper()::getMsg);
         findViewById(R.id.lambda).setOnClickListener(MainHelper::getView);
-
+        //RxBus
         findViewById(R.id.button58).setOnClickListener(v -> {
             startAct(RxBusActivity.class);
         });
@@ -453,11 +473,110 @@ public class MainActivity extends Activity {
         findViewById(R.id.button62).setVisibility(View.GONE);
 
 
-
         //This Branch Test
-        findViewById(R.id.button62).setOnClickListener(v->{
+        findViewById(R.id.button62).setOnClickListener(v -> {
             ToastUtils.showShort("Branch 分支测试");
         });
+
+        findViewById(R.id.button63).setOnClickListener(v -> {
+            ClidBoardUtils.setCopy(this, "Hello");
+        });
+
+        findViewById(R.id.button64).setOnClickListener(v -> {
+            ToastUtils.showShort(ClidBoardUtils.getCopy(this));
+        });
+
+        findViewById(R.id.button65).setOnClickListener(v -> {
+            startAct(TimerShaftActivity.class);
+        });
+        findViewById(R.id.button66).setOnClickListener(v -> {
+            showCaptchaDialog();
+        });
+
+
+        SlideUnlockView slideUnlockView = (SlideUnlockView) findViewById(R.id.slideUnlockView);
+
+        // 设置滑动解锁-解锁的监听
+        slideUnlockView.setOnUnLockListener(unLock -> {
+            // 如果是true，证明解锁
+            if (unLock) {
+                // 启动震动器 100ms
+                vibrator.vibrate(100);
+                // 当解锁的时候，执行逻辑操作，在这里仅仅是将图片进行展示
+                // 重置一下滑动解锁的控件
+                slideUnlockView.reset();
+                // 让滑动解锁控件消失
+//                slideUnlockView.setVisibility(View.GONE);
+                ToastUtils.showLong("Open");
+            }
+        });
+    }
+
+    private void showCaptchaDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = LayoutInflater.from(this).inflate(R.layout.dlg_activity_main, null);
+        final SwipeCaptchaView mSwipeCaptchaView = (SwipeCaptchaView) view.findViewById(R.id.swipeCaptchaView);
+
+        final SeekBar mSeekBar = (SeekBar) view.findViewById(R.id.dragBar);
+        builder.setView(view);
+        final AlertDialog alertDialog = builder.show();
+        view.findViewById(R.id.btnChange).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSwipeCaptchaView.createCaptcha();
+                mSeekBar.setEnabled(true);
+                mSeekBar.setProgress(0);
+            }
+        });
+        mSwipeCaptchaView.setOnCaptchaMatchCallback(new SwipeCaptchaView.OnCaptchaMatchCallback() {
+            @Override
+            public void matchSuccess(SwipeCaptchaView swipeCaptchaView) {
+                Toast.makeText(MainActivity.this, "验证成功", Toast.LENGTH_SHORT).show();
+                //swipeCaptcha.createCaptcha();
+                mSeekBar.setEnabled(false);
+                alertDialog.dismiss();
+            }
+
+            @Override
+            public void matchFailed(SwipeCaptchaView swipeCaptchaView) {
+                Log.d(TAG, "matchFailed() called with: swipeCaptchaView = [" + swipeCaptchaView + "]");
+                Toast.makeText(MainActivity.this, "验证失败", Toast.LENGTH_SHORT).show();
+                swipeCaptchaView.resetCaptcha();
+                mSeekBar.setProgress(0);
+            }
+        });
+        mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                mSwipeCaptchaView.setCurrentSwipeValue(progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                //随便放这里是因为控件
+                mSeekBar.setMax(mSwipeCaptchaView.getMaxSwipeValue());
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                Log.d("zxt", "onStopTrackingTouch() called with: seekBar = [" + seekBar + "]");
+                mSwipeCaptchaView.matchCaptcha();
+            }
+        });
+
+        //测试从网络加载图片是否ok
+        Glide.with(this)
+                .load(R.drawable.bg_slide_unblock)
+                .asBitmap()
+                .into(new SimpleTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                        mSwipeCaptchaView.setImageBitmap(resource);
+                        mSwipeCaptchaView.createCaptcha();
+                    }
+                });
+
     }
 
     private void getBatteryState() {
@@ -477,7 +596,7 @@ public class MainActivity extends Activity {
         int scale = batteryStatusIntent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
 
         int batteryPct = level * 100 / scale;
-        if (batteryPct>=100){
+        if (batteryPct >= 100) {
             MainHelper.sendNotification(this);
         }
         String nowbattery = "当前电量 " + batteryPct + "%";

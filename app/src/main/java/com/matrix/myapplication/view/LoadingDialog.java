@@ -54,9 +54,9 @@ public class LoadingDialog {
 // dialog.onWindowAttributesChanged(lp);
         dialogWindow.setAttributes(lp);
 
-/*
-* 将对话框的大小按屏幕大小的百分比设置
-*/
+        /*
+         * 将对话框的大小按屏幕大小的百分比设置
+         */
 // WindowManager m = getWindowManager();
 // Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
 // WindowManager.LayoutParams p = getWindow().getAttributes(); // 获取对话框当前的参数值
@@ -93,8 +93,41 @@ public class LoadingDialog {
         return getDialog(context, view);
     }
 
+    public static Dialog showLoadingBall(Activity context, int style) {
+        View view = LayoutInflater.from(context).inflate(R.layout.dialogballtrans, null);
+        TextView loadingText = (TextView) view.findViewById(R.id.tv_reminder);
+        loadingText.setText("加载中...");
+        return getDialog(context, view, style);
+    }
+
+    public static Dialog showLoadingBall(Activity context, String msg, int style) {
+        View view = LayoutInflater.from(context).inflate(R.layout.dialogballtrans, null);
+        TextView loadingText = (TextView) view.findViewById(R.id.tv_reminder);
+        if (msg != null && msg != "") {
+            loadingText.setText(msg);
+        } else {
+            loadingText.setText("加载中...");
+        }
+        return getDialog(context, view, style);
+    }
+
     private static Dialog getDialog(Activity context, View view) {
         mLoadingDialog = new Dialog(context, R.style.ProgressDialog);
+        Window dialogWindow = mLoadingDialog.getWindow();
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        dialogWindow.setGravity(Gravity.CENTER);
+
+        lp.width = 240; // 宽度
+        lp.height = 240; // 高度
+        mLoadingDialog.setCancelable(true);
+        mLoadingDialog.setCanceledOnTouchOutside(false);
+        mLoadingDialog.setContentView(view);
+        mLoadingDialog.show();
+        return mLoadingDialog;
+    }
+
+    private static Dialog getDialog(Activity context, View view, int style) {
+        mLoadingDialog = new Dialog(context, style);
         Window dialogWindow = mLoadingDialog.getWindow();
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
         dialogWindow.setGravity(Gravity.CENTER);
