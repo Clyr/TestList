@@ -13,11 +13,17 @@ import com.zhy.http.okhttp.builder.GetBuilder;
 import com.zhy.http.okhttp.builder.PostFormBuilder;
 import com.zhy.http.okhttp.callback.BitmapCallback;
 import com.zhy.http.okhttp.callback.FileCallBack;
+import com.zhy.http.okhttp.https.HttpsUtils;
+import com.zhy.http.okhttp.log.LoggerInterceptor;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
 
 import clyr.utils.utilshelper.ORHelper;
 import clyr.utils.utilshelper.ORService;
@@ -115,6 +121,32 @@ public class HttpUtils {
             url = url.substring(0, url.length() - 1);
             Log.d("OkHttpUtils", url);
         }
+    }
+
+    /**
+     * https访问设置
+     * 1.可以访问所有 https
+     * 2.请求时间延长为 10s
+     *
+     * @return
+     */
+    public static OkHttpUtils setSSLParams() {
+
+        HttpsUtils.SSLParams sslParams = HttpsUtils.getSslSocketFactory(null, null, null);
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(new LoggerInterceptor("OkHttpUtils"))
+                .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)
+                .hostnameVerifier(new HostnameVerifier() {
+                    @Override
+                    public boolean verify(String hostname, SSLSession session) {
+                        return true;
+                    }
+                })
+                .connectTimeout(10000L, TimeUnit.MILLISECONDS)
+                .readTimeout(10000L, TimeUnit.MILLISECONDS)
+                .build();
+
+        return OkHttpUtils.initClient(okHttpClient);
     }
     /** OkHttpUtils end */
 

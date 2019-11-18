@@ -49,4 +49,10 @@ dependencies {
     /**Glide图片加载*/
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+
+    /**PLog*/
+    implementation 'org.mym.plog:plog-core:2.0.0'
+    implementation "org.mym.plog:plog-formatter:2.0.0"   //格式化实现包 (强烈推荐使用)
+    implementation "org.mym.plog:plog-printer:2.0.0"     //Printer扩展，如文件支持等 (可选)
+    implementation "org.mym.plog:plog-timing:2.0.0"      //计时日志包 (可选)
 }

@@ -208,10 +208,15 @@ public class MainActivity extends Activity {
         findViewById(R.id.button22).setOnClickListener(v -> startAct(Main7Activity.class));
         //测试调用三方软件
         findViewById(R.id.button23).setOnClickListener(v -> {
-            Intent intent = new Intent();
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.setClassName("com.matrix.hims", "com.matrix.hims.activity.InitActivity");
-            startActivity(intent);
+            try {
+                Intent intent = new Intent();
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setClassName("com.matrix.hims", "com.matrix.hims.activity.InitActivity");
+                startActivity(intent);
+            } catch (Exception e) {
+                e.printStackTrace();
+                ToastUtils.showLong("╮(╯▽╰)╭");
+            }
 
                 /*Intent intent = new Intent("android.intent.action.VIEW");
                 ComponentName cn = new ComponentName("com.matrix.hims", "com.matrix.hims.activity.MainActivity");
@@ -222,12 +227,17 @@ public class MainActivity extends Activity {
         });
         //测试调用Hbuilder-掌上运维
         findViewById(R.id.button24).setOnClickListener(v -> {
-            Intent intent = new Intent();
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.setClassName("com.matrix.tramsh5", "io.dcloud.PandoraEntry");
-            intent.putExtra("test", "测试");
-            startActivity(intent);
-            LoadingDialog.showLoading(MainActivity.this);
+            try {
+                Intent intent = new Intent();
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setClassName("com.matrix.tramsh5", "io.dcloud.PandoraEntry");
+                intent.putExtra("test", "测试");
+                startActivity(intent);
+                LoadingDialog.showLoading(MainActivity.this);
+            } catch (Exception e) {
+                e.printStackTrace();
+                ToastUtils.showLong("╮(╯▽╰)╭");
+            }
 //                getIntent().getStringExtra("test");
         });
         String string = getIntent().getStringExtra("key");
@@ -439,14 +449,16 @@ public class MainActivity extends Activity {
         findViewById(R.id.button57).setOnClickListener(v -> {
             startAct(HomeActivity.class);
         });
-        //Lambda 表达式 进一步简化 ::
-        //备注：v-> ()-> (a,b)-> 方法需要对应 v () (a,b) 非静态使用new Object 静态使用 Object
+
+        //TODO Lambda 表达式 进一步简化 ::
+        //备注：v-> ()-> (a,b)-> 方法需要对应 v () (a,b)
+        //非静态使用new Object 静态使用 Object
         findViewById(R.id.lambda).setOnClickListener(new MainHelper()::getMsg);
         findViewById(R.id.lambda).setOnClickListener(MainHelper::getView);
         //RxBus
-        findViewById(R.id.button58).setOnClickListener(v -> {
-            startAct(RxBusActivity.class);
-        });
+        findViewById(R.id.button58).setOnClickListener(v ->
+            startAct(RxBusActivity.class)
+        );
         PushManager.getInstance().initialize(this, DemoPushService.class);
         PushManager.getInstance().registerPushIntentService(this, DemoIntentService.class);
         findViewById(R.id.button59).setOnClickListener(v -> {

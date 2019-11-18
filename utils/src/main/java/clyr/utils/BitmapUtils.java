@@ -127,11 +127,12 @@ public class BitmapUtils {
 
     /**
      * 图片转化成base64字符串
+     * 将图片文件转化为字节数组字符串，并对其进行Base64编码处理
      *
      * @return
      */
 
-    public static String GetImageStr() {// 将图片文件转化为字节数组字符串，并对其进行Base64编码处理
+    public static String GetImageStr() {
         String imgFile = "C:/Users/Star/Desktop/test.png";// 待处理的图片
         InputStream in = null;
         byte[] data = null;
@@ -151,12 +152,13 @@ public class BitmapUtils {
 
     /**
      * base64字符串转化成图片
+     * 对字节数组字符串进行Base64解码并生成图片
      *
      * @param imgStr
      * @return
      */
 
-    public static boolean GenerateImage(String imgStr) { // 对字节数组字符串进行Base64解码并生成图片
+    public static boolean GenerateImage(String imgStr) {
         if (imgStr == null) // 图像数据为空
             return false;
         BASE64Decoder decoder = new BASE64Decoder();
@@ -179,8 +181,15 @@ public class BitmapUtils {
             return false;
         }
     }
-    //测试从网络加载图片是否ok
 
+    /**
+     * 通过Glide加载图片 Demo
+     * https://muyangmin.github.io/glide-docs-cn/
+     *
+     * @param context
+     * @param imgUrl
+     * @param imageView
+     */
     public static void getImgForGlide(Context context, String imgUrl, ImageView imageView) {
         //加载
         Glide.with(context).load(imgUrl).into(imageView);
@@ -204,7 +213,7 @@ public class BitmapUtils {
                 .fitCenter()//会绽放图像, 将图像全显示出来
                 .circleCrop()//圆图
                 .apply(cropOptions)//通过RequestOptions配置应用 适用于通配
-                .override(200,200)//制定图片大小
+                .override(200, 200)//制定图片大小
                 .transition(DrawableTransitionOptions.with(drawableCrossFadeFactory))
                 .thumbnail(Glide.with(context)
                         .load(imgUrl).override(10))//缩略图 (Thumbnail) 请求
@@ -253,12 +262,6 @@ public class BitmapUtils {
             String url = urls.get(i);
             requestBuilder.load(url).into(view);
         }*/
-
-
-
-
-
-
 
 
         Glide.with(context)

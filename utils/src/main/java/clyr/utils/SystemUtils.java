@@ -50,12 +50,48 @@ import java.util.regex.Pattern;
 import clyr.utils.utilshelper.SystemStatusManager;
 
 /**
+ * 用于获取和修改系统配置
  * Created by M S I of clyr on 2019/11/14.
  */
 public class SystemUtils {
 
     /**
-     * 设置状态栏
+     * 获取当前本地apk的版本 versionCode
+     *
+     * @param mContext
+     * @return
+     */
+    public static int getVersionCode(Context mContext) {
+        int versionCode = 0;
+        try {
+            //获取软件版本号，对应AndroidManifest.xml下android:versionCode
+            versionCode = mContext.getPackageManager().
+                    getPackageInfo(mContext.getPackageName(), 0).versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return versionCode;
+    }
+
+    /**
+     * 获取版本号名称 versionName
+     *
+     * @param context 上下文
+     * @return
+     */
+    public static String getVersionName(Context context) {
+        String verName = "";
+        try {
+            verName = context.getPackageManager().
+                    getPackageInfo(context.getPackageName(), 0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return verName;
+    }
+
+    /**
+     * 设置状态栏颜色
      *
      * @param activity
      * @param color
@@ -75,6 +111,7 @@ public class SystemUtils {
             window.getDecorView().setFitsSystemWindows(true);
         }
     }
+
     @SuppressLint("ResourceAsColor")
     public void statusBar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -398,6 +435,12 @@ public class SystemUtils {
         mBiometricPrompt.authenticate(mCancellationSignal, activity.getMainExecutor(), mAuthenticationCallback);
 
     }
+
+    /**
+     * 是否使用的是VPN
+     *
+     * @return
+     */
     public static boolean isVpnUsed() {
         try {
             Enumeration<NetworkInterface> niList = NetworkInterface.getNetworkInterfaces();
@@ -417,6 +460,12 @@ public class SystemUtils {
         }
         return false;
     }
+
+    /**
+     * 获取当前ip
+     * @param context
+     * @return
+     */
     public static String getIPAddress(Context context) {
         NetworkInfo info = ((ConnectivityManager) context
                 .getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
@@ -550,7 +599,7 @@ public class SystemUtils {
             @Override
             public void onError(okhttp3.Call call, Exception e, int id) {
                 MyLog.e(e.toString());
-                TDUtils.showShort(activity,getLocalIpAddress());
+                TDUtils.showShort(activity, getLocalIpAddress());
             }
 
             @Override
@@ -564,9 +613,9 @@ public class SystemUtils {
                     Gson gson = new Gson();
                     ipsohu ipsohu = gson.fromJson(string, ipsohu.class);
                     MyLog.d(ipsohu.cip);
-                    TDUtils.showShort(activity,"外网IP：" + ipsohu.cip);
+                    TDUtils.showShort(activity, "外网IP：" + ipsohu.cip);
                 }
-                TDUtils.showShort(activity,getLocalIpAddress());
+                TDUtils.showShort(activity, getLocalIpAddress());
             }
         });
     }
@@ -576,8 +625,6 @@ public class SystemUtils {
         public String cip;//211.137.204.197
         public String cname;//	山东省济南市
     }
-
-
 
 
 }

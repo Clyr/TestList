@@ -1,8 +1,10 @@
 package clyr.utils;
 
+import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Log;
 
 /**
@@ -10,9 +12,7 @@ import android.util.Log;
  */
 
 public final class MyLog {
-    private static final String TAG = "------MyLog------";
-    //开关
-    private final static boolean flag1 = true;//true 测试   false  上线
+    private static String TAG = "---MyLog---";
     private final static boolean flag = BuildConfig.DEBUG;//true 测试   false  上线
 
     public static void v(String tag, String msg) {
@@ -115,6 +115,24 @@ public final class MyLog {
         }
     }
 
+    public void loges(String msg) {
+        if (msg == null || msg.length() == 0)
+            return;
+
+        int segmentSize = 3 * 1024;
+        long length = msg.length();
+        if (length <= segmentSize) {// 长度小于等于限制直接打印
+            Log.e(TAG, msg);
+        } else {
+            while (msg.length() > segmentSize) {// 循环分段打印日志
+                String logContent = msg.substring(0, segmentSize);
+                msg = msg.replace(logContent, "");
+                Log.e(TAG, logContent);
+            }
+            Log.e(TAG, msg);// 打印剩余日志
+        }
+    }
+
     /**
      * @param context 上下文
      * @param str     内容分
@@ -136,6 +154,74 @@ public final class MyLog {
         }
     }
 
+    // 新版本 start
+    static MyLog myLog;
+    static int Level = 3;
+    /**
+     * @hide
+     */
+    public static final int LOG_ID_MAIN = 0;
+    /**
+     * @hide
+     */
+    public static final int LOG_ID_RADIO = 1;
+    /**
+     * @hide
+     */
+    public static final int LOG_ID_EVENTS = 2;
+    /**
+     * @hide
+     */
+    public static final int LOG_ID_SYSTEM = 3;
+    /**
+     * @hide
+     */
+    public static final int LOG_ID_CRASH = 4;
+
+    private static MyLog init() {
+        if (myLog == null) {
+            synchronized (MyLog.class) {
+                if (myLog == null) {
+                    myLog = new MyLog();
+                }
+            }
+        }
+        return myLog;
+    }
+
+    public MyLog setTag(String tag) {
+        if (TextUtils.isEmpty(tag)) {
+            TAG = tag;
+        }
+        return this;
+    }
+
+    public MyLog setLevel(int level) {
+        Level = level;
+        return this;
+    }
+
+    @SuppressLint("WrongConstant")
+    public void logs(String msg) {
+        if (flag || msg == null || msg.length() == 0)
+            return;
+
+        int segmentSize = 3 * 1024;
+        long length = msg.length();
+        if (length <= segmentSize) {// 长度小于等于限制直接打印
+            Log.println(Level, TAG, msg);
+        } else {
+            while (msg.length() > segmentSize) {// 循环分段打印日志
+                String logContent = msg.substring(0, segmentSize);
+                msg = msg.replace(logContent, "");
+                Log.println(Level, TAG, logContent);
+            }
+            Log.println(Level, TAG, msg);
+        }
+    }
+    //新版本 end
+
+
     /*Gson gson = new Gson();
 
         MyLog.loge("DssLog",gson.toJson(channelInfos));
@@ -147,4 +233,6 @@ public final class MyLog {
             e.printStackTrace();
             toast("baocunshibai");
         }*/
+
+
 }

@@ -9,6 +9,7 @@ import android.widget.FrameLayout;
 
 /**
  * Created by M S I of clyr on 2019/10/29.
+ * 键盘状态监听
  */
 public class KeyboardStateObserver {
     private static final String TAG = KeyboardStateObserver.class.getSimpleName();
@@ -68,3 +69,20 @@ public class KeyboardStateObserver {
         void onKeyboardHide();
     }
 }
+
+   /* public static void setKBListener(Activity activity) {
+        //ToastUtils.showShort("0000000");
+        KeyboardStateObserver.getKeyboardStateObserver(activity).
+                setKeyboardVisibilityListener(new KeyboardStateObserver.OnKeyboardVisibilityListener() {
+                    @Override
+                    public void onKeyboardShow() {
+                        PushAdapter.init().evalJsHMAll("Kbshow");
+                    }
+
+                    @Override
+                    public void onKeyboardHide() {
+//                        PushAdapter.init().evalJsHM("logins.html", "Kbhide");
+                        PushAdapter.init().evalJsHMAll("Kbhide");
+                    }
+                });
+    }*/

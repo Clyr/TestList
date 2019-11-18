@@ -5,9 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.matrix.myapplication.activity.Main7Activity">
+
     <com.matrix.myapplication.view.pulltorefresh.PullToRefreshListView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
     </com.matrix.myapplication.view.pulltorefresh.PullToRefreshListView>
 </androidx.constraintlayout.widget.ConstraintLayout>

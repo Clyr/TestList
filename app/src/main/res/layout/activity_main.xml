@@ -434,9 +434,10 @@
 
 
                 <com.matrix.myapplication.view.SlideUnlockView
+                    android:visibility="gone"
                     android:id="@+id/slideUnlockView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
                     android:layout_centerInParent="true"
                     app:slideUnlockBackgroundResource="@drawable/jiesuo_bg"
                     app:slideUnlockBlockResource="@drawable/jiesuo_button" />

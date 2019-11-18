@@ -158,7 +158,7 @@ public class IOSave {
     }
 
     /**
-     * Sqlite
+     * Sqlite 数据库
      */
     private static String mSql = "sql_db";
     private static Context mContext = null; //todo 通过Applaction获取context
