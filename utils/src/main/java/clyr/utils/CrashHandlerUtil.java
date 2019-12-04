@@ -104,7 +104,7 @@ public class CrashHandlerUtil implements Thread.UncaughtExceptionHandler {
             public void run() {
                 Looper.prepare();
                 throwable.printStackTrace();
-                TDUtils.showShort(mContext,getCrashTip());
+                ToastDialogUtils.showShort(mContext,getCrashTip());
                 Looper.loop();
             }
         }.start();

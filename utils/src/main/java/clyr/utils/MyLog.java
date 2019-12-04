@@ -148,9 +148,9 @@ public final class MyLog {
         } catch (Exception e) {
             e.printStackTrace();
             if (e instanceof ActivityNotFoundException)
-                TDUtils.showShort(context, "请先安装QQ再进行尝试");
+                ToastDialogUtils.showShort(context, "请先安装QQ再进行尝试");
             else
-                TDUtils.showShort(context, "分享失败");
+                ToastDialogUtils.showShort(context, "分享失败");
         }
     }
 

@@ -8,7 +8,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.content.pm.ShortcutInfo;
+import android.content.pm.ShortcutManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Icon;
+import android.net.Uri;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -86,6 +90,7 @@ import com.mm131.MM131Activity;
 import com.xiaomi.mipush.sdk.MiPushClient;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import me.leolin.shortcutbadger.ShortcutBadger;
 
@@ -503,6 +508,36 @@ public class MainActivity extends Activity {
         });
         findViewById(R.id.button66).setOnClickListener(v -> {
             showCaptchaDialog();
+        });
+
+        findViewById(R.id.button67).setOnClickListener(v -> {
+            ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
+
+            ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "id1")
+                    .setShortLabel("Web site")
+                    .setLongLabel("Open the web site")
+                    .setIcon(Icon.createWithResource(this, R.drawable.test))
+                    .setIntent(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("https://github.com/Clyr/TestList.git")))
+                    .build();
+
+            shortcutManager.setDynamicShortcuts(Arrays.asList(shortcut));
+            /*if (Build.VERSION.SDK_INT >= 25) {
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                ShortcutInfo shortcutInfo = new ShortcutInfo.Builder(this, "shortcut_id_search")
+                        .setShortLabel(getString(R.string.lable_shortcut_static_search_disable))
+
+                        .setLongLabel(getString(R.string.lable_shortcut_static_search_disable))
+                        .setIcon(Icon.createWithResource(this, R.drawable.test))
+                        .setIntent(intent)
+                        .build();
+
+                ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
+                //这样就可以通过长按图标显示出快捷方式了
+                shortcutManager.setDynamicShortcuts(Arrays.asList(shortcutInfo));
+
+            }*/
         });
 
 

@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
+import android.provider.Settings;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
 
@@ -171,5 +172,85 @@ public class NotificationUtils {
         noti.flags = Notification.FLAG_AUTO_CANCEL;//不能删除通知
         //3、manager.notify()
         manager.notify(NOTIFICATION_ID, noti);
+    }
+    /**
+     * @param context  上下文
+     * @param title    标题
+     * @param content  内容
+     * @param cla      点击跳转的Activity
+     * @param drawable 图标
+     * @return
+     */
+    public static Notification showNotfi(Context context, String title, String content, Class<? extends Activity> cla, int drawable) {
+        String channelOneId = "getui_" + context.getString(R.string.app_name);
+        CharSequence channelName = "个推";
+
+        Intent intent1 = new Intent(context, cla);
+        intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        PendingIntent pi = PendingIntent.getActivity(context, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+        Notification notification = null;
+        NotificationManager manager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            Uri mUri = Settings.System.DEFAULT_NOTIFICATION_URI;
+
+            NotificationChannel mChannel = new NotificationChannel(channelOneId, channelName, NotificationManager.IMPORTANCE_LOW);
+            mChannel.setDescription("description");
+            mChannel.setSound(mUri, Notification.AUDIO_ATTRIBUTES_DEFAULT);
+            manager.createNotificationChannel(mChannel);
+            notification = new Notification.Builder(context, channelOneId)
+                    .setChannelId(channelOneId)
+                    .setSmallIcon(drawable)
+                    .setContentTitle(title)
+                    .setContentText(content)
+                    .setAutoCancel(true)
+                    .setContentIntent(pi)
+                    .build();
+
+        } else {
+            notification = new Notification.Builder(context)
+                    .setSmallIcon(drawable)
+                    .setContentTitle(title)
+                    .setContentText(content)
+                    .setAutoCancel(true)
+                    .setContentIntent(pi)
+                    .build();
+        }
+        notification.defaults = Notification.DEFAULT_ALL;
+        manager.notify(10001, notification);
+        return notification;
+    }
+
+    public static Notification showNotfi(Context context, String title, String content, int drawable) {
+        String channelOneId = context.getString(R.string.app_name) + "_Test";
+        CharSequence channelName = context.getString(R.string.app_name);
+
+        Notification notification = null;
+        NotificationManager manager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            Uri mUri = Settings.System.DEFAULT_NOTIFICATION_URI;
+
+            NotificationChannel mChannel = new NotificationChannel(channelOneId, channelName, NotificationManager.IMPORTANCE_LOW);
+            mChannel.setDescription("description");
+            mChannel.setSound(mUri, Notification.AUDIO_ATTRIBUTES_DEFAULT);
+            manager.createNotificationChannel(mChannel);
+            notification = new Notification.Builder(context, channelOneId)
+                    .setChannelId(channelOneId)
+                    .setSmallIcon(drawable)
+                    .setContentTitle(title)
+                    .setContentText(content)
+                    .setAutoCancel(true)
+                    .build();
+
+        } else {
+            notification = new Notification.Builder(context)
+                    .setSmallIcon(drawable)
+                    .setContentTitle(title)
+                    .setContentText(content)
+                    .setAutoCancel(true)
+                    .build();
+        }
+        notification.defaults = Notification.DEFAULT_ALL;
+        manager.notify(10001, notification);
+        return notification;
     }
 }

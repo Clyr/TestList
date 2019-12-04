@@ -1,6 +1,11 @@
 package com.matrix.myapplication.kotlin
 
+import android.content.Intent
+import android.content.pm.ShortcutInfo
+import android.content.pm.ShortcutManager
+import android.graphics.drawable.Icon
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.matrix.myapplication.R
@@ -27,5 +32,18 @@ class KotlinActivity : AppCompatActivity() {
         toast.setOnClickListener({
             Toast.makeText(this,"toast",Toast.LENGTH_SHORT).show();
         })
+    }
+
+    fun onClickshortcutsAdd(v: View) {
+        var shortcutManager = getSystemService(ShortcutManager::class.java) as ShortcutManager
+        var intent = Intent(this, this::class.java)
+        intent.action = Intent.ACTION_VIEW
+        var shortcut = ShortcutInfo.Builder(this, "noti_channel_demo")
+                .setIcon(Icon.createWithResource(this, R.drawable.ic_launcher))
+                .setShortLabel("通知渠道")
+                .setLongLabel("通知渠道演示")
+                .setIntent(intent)
+                .build()
+        shortcutManager.addDynamicShortcuts(listOf(shortcut))
     }
 }

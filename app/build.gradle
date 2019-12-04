@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'org.greenrobot.greendao' // apply plugin
 repositories {
     flatDir {
         dirs 'libs'
@@ -40,7 +41,7 @@ android {
         name = first + '.' + second + '.' + name
         defaultConfig {
             applicationId "com.matrix.myapplication"
-            minSdkVersion 19
+            minSdkVersion 25
             targetSdkVersion 28
             versionCode code
             versionName name
@@ -133,7 +134,9 @@ android {
 //        jniLibs.srcDirs = ['libs']
 //    }
 //}
-
+greendao {
+    schemaVersion 1 //当前数据库版本
+}
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //implementation(name: 'lib.5plus.base-release', ext: 'aar')
@@ -200,6 +203,9 @@ dependencies {
 
     /**拍照 & 视频录制*/
     implementation 'cjt.library.wheel:camera:1.1.9'
+
+    /** GreenDao */
+    implementation 'org.greenrobot:greendao:3.2.2'
 
     /**bugly 统计bug日志*/
     implementation 'com.tencent.bugly:crashreport:latest.release'

@@ -92,7 +92,7 @@ public class GuaGuaKa extends View {
         mBackPint.setStyle(Style.FILL);
         mBackPint.setTextScaleX(2f);
         mBackPint.setColor(Color.DKGRAY);
-        mBackPint.setTextSize(32);
+        mBackPint.setTextSize(40);
         mBackPint.getTextBounds(mText, 0, mText.length(), mTextBound);
     }
 
@@ -229,8 +229,8 @@ public class GuaGuaKa extends View {
                 int percent = (int) (wipeArea * 100 / totalArea);
                 Log.e("TAG", percent + "");
 
-                if (percent > 70) {
-                    Log.e("TAG", "清除区域达到70%，下面自动清除");
+                if (percent > 60) {
+                    Log.e("TAG", "清除区域达到60%，下面自动清除");
                     isComplete = true;
                     postInvalidate();
                 }

@@ -1,8 +1,10 @@
 package com.matrix.myapplication;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
+import android.content.Intent;
 import android.widget.RemoteViews;
 
 /**
@@ -17,6 +19,11 @@ public class NewAppWidget extends AppWidgetProvider {
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
         views.setTextViewText(R.id.appwidget_text, widgetText);
+
+        Intent intent1 = new Intent(context, MainActivity.class);
+//        PendingIntent pendingIntent1 = PendingIntent.getService(context, 0, intent1, PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent pendingIntent1 = PendingIntent.getActivity(context, 0, intent1, 0);
+        views.setOnClickPendingIntent(R.id.appwidget_text, pendingIntent1);
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);

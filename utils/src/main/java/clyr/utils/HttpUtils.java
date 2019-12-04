@@ -81,7 +81,7 @@ public class HttpUtils {
         OkHttpUtils.get().url(url).build().execute(new BitmapCallback() {
             @Override
             public void onError(okhttp3.Call call, Exception e, int id) {
-                TDUtils.showShort(context, "图片加载失败");
+                ToastDialogUtils.showShort(context, "图片加载失败");
             }
 
             @Override
@@ -96,7 +96,7 @@ public class HttpUtils {
         OkHttpUtils.get().url(url).build().execute(new BitmapCallback() {
             @Override
             public void onError(okhttp3.Call call, Exception e, int id) {
-                TDUtils.showShort(context, "图片加载失败");
+                ToastDialogUtils.showShort(context, "图片加载失败");
             }
 
             @Override

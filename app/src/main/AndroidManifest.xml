@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.matrix.myapplication">
-
     <!-- 标准添加 permission -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -87,8 +86,10 @@
         android:protectionLevel="signature" />
 
     <uses-permission android:name="com.matrix.myapplication.permission.MIPUSH_RECEIVE" />
-    <uses-permission android:name="android.permission.READ_LOGS"
+    <uses-permission
+        android:name="android.permission.READ_LOGS"
         tools:ignore="ProtectedPermissions" />
+
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -110,10 +111,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:name">
+        <activity android:name=".newactivity.GreenDaoActivity"></activity>
+
         <service
             android:name=".service.BatteryService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
         <activity android:name=".newactivity.WebViewForBaiduMap" />
         <activity android:name=".newactivity.RxBusActivity" />
@@ -145,6 +148,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+           <!-- <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts"/>-->
         </activity>
         <activity android:name=".activity.Main2Activity" />
         <activity android:name=".activity.MarqueeActivity" />
@@ -775,37 +781,35 @@
             </intent-filter>
         </receiver>
 
-
         <activity
             android:name=".view.topactivity.TopMainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask">
             <meta-data
                 android:name="android.app.shortcuts"
-                android:resource="@xml/app_shortcuts"/>
+                android:resource="@xml/app_shortcuts" />
         </activity>
-
         <activity
             android:name=".view.topactivity.AppShortcutsActivity"
             android:excludeFromRecents="true"
             android:exported="false"
-            android:theme="@style/TransparentTheme"/>
+            android:theme="@style/TransparentTheme" />
 
         <service
             android:name=".view.topactivity.WatchingService"
-            android:enabled="@bool/use_watching_service"/>
+            android:enabled="@bool/use_watching_service" />
         <service
             android:name=".view.topactivity.WatchingAccessibilityService"
             android:description="@string/app_name"
             android:enabled="@bool/use_accessibility_service"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
-                <action android:name="android.accessibilityservice.AccessibilityService"/>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
             </intent-filter>
 
             <meta-data
                 android:name="android.accessibilityservice"
-                android:resource="@xml/accessibility"/>
+                android:resource="@xml/accessibility" />
         </service>
         <service
             android:name=".view.topactivity.QuickSettingTileService"
@@ -814,37 +818,33 @@
             android:label="@string/app_name"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
-                <action android:name="android.service.quicksettings.action.QS_TILE"/>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
 
             <meta-data
                 android:name="android.service.quicksettings.ACTIVE_TILE"
-                android:value="true"/>
+                android:value="true" />
         </service>
 
         <receiver android:name=".view.topactivity.NotificationActionReceiver">
             <intent-filter>
-                <action android:name="com.matrix.myapplication.ACTION_NOTIFICATION_RECEIVER"/>
+                <action android:name="com.matrix.myapplication.ACTION_NOTIFICATION_RECEIVER" />
             </intent-filter>
-        </receiver>
-
-        <!-- Bugly 配置APP ID -->
+        </receiver> <!-- Bugly 配置APP ID -->
         <meta-data
             android:name="BUGLY_APPID"
-            android:value="e349a84b8a" />
-        <!-- 配置APP版本号 -->
+            android:value="e349a84b8a" /> <!-- 配置APP版本号 -->
         <meta-data
             android:name="BUGLY_APP_VERSION"
-            android:value="3.0" />
-        <!-- 配置APP渠道号 -->
+            android:value="3.0" /> <!-- 配置APP渠道号 -->
         <meta-data
             android:name="BUGLY_APP_CHANNEL"
-            android:value="TestListChannel" />
-        <!-- 配置Bugly调试模式（true或者false）-->
+            android:value="TestListChannel" /> <!-- 配置Bugly调试模式（true或者false） -->
         <meta-data
             android:name="BUGLY_ENABLE_DEBUG"
             android:value="true" />
-        <activity android:name=".view.timershaft.TimerShaftActivity"></activity>
+
+        <activity android:name=".view.timershaft.TimerShaftActivity" />
     </application>
 
 </manifest>

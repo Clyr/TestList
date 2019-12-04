@@ -293,7 +293,7 @@ public class SystemUtils {
             public void onAuthenticationError(int errorCode, CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
                 //LoadingDialog.cancelLoading();
-                TDUtils.showShort(activity, "操作过于频繁,请稍后再试");
+                ToastDialogUtils.showShort(activity, "操作过于频繁,请稍后再试");
             }
 
 
@@ -308,7 +308,7 @@ public class SystemUtils {
             public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
                 //LoadingDialog.cancelLoading();
-                TDUtils.showShort(activity, "指纹识别成功");
+                ToastDialogUtils.showShort(activity, "指纹识别成功");
             }
 
 
@@ -317,10 +317,10 @@ public class SystemUtils {
             public void onAuthenticationFailed() {
                 super.onAuthenticationFailed();
                 //LoadingDialog.cancelLoading();
-                TDUtils.showShort(activity, "指纹识别失败");
+                ToastDialogUtils.showShort(activity, "指纹识别失败");
                 i++;
                 if (i == 3) {
-                    TDUtils.showShort(activity, "失败次数过多,请输入锁屏密码");
+                    ToastDialogUtils.showShort(activity, "失败次数过多,请输入锁屏密码");
                     showLockScreenPass(keyManager);
                     i = 0;
                 }
@@ -337,7 +337,7 @@ public class SystemUtils {
             // selfCancelled = true;
             signal.cancel();
             signal = null;
-            TDUtils.showShort(activity, "您已经取消指纹识别");
+            ToastDialogUtils.showShort(activity, "您已经取消指纹识别");
         }
     }
 
@@ -362,22 +362,22 @@ public class SystemUtils {
     public static boolean isFingerprint() {
         //此方法为了保证判断是否支持支持指纹不报错
         if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED) {
-            TDUtils.showShort(activity, "没有指纹解锁的权限");
+            ToastDialogUtils.showShort(activity, "没有指纹解锁的权限");
             return false;
         }
         //硬件设备是否支持指纹解锁功能
         if (!manager.isHardwareDetected()) {
-            TDUtils.showShort(activity, "该手机不支持指纹解锁");
+            ToastDialogUtils.showShort(activity, "该手机不支持指纹解锁");
             return false;
         }
         //判断是否有锁屏密码
         if (!keyManager.isKeyguardSecure()) {
-            TDUtils.showShort(activity, "请设置锁屏密码");
+            ToastDialogUtils.showShort(activity, "请设置锁屏密码");
             return false;
         }
         //判断是否录入指纹
         if (!manager.hasEnrolledFingerprints()) {
-            TDUtils.showShort(activity, "没有录入指纹");
+            ToastDialogUtils.showShort(activity, "没有录入指纹");
             return false;
         }
         return true;
@@ -395,7 +395,7 @@ public class SystemUtils {
                 .setNegativeButton("取消", activity.getMainExecutor(), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        TDUtils.showShort(activity, "Cancel button clicked");
+                        ToastDialogUtils.showShort(activity, "Cancel button clicked");
                     }
                 })
                 .build();
@@ -405,7 +405,7 @@ public class SystemUtils {
             @Override
             public void onCancel() {
                 //handle cancel result
-                TDUtils.showShort(activity, "Canceled");
+                ToastDialogUtils.showShort(activity, "Canceled");
             }
         });
 
@@ -414,21 +414,21 @@ public class SystemUtils {
             public void onAuthenticationError(int errorCode, CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
 
-                TDUtils.showShort(activity, "onAuthenticationError " + errString);
+                ToastDialogUtils.showShort(activity, "onAuthenticationError " + errString);
             }
 
             @Override
             public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
 
-                TDUtils.showShort(activity, "验证成功");
+                ToastDialogUtils.showShort(activity, "验证成功");
             }
 
             @Override
             public void onAuthenticationFailed() {
                 super.onAuthenticationFailed();
 
-                TDUtils.showShort(activity, "onAuthenticationFailed ");
+                ToastDialogUtils.showShort(activity, "onAuthenticationFailed ");
             }
         };
 
@@ -599,7 +599,7 @@ public class SystemUtils {
             @Override
             public void onError(okhttp3.Call call, Exception e, int id) {
                 MyLog.e(e.toString());
-                TDUtils.showShort(activity, getLocalIpAddress());
+                ToastDialogUtils.showShort(activity, getLocalIpAddress());
             }
 
             @Override
@@ -613,9 +613,9 @@ public class SystemUtils {
                     Gson gson = new Gson();
                     ipsohu ipsohu = gson.fromJson(string, ipsohu.class);
                     MyLog.d(ipsohu.cip);
-                    TDUtils.showShort(activity, "外网IP：" + ipsohu.cip);
+                    ToastDialogUtils.showShort(activity, "外网IP：" + ipsohu.cip);
                 }
-                TDUtils.showShort(activity, getLocalIpAddress());
+                ToastDialogUtils.showShort(activity, getLocalIpAddress());
             }
         });
     }

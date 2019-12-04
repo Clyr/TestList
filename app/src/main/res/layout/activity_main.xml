@@ -300,7 +300,7 @@
                     android:id="@+id/button44"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="MM131"
+                    android:text="MagicIndicator"
                     android:textColor="@color/mm131" />
 
                 <Button
@@ -429,7 +429,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="滑动验证码" />
-
+                <Button
+                    android:id="@+id/button67"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ShortCuts" />
 
 
 

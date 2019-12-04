@@ -587,7 +587,7 @@ public class IOSave {
                 mContext.startActivity(intent);
             } catch (Exception e) {
                 e.printStackTrace();
-                TDUtils.showLong(mContext,"打开APK失败::>_<::，请手动安装,安装包位于下载器中"+apkFilePath);
+                ToastDialogUtils.showLong(mContext,"打开APK失败::>_<::，请手动安装,安装包位于下载器中"+apkFilePath);
             }
 
 
