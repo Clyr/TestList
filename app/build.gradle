@@ -53,9 +53,9 @@ android {
                 targetCompatibility JavaVersion.VERSION_1_8
             }
             manifestPlaceholders = [
-                    GETUI_APP_ID    : "QKcikwnq0w6kpjsrDs2iS3",
-                    GETUI_APP_KEY   : "Daf4RF45yl50q1oYr33962",
-                    GETUI_APP_SECRET: "g8S7kNB5DS7q5CrFRJbkh"
+                    GETUI_APP_ID    : "-QKcikwnq0w6-kpjsrDs-2iS3",
+                    GETUI_APP_KEY   : "Daf4RF45-yl50q1oYr-33962",
+                    GETUI_APP_SECRET: "g8S7kNB-5DS7q5CrF-RJbkh"
             ]
             ndk {
                 abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
